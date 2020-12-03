@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_cart"
+    app:startDestination="@id/shoppingCart">
+
+    <fragment
+        android:id="@+id/shoppingCart"
+        android:name="com.example.buyhome_lcn.fragment_cart.ShoppingCart"
+        android:label="fragment_shopping_cart"
+        tools:layout="@layout/fragment_shopping_cart" >
+        <action
+            android:id="@+id/action_shoppingCart_to_checkDeal"
+            app:destination="@id/checkDeal" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkDelivery"
+        android:name="com.example.buyhome_lcn.fragment_cart.CheckDelivery"
+        android:label="fragment_check_delivery"
+        tools:layout="@layout/fragment_check_delivery" />
+    <fragment
+        android:id="@+id/checkDeal"
+        android:name="com.example.buyhome_lcn.fragment_cart.CheckDeal"
+        android:label="fragment_check_deal"
+        tools:layout="@layout/fragment_check_deal" >
+        <action
+            android:id="@+id/action_checkDeal_to_checkDelivery"
+            app:destination="@id/checkDelivery" />
+        <action
+            android:id="@+id/action_checkDeal_to_doPay"
+            app:destination="@id/doPay" />
+    </fragment>
+    <fragment
+        android:id="@+id/doPay"
+        android:name="com.example.buyhome_lcn.fragment_cart.DoPay"
+        android:label="fragment_do_pay"
+        tools:layout="@layout/fragment_do_pay" />
+</navigation>
