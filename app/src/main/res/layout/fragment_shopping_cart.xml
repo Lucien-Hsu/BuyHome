@@ -8,18 +8,6 @@
     tools:context=".fragment_cart.ShoppingCart">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_go_checkdeal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/frame_01" />
-
     <Button
         android:id="@+id/btn_go_checkdeal"
         android:layout_width="0dp"
@@ -36,37 +24,49 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/img_price"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
         android:layout_marginStart="16dp"
-        android:text="小計："
-        android:textColor="#333333"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_go_checkdeal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/frame_01" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_price_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="＄0.0"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintBottom_toBottomOf="@+id/img_price"
+        app:layout_constraintEnd_toEndOf="@+id/img_price"
+        app:layout_constraintTop_toTopOf="@+id/img_price" />
+
+    <TextView
+        android:id="@+id/tv_price_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="小計："
+        android:textColor="#333333"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/img_price"
+        app:layout_constraintStart_toStartOf="@+id/img_price"
+        app:layout_constraintTop_toTopOf="@+id/img_price" />
 
     <ListView
+        android:id="@+id/lv"
         android:layout_width="409dp"
-        android:layout_height="442dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintBottom_toTopOf="@+id/img_price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
