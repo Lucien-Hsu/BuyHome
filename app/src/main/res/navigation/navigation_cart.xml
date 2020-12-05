@@ -18,7 +18,11 @@
         android:id="@+id/checkDelivery"
         android:name="com.example.buyhome_lcn.fragment_cart.CheckDelivery"
         android:label="fragment_check_delivery"
-        tools:layout="@layout/fragment_check_delivery" />
+        tools:layout="@layout/fragment_check_delivery" >
+        <action
+            android:id="@+id/action_checkDelivery_to_checkDeal"
+            app:destination="@id/checkDeal" />
+    </fragment>
     <fragment
         android:id="@+id/checkDeal"
         android:name="com.example.buyhome_lcn.fragment_cart.CheckDeal"
