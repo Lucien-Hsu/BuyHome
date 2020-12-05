@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.buyhome_lcn.R;
 
 public class CheckDeal extends Fragment {
+    ImageButton imgBtnDelivery;
     Button btnGoDoPay;
 
     @Override
@@ -20,6 +22,16 @@ public class CheckDeal extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_check_deal, container, false);
 
+        //[按鈕]  前往"設定寄送方式"
+        imgBtnDelivery = view.findViewById(R.id.imgbtn_delivery);
+        imgBtnDelivery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_checkDeal_to_checkDelivery);
+            }
+        });
+
+        //[按鈕]  前往付款
         btnGoDoPay = view.findViewById(R.id.btn_go_dopay);
         btnGoDoPay.setOnClickListener(new View.OnClickListener() {
             @Override
