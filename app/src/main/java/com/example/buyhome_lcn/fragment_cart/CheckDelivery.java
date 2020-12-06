@@ -19,7 +19,7 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 
 
 public class CheckDelivery extends Fragment {
-    Button btnGoBack;
+    Button btnGoBack, btnHomeDelivery, btnStorePickup;
     CheckBox cbHome, cbStore;
 
     Boolean isHomeChecked = true;
@@ -30,6 +30,25 @@ public class CheckDelivery extends Fragment {
         View view = inflater.inflate(R.layout.fragment_check_delivery, container, false);
 
         chooseDeliveryWay(view);
+
+        //[按鈕]  設定宅配地址
+        btnHomeDelivery = view.findViewById(R.id.btn_home_delivery);
+        btnHomeDelivery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO 設定宅配地址
+            }
+        });
+
+        //[按鈕]  設定取貨門市
+        btnStorePickup = view.findViewById(R.id.cb_store_pickup);
+        btnStorePickup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO 設定取貨門市
+            }
+        });
+
 
         //[按鈕]  返回"確認付款"頁面
         btnGoBack = view.findViewById(R.id.btn_gobackto_checkdeal);

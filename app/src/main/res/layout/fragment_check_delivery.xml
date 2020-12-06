@@ -45,11 +45,11 @@
         android:text="選擇門市"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/img_store_pickup"
-        app:layout_constraintStart_toStartOf="@+id/tv__store_pickup"
-        app:layout_constraintTop_toBottomOf="@+id/tv__store_pickup" />
+        app:layout_constraintStart_toStartOf="@+id/tv_store_pickup"
+        app:layout_constraintTop_toBottomOf="@+id/tv_store_pickup" />
 
     <TextView
-        android:id="@+id/tv__store_pickup"
+        android:id="@+id/tv_store_pickup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="20"
@@ -65,7 +65,7 @@
         android:layout_marginStart="16dp"
         android:text="便利商店取貨"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tv__store_pickup"
+        app:layout_constraintBottom_toTopOf="@+id/tv_store_pickup"
         app:layout_constraintStart_toStartOf="@+id/img_store_pickup"
         app:layout_constraintTop_toTopOf="@+id/img_store_pickup" />
 
