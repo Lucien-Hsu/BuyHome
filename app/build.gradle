@@ -12,6 +12,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //向下相容，啟用向量圖
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {

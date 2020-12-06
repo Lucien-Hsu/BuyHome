@@ -33,8 +33,10 @@ public class CheckDelivery extends Fragment {
         btnGoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_checkDelivery_to_checkDeal);
+                //退出BackStack，此處便不會記錄到堆疊中。否則之後按返回建會回到這頁。
+                Navigation.findNavController(view).popBackStack();
             }
+
         });
 
         return view;
