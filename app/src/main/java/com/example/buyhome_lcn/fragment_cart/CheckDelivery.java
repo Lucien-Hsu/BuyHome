@@ -8,11 +8,14 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.example.buyhome_lcn.R;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 
 public class CheckDelivery extends Fragment {

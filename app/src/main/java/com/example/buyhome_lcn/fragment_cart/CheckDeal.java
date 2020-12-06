@@ -8,10 +8,13 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.buyhome_lcn.R;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class CheckDeal extends Fragment {
     ImageButton imgBtnDelivery;
@@ -27,6 +30,10 @@ public class CheckDeal extends Fragment {
         imgBtnDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 隱藏鍵盤
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
                 Navigation.findNavController(view).navigate(R.id.action_checkDeal_to_checkDelivery);
             }
         });
@@ -36,6 +43,7 @@ public class CheckDeal extends Fragment {
         btnGoDoPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Navigation.findNavController(view).navigate(R.id.action_checkDeal_to_doPay);
             }
         });
