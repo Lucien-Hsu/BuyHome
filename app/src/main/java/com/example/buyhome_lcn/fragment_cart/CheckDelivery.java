@@ -16,7 +16,7 @@ import com.example.buyhome_lcn.R;
 
 
 public class CheckDelivery extends Fragment {
-    Button btnGoBack, btnHomeDelivery, btnStorePickup;
+    Button btnGoBack, btnChooseReceiver, btnChooseAddress, btnChooseStore;
     CheckBox cbHome, cbStore;
 
     Boolean isHomeChecked = true;
@@ -28,24 +28,32 @@ public class CheckDelivery extends Fragment {
 
         chooseDeliveryWay(view);
 
-        //[按鈕]  設定宅配地址
-        btnHomeDelivery = view.findViewById(R.id.btn_choose_address);
-        btnHomeDelivery.setOnClickListener(new View.OnClickListener() {
+        //[按鈕]  設定收件者
+        btnChooseReceiver = view.findViewById(R.id.btn_choose_receiver);
+        btnChooseReceiver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO 設定宅配地址
+                Navigation.findNavController(view).navigate(R.id.action_checkDelivery_to_chooseReceiver);
+            }
+        });
+
+        //[按鈕]  設定宅配地址
+        btnChooseAddress = view.findViewById(R.id.btn_choose_address);
+        btnChooseAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_checkDelivery_to_chooseAddress);
             }
         });
 
         //[按鈕]  設定取貨門市
-        btnStorePickup = view.findViewById(R.id.cb_store_pickup);
-        btnStorePickup.setOnClickListener(new View.OnClickListener() {
+        btnChooseStore = view.findViewById(R.id.btn_choose_store);
+        btnChooseStore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO 設定取貨門市
+                Navigation.findNavController(view).navigate(R.id.action_checkDelivery_to_chooseStore);
             }
         });
-
 
         //[按鈕]  返回"確認付款"頁面
         btnGoBack = view.findViewById(R.id.btn_gobackto_checkdeal);
