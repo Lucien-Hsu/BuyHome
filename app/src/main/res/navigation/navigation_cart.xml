@@ -30,6 +30,15 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_checkDelivery_to_chooseReceiver"
+            app:destination="@id/chooseReceiver" />
+        <action
+            android:id="@+id/action_checkDelivery_to_chooseAddress"
+            app:destination="@id/chooseAddress" />
+        <action
+            android:id="@+id/action_checkDelivery_to_chooseStore"
+            app:destination="@id/chooseStore" />
     </fragment>
     <fragment
         android:id="@+id/checkDeal"
@@ -56,4 +65,31 @@
         android:name="com.example.buyhome_lcn.fragment_cart.DoPay"
         android:label="fragment_do_pay"
         tools:layout="@layout/fragment_do_pay" />
+    <fragment
+        android:id="@+id/chooseAddress"
+        android:name="com.example.buyhome_lcn.fragment_cart.ChooseAddress"
+        android:label="fragment_choose_address"
+        tools:layout="@layout/fragment_choose_address" >
+        <action
+            android:id="@+id/action_chooseAddress_to_checkDelivery"
+            app:destination="@id/checkDelivery" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseReceiver"
+        android:name="com.example.buyhome_lcn.fragment_cart.ChooseReceiver"
+        android:label="fragment_choose_receiver"
+        tools:layout="@layout/fragment_choose_receiver" >
+        <action
+            android:id="@+id/action_chooseReceiver_to_checkDelivery"
+            app:destination="@id/checkDelivery" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseStore"
+        android:name="com.example.buyhome_lcn.fragment_cart.ChooseStore"
+        android:label="fragment_choose_store"
+        tools:layout="@layout/fragment_choose_store" >
+        <action
+            android:id="@+id/action_chooseStore_to_checkDelivery"
+            app:destination="@id/checkDelivery" />
+    </fragment>
 </navigation>

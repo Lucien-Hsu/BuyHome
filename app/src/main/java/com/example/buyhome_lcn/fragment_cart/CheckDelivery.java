@@ -8,14 +8,11 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.example.buyhome_lcn.R;
-
-import static android.content.Context.INPUT_METHOD_SERVICE;
 
 
 public class CheckDelivery extends Fragment {
@@ -32,7 +29,7 @@ public class CheckDelivery extends Fragment {
         chooseDeliveryWay(view);
 
         //[按鈕]  設定宅配地址
-        btnHomeDelivery = view.findViewById(R.id.btn_home_delivery);
+        btnHomeDelivery = view.findViewById(R.id.btn_choose_address);
         btnHomeDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

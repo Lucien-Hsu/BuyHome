@@ -20,11 +20,6 @@ public class ShoppingCart extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
 
-
-
-
-
-
         //[按鈕]  前往"確認付款"頁面
         btnGoCheckDeal = view.findViewById(R.id.btn_go_checkdeal);
         btnGoCheckDeal.setOnClickListener(new View.OnClickListener() {

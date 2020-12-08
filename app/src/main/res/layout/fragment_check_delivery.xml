@@ -26,7 +26,7 @@
     <ImageView
         android:id="@+id/img_store_pickup"
         android:layout_width="0dp"
-        android:layout_height="160dp"
+        android:layout_height="140dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -37,10 +37,11 @@
         app:layout_constraintTop_toBottomOf="@+id/img_home_delivery" />
 
     <Button
-        android:id="@+id/btn_store_pickup"
+        android:id="@+id/btn_choose_store"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/button_01"
         android:text="選擇門市"
         android:textColor="#FFFFFF"
@@ -52,27 +53,27 @@
         android:id="@+id/tv_store_pickup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:ems="20"
         android:text="全家XXX門市"
-        app:layout_constraintBottom_toTopOf="@+id/btn_store_pickup"
-        app:layout_constraintStart_toStartOf="@+id/cb_store_pickup"
+        app:layout_constraintBottom_toTopOf="@+id/btn_choose_store"
+        app:layout_constraintStart_toStartOf="@+id/img_store_pickup"
         app:layout_constraintTop_toBottomOf="@+id/cb_store_pickup" />
 
     <CheckBox
         android:id="@+id/cb_store_pickup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:text="便利商店取貨"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tv_store_pickup"
-        app:layout_constraintStart_toStartOf="@+id/img_store_pickup"
+        app:layout_constraintStart_toStartOf="@+id/space2"
         app:layout_constraintTop_toTopOf="@+id/img_store_pickup" />
 
     <ImageView
         android:id="@+id/img_home_delivery"
         android:layout_width="0dp"
-        android:layout_height="160dp"
+        android:layout_height="140dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -83,10 +84,11 @@
         app:layout_constraintTop_toBottomOf="@+id/img_recipient" />
 
     <Button
-        android:id="@+id/btn_home_delivery"
+        android:id="@+id/btn_choose_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/button_01"
         android:text="選擇地址"
         android:textColor="#FFFFFF"
@@ -98,28 +100,28 @@
         android:id="@+id/tv_home_delivery_adress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:ems="20"
         android:text="台北市中正路123號"
-        app:layout_constraintBottom_toTopOf="@+id/btn_home_delivery"
-        app:layout_constraintStart_toStartOf="@+id/cb_home_delivery"
+        app:layout_constraintBottom_toTopOf="@+id/btn_choose_address"
+        app:layout_constraintStart_toStartOf="@+id/img_home_delivery"
         app:layout_constraintTop_toBottomOf="@+id/cb_home_delivery" />
 
     <CheckBox
         android:id="@+id/cb_home_delivery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:checked="true"
         android:text="宅配"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tv_home_delivery_adress"
-        app:layout_constraintStart_toStartOf="@+id/img_home_delivery"
+        app:layout_constraintStart_toStartOf="@+id/space"
         app:layout_constraintTop_toTopOf="@+id/img_home_delivery" />
 
     <ImageView
         android:id="@+id/img_recipient"
         android:layout_width="0dp"
-        android:layout_height="120dp"
+        android:layout_height="170dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -128,6 +130,19 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_choose_receiver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_01"
+        android:text="選擇收件者"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/img_recipient"
+        app:layout_constraintStart_toStartOf="@+id/tv_recipient_phone_text"
+        app:layout_constraintTop_toBottomOf="@+id/tv_recipient_phone_text" />
 
     <EditText
         android:id="@+id/tv_recipient_phone_display"
@@ -146,7 +161,7 @@
         android:layout_height="wrap_content"
         android:text="電話："
         android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintBottom_toBottomOf="@+id/img_recipient"
+        app:layout_constraintBottom_toTopOf="@+id/btn_choose_receiver"
         app:layout_constraintStart_toStartOf="@+id/tv_recipient_name_text"
         app:layout_constraintTop_toBottomOf="@+id/tv_recipient_name_text" />
 
@@ -176,11 +191,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="收件者"
         android:textColor="?android:attr/textColorPrimary"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tv_recipient_name_text"
         app:layout_constraintStart_toStartOf="@+id/img_recipient"
         app:layout_constraintTop_toTopOf="@+id/img_recipient" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="6dp"
+        android:layout_height="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_home_delivery_adress"
+        app:layout_constraintEnd_toStartOf="@+id/tv_home_delivery_adress" />
+
+    <Space
+        android:id="@+id/space2"
+        android:layout_width="6dp"
+        android:layout_height="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_store_pickup"
+        app:layout_constraintEnd_toStartOf="@+id/tv_store_pickup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
