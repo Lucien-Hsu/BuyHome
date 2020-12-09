@@ -109,7 +109,7 @@
         android:id="@+id/space4"
         android:layout_width="4dp"
         android:layout_height="10dp"
-        app:layout_constraintStart_toStartOf="@+id/textView5"
-        tools:layout_editor_absoluteY="62dp" />
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/textView5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

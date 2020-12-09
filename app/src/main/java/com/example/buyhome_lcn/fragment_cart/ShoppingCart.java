@@ -14,13 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.buyhome_lcn.MainActivity;
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.adapter.ShoppingCartAdapter;
 import com.example.buyhome_lcn.data.ShoppingCartViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ShoppingCart extends Fragment {
     Context context;
