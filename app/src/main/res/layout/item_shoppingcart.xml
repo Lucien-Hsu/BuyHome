@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D7D9E4">
+    android:background="#ECEFF1">
 
     <ImageView
         android:id="@+id/img_item_frame"
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:ems="13"
+        android:ems="12"
         android:text="ASUS X509MA-0291GN4020 星空灰 15.6吋窄邊筆電"
         android:textColor="?android:attr/textColorPrimary"
         app:layout_constraintStart_toEndOf="@+id/img_item_picture"
