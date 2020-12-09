@@ -19,7 +19,7 @@ public class ShoppingCartViewModel extends ViewModel {
         priceString = new ArrayList<String>();
         pictureId = new ArrayList<Integer>();
 
-        for(int i = 0 ; i < 30; i++){
+        for(int i = 0 ; i < 12; i++){
             String data1 = new String("ASUS X509MA-0291GN4020 星空灰 15.6吋窄邊筆電:" + (i + 1));
             nameString.add(data1);
             String data2 = new String("$11111:" + (i + 1));
