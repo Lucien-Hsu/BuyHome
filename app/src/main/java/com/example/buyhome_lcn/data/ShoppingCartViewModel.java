@@ -42,7 +42,7 @@ public class ShoppingCartViewModel extends ViewModel {
      * 商品數量加一
      */
     public void onAddAmount(int index){
-        if(amount.getValue().get(index) < 5){
+        if(amount.getValue().get(index) < 99){
             amount.getValue().set(index, amount.getValue().get(index) + 1);
         }
     }
