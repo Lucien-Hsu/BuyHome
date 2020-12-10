@@ -51,32 +51,32 @@
         app:layout_constraintStart_toStartOf="@+id/tv_item_name" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_add"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@drawable/button_01"
         android:text="＋"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_item_amount"
         app:layout_constraintStart_toStartOf="@+id/space3"
-        app:layout_constraintTop_toTopOf="@+id/textView5" />
+        app:layout_constraintTop_toTopOf="@+id/tv_item_amount" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_sub"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@drawable/button_01"
         android:text="－"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_item_amount"
         app:layout_constraintEnd_toEndOf="@+id/space4"
-        app:layout_constraintTop_toTopOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/tv_item_amount"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tv_item_amount"
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_marginEnd="40dp"
@@ -92,8 +92,8 @@
         android:layout_height="30dp"
         android:layout_marginTop="8dp"
         android:background="#00FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/tv_item_amount"
+        app:layout_constraintEnd_toEndOf="@+id/btn_add"
         app:layout_constraintTop_toTopOf="@+id/img_item_frame"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_trash" />
@@ -102,14 +102,14 @@
         android:id="@+id/space3"
         android:layout_width="4dp"
         android:layout_height="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintEnd_toEndOf="@+id/textView5" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_item_amount"
+        app:layout_constraintEnd_toEndOf="@+id/tv_item_amount" />
 
     <Space
         android:id="@+id/space4"
         android:layout_width="4dp"
         android:layout_height="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintStart_toStartOf="@+id/textView5" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_item_amount"
+        app:layout_constraintStart_toStartOf="@+id/tv_item_amount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

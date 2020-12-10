@@ -52,7 +52,7 @@ public class CheckDeal extends Fragment {
         rvCheckdeal = view.findViewById(R.id.rv_checkdeal);
         StaggeredGridLayoutManager mLayoutManager_stagger = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         rvCheckdeal.setLayoutManager(mLayoutManager_stagger);
-        adapter = new CheckDealAdapter(context, viewModel.nameString, viewModel.priceString ,viewModel.pictureId);
+        adapter = new CheckDealAdapter(context, viewModel.nameString, viewModel.priceString ,viewModel.pictureId, viewModel.amount.getValue());
         rvCheckdeal.setAdapter(adapter);
 
         //[按鈕]  前往"設定寄送方式"

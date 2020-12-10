@@ -21,17 +21,20 @@ public class CheckDealAdapter extends RecyclerView.Adapter<CheckDealAdapter.View
     private final List<String> nameString;
     private final List<String> priceString;
     private final List<Integer> pictureId;
+    private final List<Integer> amount;
 
     private final LayoutInflater mLayoutInflater;
 
     //4-1.建構子
     //取得context與資料，並設定一個Inflater填充於傳來的context中
-    public CheckDealAdapter(Context context, List<String> nameString, List<String> priceString, List<Integer> pictureId) {
+    public CheckDealAdapter(Context context, List<String> nameString, List<String> priceString, List<Integer> pictureId, List<Integer> amount) {
         this.context = context;
 
         this.nameString = nameString;
         this.priceString = priceString;
         this.pictureId = pictureId;
+        this.amount = amount;
+
         mLayoutInflater = LayoutInflater.from(context);
     }
 
@@ -47,12 +50,15 @@ public class CheckDealAdapter extends RecyclerView.Adapter<CheckDealAdapter.View
         private final ImageView img_data;
         private final TextView tv_name_data;
         private final TextView tv_price_data;
+        private final TextView tv_item_amount;
+
         //取得項目視圖中的ViewID
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             img_data = itemView.findViewById(R.id.img_item_picture);
             tv_name_data = itemView.findViewById(R.id.tv_item_name);
             tv_price_data = itemView.findViewById(R.id.tv_item_price);
+            tv_item_amount = itemView.findViewById(R.id.tv_item_amount);
 
             //監聽器
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -84,5 +90,6 @@ public class CheckDealAdapter extends RecyclerView.Adapter<CheckDealAdapter.View
         holder.img_data.setImageResource(pictureId.get(position));
         holder.tv_name_data.setText(nameString.get(position));
         holder.tv_price_data.setText(priceString.get(position));
+        holder.tv_item_amount.setText("數量：" + amount.get(position).toString());
     }
 }
