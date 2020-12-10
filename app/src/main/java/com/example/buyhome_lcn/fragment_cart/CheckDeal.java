@@ -1,9 +1,13 @@
 package com.example.buyhome_lcn.fragment_cart;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,8 +21,19 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.buyhome_lcn.R;
+import com.example.buyhome_lcn.adapter.CheckDealAdapter;
+import com.example.buyhome_lcn.adapter.ShoppingCartAdapter;
+import com.example.buyhome_lcn.data.ShoppingCartViewModel;
 
 public class CheckDeal extends Fragment {
+    Context context;
+
+    //ViewModel
+    private ShoppingCartViewModel viewModel;
+    //RecyclerView
+    private RecyclerView rvCheckdeal;
+    private CheckDealAdapter adapter;
+
     ImageButton imgBtnDelivery;
     EditText etDiscountCode;
     TextView tvDiscountCodeTip;
@@ -28,6 +43,17 @@ public class CheckDeal extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_check_deal, container, false);
+        context = requireActivity();
+
+        //取得自定義 ViewModel
+        viewModel = new ViewModelProvider(requireActivity()).get(ShoppingCartViewModel.class);
+
+        //[清單] 呈現商品資料
+        rvCheckdeal = view.findViewById(R.id.rv_checkdeal);
+        StaggeredGridLayoutManager mLayoutManager_stagger = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        rvCheckdeal.setLayoutManager(mLayoutManager_stagger);
+        adapter = new CheckDealAdapter(context, viewModel.nameString, viewModel.priceString ,viewModel.pictureId);
+        rvCheckdeal.setAdapter(adapter);
 
         //[按鈕]  前往"設定寄送方式"
         imgBtnDelivery = view.findViewById(R.id.imgbtn_delivery);
@@ -71,7 +97,6 @@ public class CheckDeal extends Fragment {
             }
         });
 
-
         return view;
     }
 
@@ -88,4 +113,6 @@ public class CheckDeal extends Fragment {
             tvDiscountCodeTip.setBackgroundResource(R.drawable.frame_04);
         }
     }
+
+
 }

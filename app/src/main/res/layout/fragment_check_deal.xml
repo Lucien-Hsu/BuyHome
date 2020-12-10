@@ -220,9 +220,9 @@
         app:layout_constraintTop_toTopOf="@+id/img_price"
         app:layout_constraintVertical_chainStyle="spread" />
 
-    <ListView
-        android:id="@+id/lv"
-        android:layout_width="409dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_checkdeal"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:background="#FFFFFF"
@@ -231,6 +231,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </ListView>
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

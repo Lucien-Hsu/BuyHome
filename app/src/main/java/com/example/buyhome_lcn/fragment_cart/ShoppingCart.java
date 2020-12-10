@@ -23,9 +23,10 @@ public class ShoppingCart extends Fragment {
 
     //ViewModel
     private ShoppingCartViewModel viewModel;
-
+    //RecyclerView
     private RecyclerView rvShoppingCart;
     private ShoppingCartAdapter adapter;
+
     Button btnGoCheckDeal;
 
     @Override
