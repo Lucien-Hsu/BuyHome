@@ -42,7 +42,7 @@ public class ShoppingCart extends Fragment {
         rvShoppingCart = view.findViewById(R.id.rv_shoppingcart);
         StaggeredGridLayoutManager mLayoutManager_stagger = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         rvShoppingCart.setLayoutManager(mLayoutManager_stagger);
-        adapter = new ShoppingCartAdapter(context, viewModel.nameString, viewModel.priceString ,viewModel.pictureId, viewModel.amount.getValue());
+        adapter = new ShoppingCartAdapter(context, viewModel.nameString, viewModel.priceList, viewModel.pictureId, viewModel.amount.getValue());
         rvShoppingCart.setAdapter(adapter);
 
         //[按鈕]  前往"確認付款"頁面

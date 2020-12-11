@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ShoppingCartViewModel extends ViewModel {
     public List<String> nameString;
-    public List<String> priceString;
+    public List<Integer> priceList;
     public List<Integer> pictureId;
     public List<Integer> amountList;
     public MutableLiveData<List<Integer>> amount;
@@ -22,7 +22,7 @@ public class ShoppingCartViewModel extends ViewModel {
         super();
 
         nameString = new ArrayList<String>();
-        priceString = new ArrayList<String>();
+        priceList = new ArrayList<Integer>();
         pictureId = new ArrayList<Integer>();
         amountList = new ArrayList<Integer>();
         amount = new MutableLiveData<List<Integer>>();
@@ -30,8 +30,8 @@ public class ShoppingCartViewModel extends ViewModel {
         for(int i = 0 ; i < 12; i++){
             String name = new String("ASUS X509MA-0291GN4020 星空灰 15.6吋窄邊筆電:" + (i + 1));
             nameString.add(name);
-            String price = new String("$11111");
-            priceString.add(price);
+            Integer price = new Integer(11111);
+            priceList.add(price);
             pictureId.add(R.drawable.test_item);
             amountList.add(0);
             amount.setValue(amountList);
@@ -54,6 +54,12 @@ public class ShoppingCartViewModel extends ViewModel {
         if(amount.getValue().get(index) > 0) {
             amount.getValue().set(index, amount.getValue().get(index) - 1);
         }
+    }
+
+    public int getToltalPrice(){
+
+
+        return 0;
     }
 
     @Override

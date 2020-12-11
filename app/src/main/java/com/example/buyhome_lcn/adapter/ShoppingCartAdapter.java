@@ -29,7 +29,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
     private ShoppingCartViewModel viewModel;
 
     private final List<String> nameString;
-    private final List<String> priceString;
+    private final List<Integer> priceList;
     private final List<Integer> pictureId;
     private final List<Integer> amount;
 
@@ -37,14 +37,14 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
 
     //建構子
     //取得context與資料，並設定一個Inflater填充於傳來的context中
-    public ShoppingCartAdapter(Context context, List<String> nameString, List<String> priceString, List<Integer> pictureId, List<Integer> amount) {
+    public ShoppingCartAdapter(Context context, List<String> nameString, List<Integer> priceList, List<Integer> pictureId, List<Integer> amount) {
         this.context = context;
 
         //取得自定義 ViewModel
         viewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(ShoppingCartViewModel.class);
 
         this.nameString = nameString;
-        this.priceString = priceString;
+        this.priceList = priceList;
         this.pictureId = pictureId;
         this.amount = amount;
 
@@ -140,7 +140,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
     public void onBindViewHolder(@NonNull ShoppingCartAdapter.ViewHolder holder, int position) {
         holder.img_data.setImageResource(pictureId.get(position));
         holder.tv_name_data.setText(nameString.get(position));
-        holder.tv_price_data.setText(priceString.get(position));
+        holder.tv_price_data.setText("$" + priceList.get(position));
         holder.tv_item_amount.setText(amount.get(position).toString());
     }
 }
