@@ -82,6 +82,8 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
                 public void onClick(View view) {
                     //數量減一
                     viewModel.onSubAmount(getAdapterPosition());
+                    //計算總價
+                    viewModel.setPureTotalPrice();
 
                     //建立 LiveData 觀察者
                     final Observer<List<Integer>> observer = new Observer<List<Integer>>() {
@@ -104,6 +106,8 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
                 public void onClick(View view) {
                     //數量加一
                     viewModel.onAddAmount(getAdapterPosition());
+                    //計算總價
+                    viewModel.setPureTotalPrice();
 
                     //建立 LiveData 觀察者
                     final Observer<List<Integer>> observer = new Observer<List<Integer>>() {

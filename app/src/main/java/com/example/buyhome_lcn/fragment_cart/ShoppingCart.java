@@ -3,7 +3,10 @@ package com.example.buyhome_lcn.fragment_cart;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.adapter.ShoppingCartAdapter;
@@ -26,6 +30,7 @@ public class ShoppingCart extends Fragment {
     //RecyclerView
     private RecyclerView rvShoppingCart;
     private ShoppingCartAdapter adapter;
+    private TextView tvPriceDisplay;
 
     Button btnGoCheckDeal;
 
@@ -37,6 +42,21 @@ public class ShoppingCart extends Fragment {
 
         //取得自定義 ViewModel
         viewModel = new ViewModelProvider(requireActivity()).get(ShoppingCartViewModel.class);
+
+        //[小記金額]
+        //取得小記金額之TextView元件
+        tvPriceDisplay = view.findViewById(R.id.tv_price_display);
+        //建立 LiveData 觀察者
+        final Observer<Integer> observerTotal = new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable final Integer newValue) {
+                //若觀測到資料變化則做
+                tvPriceDisplay.setText("$" + viewModel.getPureTotalPrice());
+            }
+        };
+        //連結 LiveData 與觀察者
+        viewModel.pureTotalPrice.observe((LifecycleOwner) context, observerTotal);
+
 
         //[清單] 呈現商品資料
         rvShoppingCart = view.findViewById(R.id.rv_shoppingcart);

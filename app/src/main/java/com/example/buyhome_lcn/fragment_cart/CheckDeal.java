@@ -35,8 +35,10 @@ public class CheckDeal extends Fragment {
 
     ImageButton imgBtnDelivery;
     EditText etDiscountCode;
-    TextView tvDiscountCodeTip;
+    TextView tvDiscountCodeTip, tvPurePriceDisplay, tvDiscountDisplay, tvDeliveryFeeDisplay, tvTotalDisplay;
     Button btnGoDoPay;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,11 +69,12 @@ public class CheckDeal extends Fragment {
             }
         });
 
+
+        //[輸入]  折扣碼
         //初始化折扣碼提示
         tvDiscountCodeTip = view.findViewById(R.id.tv_discount_code_tip);
         tvDiscountCodeTip.setVisibility(View.INVISIBLE);
 
-        //[輸入]  折扣碼
         etDiscountCode = view.findViewById(R.id.et_discount_code);
         etDiscountCode.addTextChangedListener(new TextWatcher() {
             @Override
@@ -81,10 +84,22 @@ public class CheckDeal extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 tvDiscountCodeTip.setVisibility(View.VISIBLE);
-                //TODO 檢查折扣碼
                 checkDiscountCode(editable);
             }
         });
+
+        //TODO 呈現金額
+        //取得元件
+        tvPurePriceDisplay = view.findViewById(R.id.tv_pure_price_display);
+        tvDiscountDisplay = view.findViewById(R.id.tv_discount_display);
+        tvDeliveryFeeDisplay = view.findViewById(R.id.tv_delivery_display);
+        tvTotalDisplay = view.findViewById(R.id.tv_total_display);
+        //設定值
+        tvPurePriceDisplay.setText("$" + viewModel.getPureTotalPrice());
+        tvDiscountDisplay.setText("$" + viewModel.discount.getValue());
+        tvDeliveryFeeDisplay.setText("$" + viewModel.deliveryFee.getValue());
+        viewModel.setTotalPrice();
+        tvTotalDisplay.setText("$" + viewModel.getTotalPrice());
 
         //[按鈕]  前往付款
         btnGoDoPay = view.findViewById(R.id.btn_go_dopay);
