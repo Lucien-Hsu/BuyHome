@@ -3,7 +3,10 @@ package com.example.buyhome_lcn.fragment_cart;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -88,7 +91,7 @@ public class CheckDeal extends Fragment {
             }
         });
 
-        //TODO 呈現金額
+        //[金額呈現]
         //取得元件
         tvPurePriceDisplay = view.findViewById(R.id.tv_pure_price_display);
         tvDiscountDisplay = view.findViewById(R.id.tv_discount_display);
@@ -111,6 +114,29 @@ public class CheckDeal extends Fragment {
             }
         });
 
+        //[LiveData]
+        //建立Discount的觀察者
+        final Observer<Integer> observerDiscount = new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable final Integer newValue) {
+                //若觀測到資料變化則做
+                tvDiscountDisplay.setText("-$" + viewModel.getDiscount());
+            }
+        };
+        //連結 LiveData 與觀察者
+        viewModel.discount.observe((LifecycleOwner) context, observerDiscount);
+
+        //建立TotalPrice的觀察者
+        final Observer<Integer> observerTotalPrice = new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable final Integer newValue) {
+                //若觀測到資料變化則做
+                tvTotalDisplay.setText("$" + viewModel.getTotalPrice());
+            }
+        };
+        //連結 LiveData 與觀察者
+        viewModel.totalPrice.observe((LifecycleOwner) context, observerTotalPrice);
+
         return view;
     }
 
@@ -122,9 +148,11 @@ public class CheckDeal extends Fragment {
         if(editable.toString().equals("1234")){
             tvDiscountCodeTip.setText("OK");
             tvDiscountCodeTip.setBackgroundResource(R.drawable.frame_03);
+            viewModel.setDiscount(100);
         }else {
             tvDiscountCodeTip.setText("－");
             tvDiscountCodeTip.setBackgroundResource(R.drawable.frame_04);
+            viewModel.setDiscount(0);
         }
     }
 

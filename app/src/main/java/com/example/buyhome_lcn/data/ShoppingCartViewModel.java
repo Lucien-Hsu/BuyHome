@@ -37,7 +37,7 @@ public class ShoppingCartViewModel extends ViewModel {
         totalPrice = new MutableLiveData<Integer>();
 
         pureTotalPrice.setValue(0);
-        discount.setValue(100);
+        discount.setValue(0);
         deliveryFee.setValue(60);
         totalPrice.setValue(pureTotalPrice.getValue() - discount.getValue() - deliveryFee.getValue());
 
@@ -76,10 +76,20 @@ public class ShoppingCartViewModel extends ViewModel {
             total += priceList.get(i) * amountList.get(i);
         }
         pureTotalPrice.setValue(total);
+        setTotalPrice();
     }
 
     public Integer getPureTotalPrice(){
         return pureTotalPrice.getValue();
+    }
+
+    public void setDiscount(int newValue){
+        discount.setValue(newValue);
+        setTotalPrice();
+    }
+
+    public Integer getDiscount(){
+        return discount.getValue();
     }
 
     public void setTotalPrice(){

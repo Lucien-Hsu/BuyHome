@@ -47,7 +47,7 @@ public class ShoppingCart extends Fragment {
         //取得小記金額之TextView元件
         tvPriceDisplay = view.findViewById(R.id.tv_price_display);
         //建立 LiveData 觀察者
-        final Observer<Integer> observerTotal = new Observer<Integer>() {
+        final Observer<Integer> observerPureTotalPrice = new Observer<Integer>() {
             @Override
             public void onChanged(@Nullable final Integer newValue) {
                 //若觀測到資料變化則做
@@ -55,7 +55,7 @@ public class ShoppingCart extends Fragment {
             }
         };
         //連結 LiveData 與觀察者
-        viewModel.pureTotalPrice.observe((LifecycleOwner) context, observerTotal);
+        viewModel.pureTotalPrice.observe((LifecycleOwner) context, observerPureTotalPrice);
 
 
         //[清單] 呈現商品資料
