@@ -37,15 +37,12 @@ public class ChooseAddress extends Fragment {
         //TODO 處理 ListView
         llAddress = view.findViewById(R.id.ll_address);
 
-        //設定資料陣列
-        String[] data = {"song 01", "song 02", "song 03", "song 04"};
-
         //設定Adapter
         //引數一：context
         //引數二：[view]
         //引數三：[資料]資料陣列
         //這邊的view使用Android預設的
-        ArrayAdapter adapter = new ArrayAdapter(context, android.R.layout.simple_list_item_1, viewModel._addressList.getValue());
+        ArrayAdapter adapter = new ArrayAdapter(context, android.R.layout.simple_list_item_1, viewModel.getAddressList());
 
         //連結Adapter
         llAddress.setAdapter(adapter);

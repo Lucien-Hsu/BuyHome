@@ -23,11 +23,8 @@ public class ShoppingCartViewModel extends ViewModel {
     public MutableLiveData<Integer> _totalPrice;
     //收件相關
     public List<String> receiverList;
-    public MutableLiveData<List<String>> _receiverList;
     public List<String> addressList;
-    public MutableLiveData<List<String>> _addressList;
     public List<String> storeList;
-    public MutableLiveData<List<String>> _storeList;
 
     /**
      * 初始化
@@ -50,9 +47,6 @@ public class ShoppingCartViewModel extends ViewModel {
         receiverList = new ArrayList<String>();
         addressList = new ArrayList<String>();
         storeList = new ArrayList<String>();
-        _receiverList = new MutableLiveData<List<String>>();
-        _addressList = new MutableLiveData<List<String>>();
-        _storeList = new MutableLiveData<List<String>>();
 
         //[賦值]
         //TODO 串真資料
@@ -73,13 +67,10 @@ public class ShoppingCartViewModel extends ViewModel {
         //收件相關
         receiverList.add("李先生");
         receiverList.add("王小姐");
-        _receiverList.setValue(receiverList);
-        storeList.add("#A全家#B楊梅幼獅店");
-        storeList.add("#A萊爾富#B平鎮復梅店");
-        _storeList.setValue(storeList);
-        addressList.add("#C台北市#D信義區#E110#F信義路五段7號89樓");
-        addressList.add("#C桃園市#D楊梅區#E326#F幼獅路二段3號");
-        _addressList.setValue(addressList);
+        storeList.add("#全家#楊梅幼獅店");
+        storeList.add("#萊爾富#平鎮復梅店");
+        addressList.add("#台北市#信義區#信義路五段7號89樓");
+        addressList.add("#桃園市#楊梅區#幼獅路二段3號");
     }
 
     /**
@@ -122,12 +113,23 @@ public class ShoppingCartViewModel extends ViewModel {
         return _discount.getValue();
     }
 
+    public void setTotalPrice(){
+        _totalPrice.setValue(_pureTotalPrice.getValue() - _discount.getValue() - _deliveryFee.getValue());
+    }
+
     public Integer getTotalPrice(){
         return _totalPrice.getValue();
     }
 
-    public void setTotalPrice(){
-        _totalPrice.setValue(_pureTotalPrice.getValue() - _discount.getValue() - _deliveryFee.getValue());
+    public List<String> getAddressList(){
+        List<String> resultList = new ArrayList<>();
+        String[] tempStr;
+
+        for(int i = 0 ; i < addressList.size() ; i++){
+            tempStr = addressList.get(i).split("#");
+            resultList.add(tempStr[1] + tempStr[2] + tempStr[3]);
+        }
+        return resultList;
     }
 
 
