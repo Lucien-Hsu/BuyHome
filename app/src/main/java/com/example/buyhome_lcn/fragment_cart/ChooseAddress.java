@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,8 @@ public class ChooseAddress extends Fragment {
     private ShoppingCartViewModel viewModel;
 
     ListView llAddress;
+    Button btnShowAddAddress;
+    View includeAddAddress;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,6 +60,17 @@ public class ChooseAddress extends Fragment {
                 switch(i){
 
                 }
+            }
+        });
+
+        //TODO 處理
+        btnShowAddAddress = view.findViewById(R.id.btn_show_addaddress);
+        includeAddAddress = view.findViewById(R.id.include_add_address);
+        btnShowAddAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnShowAddAddress.setVisibility(View.GONE);
+                includeAddAddress.setVisibility(View.VISIBLE);
             }
         });
 
