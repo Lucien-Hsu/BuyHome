@@ -9,55 +9,85 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCartViewModel extends ViewModel {
-    public List<String> nameString;
+    //TODO 封裝變數
+    //商品相關
+    public List<String> nameList;
     public List<Integer> priceList;
-    public List<Integer> pictureId;
+    public List<Integer> pictureList;
     public List<Integer> amountList;
-    public MutableLiveData<List<Integer>> amount;
-    public MutableLiveData<Integer> pureTotalPrice;
-    public MutableLiveData<Integer> discount;
-    public MutableLiveData<Integer> deliveryFee;
-    public MutableLiveData<Integer> totalPrice;
+    public MutableLiveData<List<Integer>> _amountList;
+    //計算價格相關
+    public MutableLiveData<Integer> _pureTotalPrice;
+    public MutableLiveData<Integer> _discount;
+    public MutableLiveData<Integer> _deliveryFee;
+    public MutableLiveData<Integer> _totalPrice;
+    //收件相關
+    public List<String> receiverList;
+    public MutableLiveData<List<String>> _receiverList;
+    public List<String> addressList;
+    public MutableLiveData<List<String>> _addressList;
+    public List<String> storeList;
+    public MutableLiveData<List<String>> _storeList;
 
     /**
      * 初始化
      */
     public ShoppingCartViewModel() {
         super();
-
-
-        nameString = new ArrayList<String>();
+        //[配置記憶體]
+        //商品相關
+        nameList = new ArrayList<String>();
         priceList = new ArrayList<Integer>();
-        pictureId = new ArrayList<Integer>();
+        pictureList = new ArrayList<Integer>();
         amountList = new ArrayList<Integer>();
-        amount = new MutableLiveData<List<Integer>>();
-        pureTotalPrice = new MutableLiveData<Integer>();
-        discount = new MutableLiveData<Integer>();
-        deliveryFee = new MutableLiveData<Integer>();
-        totalPrice = new MutableLiveData<Integer>();
+        _amountList = new MutableLiveData<List<Integer>>();
+        //計算價格相關
+        _pureTotalPrice = new MutableLiveData<Integer>();
+        _discount = new MutableLiveData<Integer>();
+        _deliveryFee = new MutableLiveData<Integer>();
+        _totalPrice = new MutableLiveData<Integer>();
+        //收件相關
+        receiverList = new ArrayList<String>();
+        addressList = new ArrayList<String>();
+        storeList = new ArrayList<String>();
+        _receiverList = new MutableLiveData<List<String>>();
+        _addressList = new MutableLiveData<List<String>>();
+        _storeList = new MutableLiveData<List<String>>();
 
-        pureTotalPrice.setValue(0);
-        discount.setValue(0);
-        deliveryFee.setValue(60);
-        totalPrice.setValue(pureTotalPrice.getValue() - discount.getValue() - deliveryFee.getValue());
-
+        //[賦值]
+        //TODO 串真資料
+        //目前用假資料
+        _pureTotalPrice.setValue(0);
+        _discount.setValue(0);
+        _deliveryFee.setValue(60);
+        _totalPrice.setValue(_pureTotalPrice.getValue() - _discount.getValue() - _deliveryFee.getValue());
         for(int i = 0 ; i < 12; i++){
             String name = new String("ASUS X509MA-0291GN4020 星空灰 15.6吋窄邊筆電:" + (i + 1));
-            nameString.add(name);
+            nameList.add(name);
             Integer price = new Integer(1001);
             priceList.add(price);
-            pictureId.add(R.drawable.test_item);
+            pictureList.add(R.drawable.test_item);
             amountList.add(0);
-            amount.setValue(amountList);
+            _amountList.setValue(amountList);
         }
+        //收件相關
+        receiverList.add("李先生");
+        receiverList.add("王小姐");
+        _receiverList.setValue(receiverList);
+        storeList.add("#A全家#B楊梅幼獅店");
+        storeList.add("#A萊爾富#B平鎮復梅店");
+        _storeList.setValue(storeList);
+        addressList.add("#C台北市#D信義區#E110#F信義路五段7號89樓");
+        addressList.add("#C桃園市#D楊梅區#E326#F幼獅路二段3號");
+        _addressList.setValue(addressList);
     }
 
     /**
      * 商品數量加一
      */
     public void onAddAmount(int index){
-        if(amount.getValue().get(index) < 99){
-            amount.getValue().set(index, amount.getValue().get(index) + 1);
+        if(_amountList.getValue().get(index) < 99){
+            _amountList.getValue().set(index, _amountList.getValue().get(index) + 1);
         }
     }
 
@@ -65,8 +95,8 @@ public class ShoppingCartViewModel extends ViewModel {
      * 商品數量減一
      */
     public void onSubAmount(int index){
-        if(amount.getValue().get(index) > 0) {
-            amount.getValue().set(index, amount.getValue().get(index) - 1);
+        if(_amountList.getValue().get(index) > 0) {
+            _amountList.getValue().set(index, _amountList.getValue().get(index) - 1);
         }
     }
 
@@ -75,30 +105,40 @@ public class ShoppingCartViewModel extends ViewModel {
         for(int i = 0 ; i < priceList.size() ; i++){
             total += priceList.get(i) * amountList.get(i);
         }
-        pureTotalPrice.setValue(total);
+        _pureTotalPrice.setValue(total);
         setTotalPrice();
     }
 
     public Integer getPureTotalPrice(){
-        return pureTotalPrice.getValue();
+        return _pureTotalPrice.getValue();
     }
 
     public void setDiscount(int newValue){
-        discount.setValue(newValue);
+        _discount.setValue(newValue);
         setTotalPrice();
     }
 
     public Integer getDiscount(){
-        return discount.getValue();
-    }
-
-    public void setTotalPrice(){
-        totalPrice.setValue(pureTotalPrice.getValue() - discount.getValue() - deliveryFee.getValue());
+        return _discount.getValue();
     }
 
     public Integer getTotalPrice(){
-        return totalPrice.getValue();
+        return _totalPrice.getValue();
     }
+
+    public void setTotalPrice(){
+        _totalPrice.setValue(_pureTotalPrice.getValue() - _discount.getValue() - _deliveryFee.getValue());
+    }
+
+
+
+
+
+
+
+
+
+
 
 
     @Override

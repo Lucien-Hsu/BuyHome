@@ -96,7 +96,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
                         }
                     };
                     //連結 LiveData 與觀察者
-                    viewModel.amount.observe((LifecycleOwner) context, observer);
+                    viewModel._amountList.observe((LifecycleOwner) context, observer);
                 }
             });
 
@@ -120,7 +120,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
                         }
                     };
                     //連結 LiveData 與觀察者
-                    viewModel.amount.observe((LifecycleOwner) context, observer);
+                    viewModel._amountList.observe((LifecycleOwner) context, observer);
                 }
             });
         }

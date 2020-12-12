@@ -56,7 +56,7 @@ public class CheckDeal extends Fragment {
         rvCheckdeal = view.findViewById(R.id.rv_checkdeal);
         StaggeredGridLayoutManager mLayoutManager_stagger = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         rvCheckdeal.setLayoutManager(mLayoutManager_stagger);
-        adapter = new CheckDealAdapter(context, viewModel.nameString, viewModel.priceList,viewModel.pictureId, viewModel.amount.getValue());
+        adapter = new CheckDealAdapter(context, viewModel.nameList, viewModel.priceList,viewModel.pictureList, viewModel._amountList.getValue());
         rvCheckdeal.setAdapter(adapter);
 
         //[按鈕]  前往"設定寄送方式"
@@ -99,8 +99,8 @@ public class CheckDeal extends Fragment {
         tvTotalDisplay = view.findViewById(R.id.tv_total_display);
         //設定值
         tvPurePriceDisplay.setText("$" + viewModel.getPureTotalPrice());
-        tvDiscountDisplay.setText("$" + viewModel.discount.getValue());
-        tvDeliveryFeeDisplay.setText("$" + viewModel.deliveryFee.getValue());
+        tvDiscountDisplay.setText("$" + viewModel._discount.getValue());
+        tvDeliveryFeeDisplay.setText("$" + viewModel._deliveryFee.getValue());
         viewModel.setTotalPrice();
         tvTotalDisplay.setText("$" + viewModel.getTotalPrice());
 
@@ -124,7 +124,7 @@ public class CheckDeal extends Fragment {
             }
         };
         //連結 LiveData 與觀察者
-        viewModel.discount.observe((LifecycleOwner) context, observerDiscount);
+        viewModel._discount.observe((LifecycleOwner) context, observerDiscount);
 
         //建立TotalPrice的觀察者
         final Observer<Integer> observerTotalPrice = new Observer<Integer>() {
@@ -135,7 +135,7 @@ public class CheckDeal extends Fragment {
             }
         };
         //連結 LiveData 與觀察者
-        viewModel.totalPrice.observe((LifecycleOwner) context, observerTotalPrice);
+        viewModel._totalPrice.observe((LifecycleOwner) context, observerTotalPrice);
 
         return view;
     }
