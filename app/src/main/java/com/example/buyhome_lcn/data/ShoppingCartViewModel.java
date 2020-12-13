@@ -1,5 +1,7 @@
 package com.example.buyhome_lcn.data;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -121,8 +123,8 @@ public class ShoppingCartViewModel extends ViewModel {
         return _totalPrice.getValue();
     }
 
-    public List<String> getAddressList(){
-        List<String> resultList = new ArrayList<>();
+    public ArrayList<String> getAddressList(){
+        ArrayList<String> resultList = new ArrayList<>();
         String[] tempStr;
 
         for(int i = 0 ; i < addressList.size() ; i++){
@@ -130,6 +132,10 @@ public class ShoppingCartViewModel extends ViewModel {
             resultList.add(tempStr[1] + tempStr[2] + tempStr[3]);
         }
         return resultList;
+    }
+
+    public void addAddress(String newAddress){
+        addressList.add(newAddress);
     }
 
 
