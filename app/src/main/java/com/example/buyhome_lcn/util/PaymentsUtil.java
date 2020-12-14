@@ -52,6 +52,7 @@ public class PaymentsUtil {
    * @return Google Pay API base request object.
    * @throws JSONException
    */
+  //設定 request 的相關參數
   private static JSONObject getBaseRequest() throws JSONException {
     return new JSONObject().put("apiVersion", 2).put("apiVersionMinor", 0);
   }
@@ -64,7 +65,7 @@ public class PaymentsUtil {
    */
   public static PaymentsClient createPaymentsClient(Activity activity) {
     Wallet.WalletOptions walletOptions =
-        new Wallet.WalletOptions.Builder().setEnvironment(Constants.PAYMENTS_ENVIRONMENT).build();
+            new Wallet.WalletOptions.Builder().setEnvironment(Constants.PAYMENTS_ENVIRONMENT).build();
     return Wallet.getPaymentsClient(activity, walletOptions);
   }
 
@@ -162,22 +163,26 @@ public class PaymentsUtil {
    * href="https://developers.google.com/pay/api/android/reference/object#PaymentMethod">PaymentMethod</a>
    */
   private static JSONObject getBaseCardPaymentMethod() throws JSONException {
+    //設定付款類型為信用卡"CARD"
     JSONObject cardPaymentMethod = new JSONObject();
     cardPaymentMethod.put("type", "CARD");
 
+    //定義信用卡付款之相關參數
     JSONObject parameters = new JSONObject();
-    //定義接受的認證方式
+    // 定義接受的認證方式
     parameters.put("allowedAuthMethods", getAllowedCardAuthMethods());
-    //定義接受的信用卡
+    // 定義接受的信用卡
     parameters.put("allowedCardNetworks", getAllowedCardNetworks());
-    // Optionally, you can add billing address/phone number associated with a CARD payment method.
+    // 可選，可增加帳單地址、電話等，這邊增加"需要帳單地址"
     parameters.put("billingAddressRequired", true);
 
+    //設定帳單地址
     JSONObject billingAddressParameters = new JSONObject();
     billingAddressParameters.put("format", "FULL");
-
+    //存放帳單地址參數
     parameters.put("billingAddressParameters", billingAddressParameters);
 
+    //存放所有參數
     cardPaymentMethod.put("parameters", parameters);
 
     return cardPaymentMethod;
