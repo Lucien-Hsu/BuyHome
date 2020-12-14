@@ -131,14 +131,14 @@ public class DoPay extends Fragment {
 
 
         //
-        btnPay = view.findViewById(R.id.btn_pay);
-        btnPay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO Google Pay 付款
-                doPay();
-            }
-        });
+//        btnPay = view.findViewById(R.id.btn_pay);
+//        btnPay.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //TODO Google Pay 付款
+//                doPay();
+//            }
+//        });
 
         return view;
     }
