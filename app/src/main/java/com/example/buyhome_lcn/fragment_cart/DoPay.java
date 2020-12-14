@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.buyhome_lcn.R;
+import com.example.buyhome_lcn.util.PaymentsUtil;
 import com.google.android.gms.common.internal.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,61 +37,63 @@ import java.util.Optional;
 public class DoPay extends Fragment {
     Context context;
 
+    //1-1.用戶端，用於與 Google Pay API 互動
+    private PaymentsClient paymentsClient;
 
     Button btnPay;
 
-    // Google Pay
-    private PaymentsClient paymentsClient;
-    // 1.定義 Google Pay API 版本
-    private static JSONObject getBaseRequest() throws JSONException {
-        return new JSONObject().put("apiVersion", 30).put("apiVersionMinor", 19);
-    }
-    //2.替付款服務供應商申請付款權杖
-    private static JSONObject getGatewayTokenizationSpecification() throws JSONException {
-        return new JSONObject() {{
-            put("type", "PAYMENT_GATEWAY");
-            put("parameters", new JSONObject() {{
-                put("gateway", "example");
-                put("gatewayMerchantId", "exampleGatewayMerchantId");
-            }});
-        }};
-    }
-    //3-1.定義支援的付款卡發卡機構
-    private static JSONArray getAllowedCardNetworks() {
-        return new JSONArray()
-                .put("AMEX")
-                .put("DISCOVER")
-                .put("INTERAC")
-                .put("JCB")
-                .put("MASTERCARD")
-                .put("VISA");
-    }
-    //3-2.
-    private static JSONArray getAllowedCardAuthMethods() {
-        return new JSONArray()
-                .put("PAN_ONLY")
-                .put("CRYPTOGRAM_3DS");
-    }
-    //4.說明允許的付款方式
-    private static JSONObject getBaseCardPaymentMethod() throws JSONException {
-        JSONObject cardPaymentMethod = new JSONObject();
-        cardPaymentMethod.put("type", "CARD");
-
-        JSONObject parameters = new JSONObject();
-        parameters.put("allowedAuthMethods", getAllowedCardAuthMethods());
-        parameters.put("allowedCardNetworks", getAllowedCardNetworks());
-        // Optionally, you can add billing address/phone number associated with a CARD payment method.
-        parameters.put("billingAddressRequired", true);
-
-        JSONObject billingAddressParameters = new JSONObject();
-        billingAddressParameters.put("format", "FULL");
-
-        parameters.put("billingAddressParameters", billingAddressParameters);
-
-        cardPaymentMethod.put("parameters", parameters);
-
-        return cardPaymentMethod;
-    }
+//    // Google Pay
+//    private PaymentsClient paymentsClient;
+//    // 1.定義 Google Pay API 版本
+//    private static JSONObject getBaseRequest() throws JSONException {
+//        return new JSONObject().put("apiVersion", 30).put("apiVersionMinor", 19);
+//    }
+//    //2.替付款服務供應商申請付款權杖
+//    private static JSONObject getGatewayTokenizationSpecification() throws JSONException {
+//        return new JSONObject() {{
+//            put("type", "PAYMENT_GATEWAY");
+//            put("parameters", new JSONObject() {{
+//                put("gateway", "example");
+//                put("gatewayMerchantId", "exampleGatewayMerchantId");
+//            }});
+//        }};
+//    }
+//    //3-1.定義支援的付款卡發卡機構
+//    private static JSONArray getAllowedCardNetworks() {
+//        return new JSONArray()
+//                .put("AMEX")
+//                .put("DISCOVER")
+//                .put("INTERAC")
+//                .put("JCB")
+//                .put("MASTERCARD")
+//                .put("VISA");
+//    }
+//    //3-2.
+//    private static JSONArray getAllowedCardAuthMethods() {
+//        return new JSONArray()
+//                .put("PAN_ONLY")
+//                .put("CRYPTOGRAM_3DS");
+//    }
+//    //4.說明允許的付款方式
+//    private static JSONObject getBaseCardPaymentMethod() throws JSONException {
+//        JSONObject cardPaymentMethod = new JSONObject();
+//        cardPaymentMethod.put("type", "CARD");
+//
+//        JSONObject parameters = new JSONObject();
+//        parameters.put("allowedAuthMethods", getAllowedCardAuthMethods());
+//        parameters.put("allowedCardNetworks", getAllowedCardNetworks());
+//        // Optionally, you can add billing address/phone number associated with a CARD payment method.
+//        parameters.put("billingAddressRequired", true);
+//
+//        JSONObject billingAddressParameters = new JSONObject();
+//        billingAddressParameters.put("format", "FULL");
+//
+//        parameters.put("billingAddressParameters", billingAddressParameters);
+//
+//        cardPaymentMethod.put("parameters", parameters);
+//
+//        return cardPaymentMethod;
+//    }
 
 //    //5.建立 PaymentsClient 執行個體
 //    public static PaymentsClient createPaymentsClient(Activity activity) {
@@ -99,36 +102,29 @@ public class DoPay extends Fragment {
 //        return Wallet.getPaymentsClient(activity, walletOptions);
 //    }
 
-    //6-1.判斷是否已準備好使用 Google Pay API 付款
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public static Optional<JSONObject> getIsReadyToPayRequest() {
-        try {
-            JSONObject isReadyToPayRequest = getBaseRequest();
-            isReadyToPayRequest.put(
-                    "allowedPaymentMethods", new JSONArray().put(getBaseCardPaymentMethod()));
-                return Optional.of(isReadyToPayRequest);
-        } catch (JSONException e) {
-                return Optional.empty();
-        }
-    }
-
-
+//    //6-1.判斷是否已準備好使用 Google Pay API 付款
+//    @RequiresApi(api = Build.VERSION_CODES.N)
+//    public static Optional<JSONObject> getIsReadyToPayRequest() {
+//        try {
+//            JSONObject isReadyToPayRequest = getBaseRequest();
+//            isReadyToPayRequest.put(
+//                    "allowedPaymentMethods", new JSONArray().put(getBaseCardPaymentMethod()));
+//                return Optional.of(isReadyToPayRequest);
+//        } catch (JSONException e) {
+//                return Optional.empty();
+//        }
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        context = getActivity();
+        context = requireActivity();
 
         View view = inflater.inflate(R.layout.fragment_do_pay, container, false);
 
         //TODO Google Pay
-
-
-
-
-
-
-
+        //1-2.初始化 Google Pay API 用戶端
+        paymentsClient = PaymentsUtil.createPaymentsClient((Activity) context);
 
         //
 //        btnPay = view.findViewById(R.id.btn_pay);
