@@ -1,6 +1,7 @@
 package com.example.buyhome_lcn.fragment_cart;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -84,7 +85,6 @@ public class CheckDeal extends Fragment {
             }
         });
 
-
         //[輸入]  折扣碼
         //初始化折扣碼提示
         tvDiscountCodeTip = view.findViewById(R.id.tv_discount_code_tip);
@@ -98,8 +98,7 @@ public class CheckDeal extends Fragment {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
             @Override
             public void afterTextChanged(Editable editable) {
-                tvDiscountCodeTip.setVisibility(View.VISIBLE);
-                checkDiscountCode(editable);
+                    checkDiscountCode(editable);
             }
         });
 
@@ -155,14 +154,26 @@ public class CheckDeal extends Fragment {
      * @param editable
      */
     private void checkDiscountCode(Editable editable) {
-        if(editable.toString().equals("1234")){
-            tvDiscountCodeTip.setText("OK");
-            tvDiscountCodeTip.setBackgroundResource(R.drawable.frame_03);
-            viewModel.setDiscount(100);
+        //圖示符合折扣碼字數才可見
+        if(etDiscountCode.getText().toString().length() == 4){
+            tvDiscountCodeTip.setVisibility(View.VISIBLE);
+
+            //依折扣碼對錯選擇相應圖示
+            if(editable.toString().equals("1234")){
+                tvDiscountCodeTip.setText("OK");
+                tvDiscountCodeTip.setBackgroundResource(R.drawable.frame_03);
+                etDiscountCode.setBackground(getResources().getDrawable(R.drawable.frame_greenline));
+                viewModel.setDiscount(100);
+            }else {
+                tvDiscountCodeTip.setText("－");
+                tvDiscountCodeTip.setBackgroundResource(R.drawable.frame_04);
+                etDiscountCode.setBackground(getResources().getDrawable(R.drawable.frame_redline));
+                viewModel.setDiscount(0);
+            }
+
         }else {
-            tvDiscountCodeTip.setText("－");
-            tvDiscountCodeTip.setBackgroundResource(R.drawable.frame_04);
-            viewModel.setDiscount(0);
+            tvDiscountCodeTip.setVisibility(View.INVISIBLE);
+            etDiscountCode.setBackground(getResources().getDrawable(R.drawable.frame_redline));
         }
     }
 

@@ -105,7 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/frame_02"
+        android:background="@drawable/frame_redline"
         android:ems="10"
         android:hint="請輸入折扣碼"
         android:inputType="textPersonName"
