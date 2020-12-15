@@ -122,7 +122,11 @@ public class ShoppingCartViewModel extends ViewModel {
     }
 
     public void setTotalPrice(){
-        _totalPrice.setValue(_pureTotalPrice.getValue() - _discount.getValue() - _deliveryFee.getValue());
+        int totalPrice = _pureTotalPrice.getValue() - _discount.getValue() + _deliveryFee.getValue();
+        if(totalPrice <= 0){
+            totalPrice = 0;
+        }
+        _totalPrice.setValue(totalPrice);
     }
 
     public Integer getTotalPrice(){
