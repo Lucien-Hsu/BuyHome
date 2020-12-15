@@ -97,7 +97,9 @@ public class Constants {
    *
    * @value #SHIPPING_SUPPORTED_COUNTRIES
    */
-  public static final List<String> SHIPPING_SUPPORTED_COUNTRIES = Arrays.asList("US", "GB");
+  //設定寄送地址區域
+//  public static final List<String> SHIPPING_SUPPORTED_COUNTRIES = Arrays.asList("US", "GB");
+  public static final List<String> SHIPPING_SUPPORTED_COUNTRIES = Arrays.asList("TW");
 
   /**
    * The name of your payment processor/gateway. Please refer to their documentation for more

@@ -66,14 +66,14 @@
             app:popExitAnim="@anim/anim_right_out" />
         <action
             android:id="@+id/action_checkDeal_to_doPay"
-            app:destination="@id/fragment_doPay"
+            app:destination="@id/doPay"
             app:enterAnim="@anim/anim_left_in"
             app:exitAnim="@anim/anim_left_out"
             app:popEnterAnim="@anim/anim_right_in"
             app:popExitAnim="@anim/anim_right_out" />
     </fragment>
     <fragment
-        android:id="@+id/fragment_doPay"
+        android:id="@+id/doPay"
         android:name="com.example.buyhome_lcn.fragment_cart.DoPay"
         android:label="fragment_do_pay"
         tools:layout="@layout/fragment_do_pay" />
