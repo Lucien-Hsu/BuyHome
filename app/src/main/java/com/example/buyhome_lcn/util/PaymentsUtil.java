@@ -114,9 +114,8 @@ public class PaymentsUtil {
           "Please edit the Constants.java file to add protocol version & public key.");
     }
 
-    //在付款方式中包括其他必填信息
+    //在付款方式中包括其他必填信息，以 tokenizationSpecification 的形式附加
     JSONObject tokenizationSpecification = new JSONObject();
-
     tokenizationSpecification.put("type", "DIRECT");
     JSONObject parameters = new JSONObject(Constants.DIRECT_TOKENIZATION_PARAMETERS);
     tokenizationSpecification.put("parameters", parameters);
