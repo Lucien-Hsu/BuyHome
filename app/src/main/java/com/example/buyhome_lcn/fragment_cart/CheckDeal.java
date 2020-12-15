@@ -38,10 +38,8 @@ public class CheckDeal extends Fragment {
 
     ImageButton imgBtnDelivery;
     EditText etDiscountCode;
-    TextView tvDiscountCodeTip, tvPurePriceDisplay, tvDiscountDisplay, tvDeliveryFeeDisplay, tvTotalDisplay;
+    TextView tvDiscountCodeTip, tvPurePriceDisplay, tvDiscountDisplay, tvDeliveryFeeDisplay, tvTotalDisplay, tvDeliveryDisplay;
     Button btnGoDoPay;
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +56,20 @@ public class CheckDeal extends Fragment {
         rvCheckdeal.setLayoutManager(mLayoutManager_stagger);
         adapter = new CheckDealAdapter(context, viewModel.nameList, viewModel.priceList,viewModel.pictureList, viewModel._amountList.getValue());
         rvCheckdeal.setAdapter(adapter);
+
+        //顯示寄送方式
+        tvDeliveryDisplay = view.findViewById(R.id.tv_delivery_display);
+        switch (viewModel.deliveryMethod){
+            case 0:
+                tvDeliveryDisplay.setText("");
+                break;
+            case 1:
+                tvDeliveryDisplay.setText("宅配");
+                break;
+            case 2:
+                tvDeliveryDisplay.setText("超商取貨");
+                break;
+        }
 
         //[按鈕]  前往"設定寄送方式"
         imgBtnDelivery = view.findViewById(R.id.imgbtn_delivery);
@@ -95,12 +107,10 @@ public class CheckDeal extends Fragment {
         //取得元件
         tvPurePriceDisplay = view.findViewById(R.id.tv_pure_price_display);
         tvDiscountDisplay = view.findViewById(R.id.tv_discount_display);
-        tvDeliveryFeeDisplay = view.findViewById(R.id.tv_delivery_display);
         tvTotalDisplay = view.findViewById(R.id.tv_total_display);
         //設定值
         tvPurePriceDisplay.setText("$" + viewModel.getPureTotalPrice());
         tvDiscountDisplay.setText("$" + viewModel._discount.getValue());
-        tvDeliveryFeeDisplay.setText("$" + viewModel._deliveryFee.getValue());
         viewModel.setTotalPrice();
         tvTotalDisplay.setText("$" + viewModel.getTotalPrice());
 

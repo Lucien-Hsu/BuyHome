@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="便利商店取貨"
+        android:text="超商取貨"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/space2"
         app:layout_constraintTop_toTopOf="@+id/img_store_pickup" />

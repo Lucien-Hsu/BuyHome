@@ -3,8 +3,10 @@ package com.example.buyhome_lcn.fragment_cart;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +15,22 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
 import com.example.buyhome_lcn.R;
+import com.example.buyhome_lcn.data.ShoppingCartViewModel;
 
 
 public class CheckDelivery extends Fragment {
+    private ShoppingCartViewModel viewModel;
+
     Button btnGoBack, btnChooseReceiver, btnChooseAddress, btnChooseStore;
     CheckBox cbHome, cbStore;
-
-    Boolean isHomeChecked = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_check_delivery, container, false);
+
+        //取得自定義 ViewModel
+        viewModel = new ViewModelProvider(requireActivity()).get(ShoppingCartViewModel.class);
 
         chooseDeliveryWay(view);
 
@@ -71,26 +77,56 @@ public class CheckDelivery extends Fragment {
 
     /**
      * 選擇運送方式
-     * @param view
+     * CheckBox 只能有一個被勾選
      */
     private void chooseDeliveryWay(View view) {
-        //CheckBox 只能有一個被勾選
+        //取得元件
         cbStore = view.findViewById(R.id.cb_store_pickup);
         cbHome = view.findViewById(R.id.cb_home_delivery);
+
+        //設定初始勾選狀態
+        switch (viewModel.deliveryMethod){
+            case 0:
+                cbHome.setChecked(false);
+                cbStore.setChecked(false);
+                break;
+            case 1:
+                cbHome.setChecked(true);
+                cbStore.setChecked(false);
+                break;
+            case 2:
+                cbHome.setChecked(false);
+                cbStore.setChecked(true);
+                break;
+        }
 
         cbHome.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                isHomeChecked = b;
+                //設定為宅配
                 cbStore.setChecked(!b);
+
+                if(cbHome.isChecked() && !cbStore.isChecked()){
+                    viewModel.deliveryMethod = 1;
+                }else if(!cbHome.isChecked() && cbStore.isChecked()){
+                    viewModel.deliveryMethod = 2;
+                }
+                Log.d("myTest", "deliveryMethod: " + viewModel.deliveryMethod);
             }
         });
 
         cbStore.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                isHomeChecked = !b;
+                //設定為超商取貨
                 cbHome.setChecked(!b);
+
+                if(cbHome.isChecked() && !cbStore.isChecked()){
+                    viewModel.deliveryMethod = 1;
+                }else if(!cbHome.isChecked() && cbStore.isChecked()){
+                    viewModel.deliveryMethod = 2;
+                }
+                Log.d("myTest", "deliveryMethod: " + viewModel.deliveryMethod);
             }
         });
     }

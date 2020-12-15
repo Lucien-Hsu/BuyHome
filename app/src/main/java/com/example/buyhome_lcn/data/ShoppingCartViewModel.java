@@ -23,6 +23,12 @@ public class ShoppingCartViewModel extends ViewModel {
     public MutableLiveData<Integer> _discount;
     public MutableLiveData<Integer> _deliveryFee;
     public MutableLiveData<Integer> _totalPrice;
+    //畫面相關
+    private final int DELIVERY_METHOD_NULL = 0;
+    private final int DELIVERY_METHOD_TO_HOME = 1;
+    private final int DELIVERY_METHOD_TO_STORE = 2;
+    public int deliveryMethod = DELIVERY_METHOD_NULL;
+
     //收件相關
     public List<String> receiverList;
     public List<String> addressList;
