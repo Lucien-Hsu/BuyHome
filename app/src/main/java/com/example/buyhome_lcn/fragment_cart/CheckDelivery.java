@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.data.ShoppingCartViewModel;
@@ -21,6 +22,7 @@ import com.example.buyhome_lcn.data.ShoppingCartViewModel;
 public class CheckDelivery extends Fragment {
     private ShoppingCartViewModel viewModel;
 
+    TextView tvHomeDeliveryAddress;
     Button btnGoBack, btnChooseReceiver, btnChooseAddress, btnChooseStore;
     CheckBox cbHome, cbStore;
 
@@ -33,6 +35,9 @@ public class CheckDelivery extends Fragment {
         viewModel = new ViewModelProvider(requireActivity()).get(ShoppingCartViewModel.class);
 
         chooseDeliveryWay(view);
+
+        tvHomeDeliveryAddress = view.findViewById(R.id.tv_home_delivery_adress);
+        tvHomeDeliveryAddress.setText(viewModel.getDefaultAddress());
 
         //[按鈕]  設定收件者
         btnChooseReceiver = view.findViewById(R.id.btn_choose_receiver);

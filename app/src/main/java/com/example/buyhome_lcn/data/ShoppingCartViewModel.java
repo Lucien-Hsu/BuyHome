@@ -30,6 +30,9 @@ public class ShoppingCartViewModel extends ViewModel {
     public int deliveryMethod = DELIVERY_METHOD_NULL;
 
     //收件相關
+    public String defaultReceiver;
+    public String defaultAddress;
+    public String defaultStore;
     public List<String> receiverList;
     public List<String> addressList;
     public List<String> storeList;
@@ -79,6 +82,9 @@ public class ShoppingCartViewModel extends ViewModel {
         storeList.add("#萊爾富#平鎮復梅店");
         addressList.add("#台北市#信義區#信義路五段7號89樓");
         addressList.add("#桃園市#楊梅區#幼獅路二段3號");
+        defaultReceiver = receiverList.get(0);
+        defaultAddress = addressList.get(0);
+        defaultStore = storeList.get(0);
     }
 
     /**
@@ -148,6 +154,14 @@ public class ShoppingCartViewModel extends ViewModel {
         addressList.add(newAddress);
     }
 
+    public String getDefaultAddress(){
+        String result;
+        String[] tempStr;
+        tempStr = defaultAddress.split("#");
+        result = tempStr[1] + tempStr[2] + tempStr[3];
+
+        return result;
+    }
 
 
 

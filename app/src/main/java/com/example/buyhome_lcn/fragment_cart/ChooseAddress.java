@@ -67,14 +67,8 @@ public class ChooseAddress extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View v, int i, long l) {
                 Toast.makeText(context, ((TextView)v).getText(), Toast.LENGTH_SHORT).show();
                 //TODO 依照參數三決定相應的處理
-                switch(i){
-                    case 0:
-                        //TODO 儲存寄送方式
-                        break;
-                    case 1:
-                        //TODO 儲存寄送方式
-                        break;
-                }
+                viewModel.defaultAddress = viewModel.addressList.get(i);
+
                 //退出BackStack，此處便不會記錄到堆疊中。否則之後按返回建會回到這頁。
                 Navigation.findNavController(view).popBackStack();
             }
