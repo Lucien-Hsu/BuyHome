@@ -55,7 +55,7 @@ public class CheckDeal extends Fragment {
         rvCheckdeal = view.findViewById(R.id.rv_checkdeal);
         StaggeredGridLayoutManager mLayoutManager_stagger = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         rvCheckdeal.setLayoutManager(mLayoutManager_stagger);
-        adapter = new CheckDealAdapter(context, viewModel.nameList, viewModel.priceList,viewModel.pictureList, viewModel._amountList.getValue());
+        adapter = new CheckDealAdapter(context, viewModel.getCheckedNameList(), viewModel.getCheckedPriceList(),viewModel.getCheckedPictureList(), viewModel.getCheckedAmountList());
         rvCheckdeal.setAdapter(adapter);
 
         //顯示寄送方式

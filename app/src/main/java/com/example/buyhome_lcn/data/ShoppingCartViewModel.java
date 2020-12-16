@@ -18,6 +18,7 @@ public class ShoppingCartViewModel extends ViewModel {
     public List<Integer> pictureList;
     public List<Integer> amountList;
     public MutableLiveData<List<Integer>> _amountList;
+    public List<Boolean> checkedProduct;
     //計算價格相關
     public MutableLiveData<Integer> _pureTotalPrice;
     public MutableLiveData<Integer> _discount;
@@ -49,6 +50,8 @@ public class ShoppingCartViewModel extends ViewModel {
         pictureList = new ArrayList<Integer>();
         amountList = new ArrayList<Integer>();
         _amountList = new MutableLiveData<List<Integer>>();
+        checkedProduct = new ArrayList<Boolean>();
+
         //計算價格相關
         _pureTotalPrice = new MutableLiveData<Integer>();
         _discount = new MutableLiveData<Integer>();
@@ -74,6 +77,8 @@ public class ShoppingCartViewModel extends ViewModel {
             pictureList.add(R.drawable.test_item);
             amountList.add(0);
             _amountList.setValue(amountList);
+            checkedProduct.add(false);
+
         }
         //收件相關
         receiverList.add("#李先生#0912345678");
@@ -94,6 +99,10 @@ public class ShoppingCartViewModel extends ViewModel {
         if(_amountList.getValue().get(index) < 99){
             _amountList.getValue().set(index, _amountList.getValue().get(index) + 1);
         }
+
+        if(_amountList.getValue().get(index) > 0){
+            checkedProduct.set(index, true);
+        }
     }
 
     /**
@@ -103,8 +112,17 @@ public class ShoppingCartViewModel extends ViewModel {
         if(_amountList.getValue().get(index) > 0) {
             _amountList.getValue().set(index, _amountList.getValue().get(index) - 1);
         }
+
+        if(_amountList.getValue().get(index) > 0){
+            checkedProduct.set(index, true);
+        }else{
+            checkedProduct.set(index, false);
+        }
     }
 
+    /**
+     * 計算總商品金額
+     */
     public void setPureTotalPrice(){
         int total = 0;
         for(int i = 0 ; i < priceList.size() ; i++){
@@ -114,25 +132,89 @@ public class ShoppingCartViewModel extends ViewModel {
         setTotalPrice();
     }
 
+    /**
+     * 取得總商品金額
+     */
     public Integer getPureTotalPrice(){
         return _pureTotalPrice.getValue();
     }
 
+    /**
+     * 設定折扣
+     */
     public void setDiscount(int newValue){
         _discount.setValue(newValue);
         setTotalPrice();
     }
 
+    /**
+     * 取得折扣
+     */
     public Integer getDiscount(){
         return _discount.getValue();
     }
 
+    /**
+     * 取得總價
+     */
     public void setTotalPrice(){
         int totalPrice = _pureTotalPrice.getValue() - _discount.getValue() + _deliveryFee.getValue();
         if(totalPrice <= 0){
             totalPrice = 0;
         }
         _totalPrice.setValue(totalPrice);
+    }
+
+    /**
+     * 取得要結帳的商品名稱清單
+     */
+    public List<String> getCheckedNameList(){
+        List<String> tempList = new ArrayList<String>();
+        for(int i = 0 ; i < nameList.size() ; i++){
+            if(checkedProduct.get(i)){
+                tempList.add(nameList.get(i));
+            }
+        }
+        return tempList;
+    }
+
+    /**
+     * 取得要結帳的商品名稱清單
+     */
+    public List<Integer> getCheckedPriceList(){
+        List<Integer> tempList = new ArrayList<Integer>();
+        for(int i = 0 ; i < priceList.size() ; i++){
+            if(checkedProduct.get(i)){
+                tempList.add(priceList.get(i));
+            }
+        }
+        return tempList;
+    }
+
+    /**
+     * 取得要結帳的商品圖片清單
+     */
+    public List<Integer> getCheckedPictureList(){
+        List<Integer> tempList = new ArrayList<Integer>();
+        for(int i = 0 ; i < pictureList.size() ; i++){
+            if(checkedProduct.get(i)){
+                tempList.add(pictureList.get(i));
+            }
+        }
+        return tempList;
+    }
+
+    /**
+     * 取得要結帳的商品數量清單
+     */
+    public List<Integer> getCheckedAmountList(){
+        List<Integer> tempList = new ArrayList<Integer>();
+        for(int i = 0 ; i < amountList.size() ; i++){
+            if(checkedProduct.get(i)){
+                tempList.add(amountList.get(i));
+            }
+        }
+        return tempList;
     }
 
     /**
@@ -170,6 +252,9 @@ public class ShoppingCartViewModel extends ViewModel {
         return resultList;
     }
 
+    /**
+     * 新增宅配地址
+     */
     public void addAddress(String newAddress){
         addressList.add(newAddress);
     }
@@ -219,16 +304,6 @@ public class ShoppingCartViewModel extends ViewModel {
 
         return result;
     }
-
-
-
-
-
-
-
-
-
-
 
     @Override
     protected void onCleared() {
