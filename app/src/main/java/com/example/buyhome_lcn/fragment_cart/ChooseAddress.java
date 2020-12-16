@@ -4,12 +4,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -27,6 +29,8 @@ import java.util.ArrayList;
 
 public class ChooseAddress extends Fragment {
     Context context;
+    View view;
+
     //ViewModel
     private ShoppingCartViewModel viewModel;
 
@@ -42,7 +46,11 @@ public class ChooseAddress extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         context = requireActivity();
-        final View view = inflater.inflate(R.layout.fragment_choose_address, container, false);
+
+        //開啟 ActionBar
+        setHasOptionsMenu(true);
+
+        view = inflater.inflate(R.layout.fragment_choose_address, container, false);
 
         //取得自定義 ViewModel
         viewModel = new ViewModelProvider(requireActivity()).get(ShoppingCartViewModel.class);
@@ -112,5 +120,19 @@ public class ChooseAddress extends Fragment {
         });
 
         return view;
+    }
+
+    //設定返回鍵功能
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //取得被點擊的物件編號
+        switch (item.getItemId()){
+            //若編號為返回鍵則做
+            case android.R.id.home:
+                //返回前頁
+                Navigation.findNavController(view).popBackStack();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

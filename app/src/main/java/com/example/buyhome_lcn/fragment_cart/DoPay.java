@@ -10,9 +10,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -36,6 +38,7 @@ import java.util.Optional;
 
 public class DoPay extends Fragment {
     Context context;
+    View view;
 
     //6-1-1.用戶端，用於與 Google Pay API 互動
     private PaymentsClient paymentsClient;
@@ -51,7 +54,10 @@ public class DoPay extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         context = requireActivity();
-        View view = inflater.inflate(R.layout.fragment_do_pay, container, false);
+        view = inflater.inflate(R.layout.fragment_do_pay, container, false);
+
+        //開啟 ActionBar
+        setHasOptionsMenu(true);
 
         //6-1-2.初始化 Google Pay API 用戶端
         //此處使用的 PaymentsUtil.createPaymentsClient(this) 方法解釋見6-2
@@ -72,6 +78,20 @@ public class DoPay extends Fragment {
         possiblyShowGooglePayButton();
 
         return view;
+    }
+
+    //設定返回鍵功能
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //取得被點擊的物件編號
+        switch (item.getItemId()){
+            //若編號為返回鍵則做
+            case android.R.id.home:
+                //返回前頁
+                Navigation.findNavController(view).popBackStack();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     //8-4.確認使用者能夠使用 Google Pay ，若可以則顯示按鈕

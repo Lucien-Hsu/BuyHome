@@ -3,6 +3,7 @@ package com.example.buyhome_lcn.fragment_cart;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,6 +26,7 @@ import com.example.buyhome_lcn.data.ShoppingCartViewModel;
 
 public class ShoppingCart extends Fragment {
     Context context;
+    View view;
 
     //ViewModel
     private ShoppingCartViewModel viewModel;
@@ -37,8 +40,11 @@ public class ShoppingCart extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
+        view = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
         context = requireActivity();
+
+        //開啟 ActionBar
+        setHasOptionsMenu(true);
 
         //取得自定義 ViewModel
         viewModel = new ViewModelProvider(requireActivity()).get(ShoppingCartViewModel.class);
@@ -75,5 +81,19 @@ public class ShoppingCart extends Fragment {
         });
 
         return view;
+    }
+
+    //設定返回鍵功能
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //取得被點擊的物件編號
+        switch (item.getItemId()){
+            //若編號為返回鍵則做
+            case android.R.id.home:
+                //結束購物車
+                requireActivity().finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

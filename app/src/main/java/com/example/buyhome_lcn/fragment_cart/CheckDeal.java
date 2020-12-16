@@ -1,10 +1,13 @@
 package com.example.buyhome_lcn.fragment_cart;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
@@ -16,6 +19,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -23,6 +29,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.adapter.CheckDealAdapter;
@@ -30,6 +37,7 @@ import com.example.buyhome_lcn.data.ShoppingCartViewModel;
 
 public class CheckDeal extends Fragment {
     Context context;
+    View view;
 
     //ViewModel
     private ShoppingCartViewModel viewModel;
@@ -45,8 +53,11 @@ public class CheckDeal extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_check_deal, container, false);
+        view = inflater.inflate(R.layout.fragment_check_deal, container, false);
         context = requireActivity();
+
+        //開啟 ActionBar
+        setHasOptionsMenu(true);
 
         //取得自定義 ViewModel
         viewModel = new ViewModelProvider(requireActivity()).get(ShoppingCartViewModel.class);
@@ -147,6 +158,20 @@ public class CheckDeal extends Fragment {
         viewModel._totalPrice.observe((LifecycleOwner) context, observerTotalPrice);
 
         return view;
+    }
+
+    //設定返回鍵功能
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //取得被點擊的物件編號
+        switch (item.getItemId()){
+            //若編號為返回鍵則做
+            case android.R.id.home:
+                //返回前頁
+                Navigation.findNavController(view).popBackStack();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**

@@ -1,5 +1,6 @@
 package com.example.buyhome_lcn;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -15,6 +16,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
+
+        //創建ActionBar物件
+        ActionBar bar = getSupportActionBar();
+        //設定ActionBar顯示返回鍵
+        bar.setDisplayHomeAsUpEnabled(true);
     }
 
     //9-6.將 request 傳給 Fragment

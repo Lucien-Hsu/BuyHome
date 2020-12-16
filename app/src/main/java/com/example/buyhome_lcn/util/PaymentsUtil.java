@@ -21,7 +21,6 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.buyhome_lcn.Constants;
 import com.google.android.gms.wallet.PaymentsClient;
 import com.google.android.gms.wallet.Wallet;
 

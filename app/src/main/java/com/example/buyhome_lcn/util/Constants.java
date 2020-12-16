@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.buyhome_lcn;
+package com.example.buyhome_lcn.util;
 
 import com.google.android.gms.wallet.WalletConstants;
 
