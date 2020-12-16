@@ -174,6 +174,7 @@ public class CheckDeal extends Fragment {
         }else {
             tvDiscountCodeTip.setVisibility(View.INVISIBLE);
             etDiscountCode.setBackground(getResources().getDrawable(R.drawable.frame_redline));
+            viewModel.setDiscount(0);
         }
     }
 
