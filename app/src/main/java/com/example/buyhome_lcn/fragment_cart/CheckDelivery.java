@@ -22,7 +22,7 @@ import com.example.buyhome_lcn.data.ShoppingCartViewModel;
 public class CheckDelivery extends Fragment {
     private ShoppingCartViewModel viewModel;
 
-    TextView tvHomeDeliveryAddress;
+    TextView tvReceiver, tvPhone, tvAddress;
     Button btnGoBack, btnChooseReceiver, btnChooseAddress, btnChooseStore;
     CheckBox cbHome, cbStore;
 
@@ -36,8 +36,15 @@ public class CheckDelivery extends Fragment {
 
         chooseDeliveryWay(view);
 
-        tvHomeDeliveryAddress = view.findViewById(R.id.tv_home_delivery_adress);
-        tvHomeDeliveryAddress.setText(viewModel.getDefaultAddress());
+        tvAddress = view.findViewById(R.id.tv_home_delivery_adress);
+        tvAddress.setText(viewModel.getDefaultAddress());
+
+        tvReceiver = view.findViewById(R.id.tv_recipient_name_display);
+        tvReceiver.setText(viewModel.getDefaultName());
+
+        tvPhone = view.findViewById(R.id.tv_recipient_phone_display);
+        tvPhone.setText(viewModel.getDefaultPhone());
+
 
         //[按鈕]  設定收件者
         btnChooseReceiver = view.findViewById(R.id.btn_choose_receiver);

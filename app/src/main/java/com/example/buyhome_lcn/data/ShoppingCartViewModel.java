@@ -76,8 +76,8 @@ public class ShoppingCartViewModel extends ViewModel {
             _amountList.setValue(amountList);
         }
         //收件相關
-        receiverList.add("李先生");
-        receiverList.add("王小姐");
+        receiverList.add("#李先生#0912345678");
+        receiverList.add("#王小姐#0911000111");
         storeList.add("#全家#楊梅幼獅店");
         storeList.add("#萊爾富#平鎮復梅店");
         addressList.add("#台北市#信義區#信義路五段7號89樓");
@@ -135,10 +135,30 @@ public class ShoppingCartViewModel extends ViewModel {
         _totalPrice.setValue(totalPrice);
     }
 
+    /**
+     * 取得總金額
+     */
     public Integer getTotalPrice(){
         return _totalPrice.getValue();
     }
 
+    /**
+     * 取得所有收件人
+     */
+    public ArrayList<String> getReceiverList(){
+        ArrayList<String> resultList = new ArrayList<>();
+        String[] tempStr;
+
+        for(int i = 0 ; i < receiverList.size() ; i++){
+            tempStr = receiverList.get(i).split("#");
+            resultList.add(tempStr[1] + "  " + tempStr[2]);
+        }
+        return resultList;
+    }
+
+    /**
+     * 取得所有地址
+     */
     public ArrayList<String> getAddressList(){
         ArrayList<String> resultList = new ArrayList<>();
         String[] tempStr;
@@ -154,6 +174,43 @@ public class ShoppingCartViewModel extends ViewModel {
         addressList.add(newAddress);
     }
 
+    /**
+     * 新增收件者
+     */
+    public void addReceiver(String newReceiver){
+        receiverList.add(newReceiver);
+    }
+
+    /**
+     * 取得預設收件者
+     * @return
+     */
+    public String getDefaultName(){
+        String result;
+        String[] tempStr;
+        tempStr = defaultReceiver.split("#");
+        result = tempStr[1];
+
+        return result;
+    }
+
+    /**
+     * 取得預設電話
+     * @return
+     */
+    public String getDefaultPhone(){
+        String result;
+        String[] tempStr;
+        tempStr = defaultReceiver.split("#");
+        result = tempStr[2];
+
+        return result;
+    }
+
+    /**
+     * 取得預設宅配地址
+     * @return
+     */
     public String getDefaultAddress(){
         String result;
         String[] tempStr;

@@ -108,7 +108,6 @@ public class ChooseAddress extends Fragment {
                     adapter.clear();
                     adapter.addAll(viewModel.getAddressList());
                 }
-
             }
         });
 
