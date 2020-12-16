@@ -1,7 +1,5 @@
 package com.example.buyhome_lcn.data;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -179,7 +177,7 @@ public class ShoppingCartViewModel extends ViewModel {
     }
 
     /**
-     * 取得要結帳的商品名稱清單
+     * 取得要結帳的商品價格清單
      */
     public List<Integer> getCheckedPriceList(){
         List<Integer> tempList = new ArrayList<Integer>();
@@ -260,10 +258,24 @@ public class ShoppingCartViewModel extends ViewModel {
     }
 
     /**
+     * 刪除指定宅配地址
+     */
+    public void deleteAddress(int index){
+        addressList.remove(index);
+    }
+
+    /**
      * 新增收件者
      */
     public void addReceiver(String newReceiver){
         receiverList.add(newReceiver);
+    }
+
+    /**
+     * 刪除指定收件者
+     */
+    public void deleteReceiver(int index){
+        receiverList.remove(index);
     }
 
     /**
