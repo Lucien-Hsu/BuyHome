@@ -49,7 +49,9 @@ public class ShoppingCartViewModel extends ViewModel {
         amountList = new ArrayList<Integer>();
         _amountList = new MutableLiveData<List<Integer>>();
         checkedProduct = new ArrayList<Boolean>();
-
+        defaultReceiver = "";
+        defaultAddress = "";
+        defaultStore = "";
         //計算價格相關
         _pureTotalPrice = new MutableLiveData<Integer>();
         _discount = new MutableLiveData<Integer>();
@@ -78,6 +80,7 @@ public class ShoppingCartViewModel extends ViewModel {
             checkedProduct.add(false);
 
         }
+
         //收件相關
         receiverList.add("#李先生#0912345678");
         receiverList.add("#王小姐#0911000111");
@@ -88,6 +91,8 @@ public class ShoppingCartViewModel extends ViewModel {
         defaultReceiver = receiverList.get(0);
         defaultAddress = addressList.get(0);
         defaultStore = storeList.get(0);
+
+
     }
 
     /**

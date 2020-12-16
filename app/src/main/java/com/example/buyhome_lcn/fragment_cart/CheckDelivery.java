@@ -43,13 +43,25 @@ public class CheckDelivery extends Fragment {
         chooseDeliveryWay(view);
 
         tvAddress = view.findViewById(R.id.tv_home_delivery_adress);
-        tvAddress.setText(viewModel.getDefaultAddress());
+        if(viewModel.defaultReceiver.length() != 0){
+            tvAddress.setText(viewModel.getDefaultAddress());
+        }else{
+            tvAddress.setText("");
+        }
 
         tvReceiver = view.findViewById(R.id.tv_recipient_name_display);
-        tvReceiver.setText(viewModel.getDefaultName());
+        if(viewModel.defaultReceiver.length() != 0){
+            tvReceiver.setText(viewModel.getDefaultName());
+        }else{
+            tvReceiver.setText("");
+        }
 
         tvPhone = view.findViewById(R.id.tv_recipient_phone_display);
-        tvPhone.setText(viewModel.getDefaultPhone());
+        if(viewModel.defaultReceiver.length() != 0){
+            tvPhone.setText(viewModel.getDefaultPhone());
+        }else{
+            tvPhone.setText("");
+        }
 
 
         //[按鈕]  設定收件者
