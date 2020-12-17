@@ -63,7 +63,6 @@ public class ShoppingCart extends Fragment {
         //連結 LiveData 與觀察者
         viewModel._pureTotalPrice.observe((LifecycleOwner) context, observerPureTotalPrice);
 
-
         //[清單] 呈現商品資料
         rvShoppingCart = view.findViewById(R.id.rv_shoppingcart);
         StaggeredGridLayoutManager mLayoutManager_stagger = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
