@@ -103,6 +103,7 @@ public class ShoppingCartViewModel extends ViewModel {
         pictureList.remove(index);
         amountList.remove(index);
         _amountList.setValue(amountList);
+        checkedProduct.remove(index);
     }
 
     /**

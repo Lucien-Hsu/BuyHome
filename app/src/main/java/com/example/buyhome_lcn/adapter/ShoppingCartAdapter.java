@@ -87,8 +87,9 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION){
                         Toast.makeText(context, viewModel.nameList.get(getAdapterPosition()) + "\n已刪除", Toast.LENGTH_SHORT).show();
-                        viewModel.deleteProduct(getAdapterPosition());
-                        notifyItemRemoved(getAdapterPosition());
+                        viewModel.deleteProduct(pos);
+                        notifyItemRemoved(pos);
+                        notifyItemRangeChanged(pos,viewModel.nameList.size());
                     }
                 }
             });
