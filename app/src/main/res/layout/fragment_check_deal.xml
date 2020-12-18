@@ -114,8 +114,7 @@
         app:layout_constraintEnd_toEndOf="@+id/img_discount"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/tv_discount_code"
-        app:layout_constraintTop_toTopOf="@+id/tv_discount_code"
-        app:layout_constraintVertical_bias="0.923" />
+        app:layout_constraintTop_toTopOf="@+id/tv_discount_code" />
 
     <TextView
         android:id="@+id/tv_discount_code"
