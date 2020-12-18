@@ -43,10 +43,8 @@ public class ChooseReceiver extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         context = requireActivity();
-
         //開啟 ActionBar
         setHasOptionsMenu(true);
-
         view = inflater.inflate(R.layout.fragment_choose_receiver, container, false);
 
         //取得自定義 ViewModel

@@ -25,7 +25,7 @@ public class CheckDelivery extends Fragment {
     View view;
     private ShoppingCartViewModel viewModel;
 
-    TextView tvReceiver, tvPhone, tvAddress;
+    TextView tvReceiver, tvPhone, tvAddress, tvStorePickup;
     Button btnGoBack, btnChooseReceiver, btnChooseAddress, btnChooseStore;
     CheckBox cbHome, cbStore;
 
@@ -42,13 +42,6 @@ public class CheckDelivery extends Fragment {
 
         chooseDeliveryWay(view);
 
-        tvAddress = view.findViewById(R.id.tv_home_delivery_adress);
-        if(viewModel.defaultReceiver.length() != 0){
-            tvAddress.setText(viewModel.getDefaultAddress());
-        }else{
-            tvAddress.setText("");
-        }
-
         tvReceiver = view.findViewById(R.id.tv_recipient_name_display);
         if(viewModel.defaultReceiver.length() != 0){
             tvReceiver.setText(viewModel.getDefaultName());
@@ -61,6 +54,20 @@ public class CheckDelivery extends Fragment {
             tvPhone.setText(viewModel.getDefaultPhone());
         }else{
             tvPhone.setText("");
+        }
+
+        tvAddress = view.findViewById(R.id.tv_home_delivery_adress);
+        if(viewModel.defaultReceiver.length() != 0){
+            tvAddress.setText(viewModel.getDefaultAddress());
+        }else{
+            tvAddress.setText("");
+        }
+
+        tvStorePickup = view.findViewById(R.id.tv_store_pickup);
+        if(viewModel.defaultReceiver.length() != 0){
+            tvStorePickup.setText(viewModel.getDefaultStore());
+        }else{
+            tvStorePickup.setText("");
         }
 
 
