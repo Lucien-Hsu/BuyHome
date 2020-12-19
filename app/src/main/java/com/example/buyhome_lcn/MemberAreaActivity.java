@@ -27,14 +27,14 @@ public class MemberAreaActivity extends AppCompatActivity {
 
     List<Map<String, Object>> itemList;
     int[] infoImgList = {
-            R.drawable.home,
-            R.drawable.arrow_right,
-            R.drawable.arrow_right,
-            R.drawable.arrow_right};
+            R.drawable.ic_user_info, R.drawable.ic_address,
+            R.drawable.ic_store_pickup, R.drawable.ic_pay_method,
+            R.drawable.ic_alarm, R.drawable.ic_my_store};
 
     String[] infoTextList = {
-            "info 01", "info 02",
-            "info 03", "info 04"};
+            "個人資訊", "宅配地址",
+            "超商取貨門市", "付款方式",
+            "通知", "我的商店"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,12 +70,25 @@ public class MemberAreaActivity extends AppCompatActivity {
                 Integer img = (Integer) item.get("img");
                 String info = (String) item.get("info");
                 Toast.makeText(context, "You selected : " + img + " info = " + info, Toast.LENGTH_SHORT).show();
+
+                switch(position){
+                    case 0:
+                        Intent intent = new Intent(context, AccountInfoActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                }
             }
         });
-
-
         //TODO 製作片段導航
-
-
     }
 }

@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MemberAreaActivity"></activity>
-        <!-- Google Pay -->
+        <activity android:name=".AccountInfoActivity"></activity>
+        <activity android:name=".MemberAreaActivity" /> <!-- Google Pay -->
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />
