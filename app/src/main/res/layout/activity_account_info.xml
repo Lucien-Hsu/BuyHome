@@ -27,11 +27,11 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/circle_img"
         app:layout_constraintBottom_toTopOf="@+id/lv_account_area"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/account_photo_test" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/divider5"
