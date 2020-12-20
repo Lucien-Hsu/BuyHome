@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -14,9 +15,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.buyhome_lcn.R;
+import com.example.buyhome_lcn.data.MemberAreaViewModel;
+import com.example.buyhome_lcn.data.ShoppingCartViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +32,11 @@ public class MemberAreaFragment extends Fragment {
     View view;
     Context context;
     ListView lvAccountArea;
+
+    TextView tvNickname, tvAccount;
+
+    //ViewModel
+    private MemberAreaViewModel viewModel;
 
     List<Map<String, Object>> itemList;
     int[] infoImgList = {
@@ -47,6 +56,15 @@ public class MemberAreaFragment extends Fragment {
         context = requireActivity();
 
         setHasOptionsMenu(true);
+
+        //取得自定義 ViewModel
+        viewModel = new ViewModelProvider(requireActivity()).get(MemberAreaViewModel.class);
+
+        tvNickname = view.findViewById(R.id.tv_nickname);
+        tvNickname.setText(viewModel.getNickname());
+
+        tvAccount = view.findViewById(R.id.tv_account);
+        tvAccount.setText(viewModel.getAccount_id());
 
         itemList = new ArrayList<Map<String, Object>>();
 

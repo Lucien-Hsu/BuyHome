@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.provider.MediaStore;
@@ -24,6 +25,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.example.buyhome_lcn.R;
+import com.example.buyhome_lcn.data.MemberAreaViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +35,9 @@ import java.util.Map;
 
 public class AccountInfoFragment extends Fragment {
     View view;
+
+    //ViewModel
+    private MemberAreaViewModel viewModel;
 
     private static final int GALLERY_REQUEST = 001;
     private static final int CAMERA_REQUEST = 002;
@@ -53,10 +58,7 @@ public class AccountInfoFragment extends Fragment {
             "性別", "生日",
             "手機", "信箱"};
 
-    String[] showInfoTextList = {
-            "", "*********",
-            "female", "20201212",
-            "0911222333", "myaccount@gmail.com"};
+    String[] showInfoTextList;
 
     Integer[] showNextSign = {
             null, R.drawable.arrow_right,
@@ -70,6 +72,16 @@ public class AccountInfoFragment extends Fragment {
         context = requireActivity();
 
         setHasOptionsMenu(true);
+
+        //取得自定義 ViewModel
+        viewModel = new ViewModelProvider(requireActivity()).get(MemberAreaViewModel.class);
+
+        showInfoTextList = new String[]{
+                "", viewModel.getPassword(),
+                viewModel.getGender(),
+                String.valueOf(viewModel.getBirthday()),
+                viewModel.getPhone(),
+                viewModel.getEmail()};
 
         imgUserPhoto = view.findViewById(R.id.img_user_photo);
 
