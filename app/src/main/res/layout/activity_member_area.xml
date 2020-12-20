@@ -19,17 +19,25 @@
         app:layout_constraintTop_toBottomOf="@+id/divider5"
         tools:layout_editor_absoluteY="188dp" />
 
-    <ImageView
+    <androidx.cardview.widget.CardView
         android:id="@+id/img_user_photo"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        app:cardCornerRadius="50dp"
         app:layout_constraintBottom_toTopOf="@+id/lv_account_area"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/account_photo_test" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/account_photo_test" />
+
+    </androidx.cardview.widget.CardView>
+
 
     <TextView
         android:id="@+id/textView"
