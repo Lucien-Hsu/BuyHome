@@ -1,16 +1,19 @@
 package com.example.buyhome_lcn;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -67,7 +70,24 @@ public class AccountInfoActivity extends AppCompatActivity {
         cvUserPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getImageFromGallery();
+                String[] options = {"從相簿選取", "從相機拍攝"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("設定顯示圖")
+                        .setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which){
+                                    case 0:
+                                        getImageFromGallery();
+                                        break;
+                                    case 1:
+                                        getImageFromTakePicture();
+                                        break;
+                                }
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
 
@@ -98,6 +118,12 @@ public class AccountInfoActivity extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         startActivityForResult(intent, GALLERY_REQUEST);
+    }
+
+    private void getImageFromTakePicture() {
+        Intent cameraIntent = new Intent();
+        cameraIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 
     @Override
