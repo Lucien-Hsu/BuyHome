@@ -23,8 +23,7 @@ public class MainActivity_shopping_cart extends AppCompatActivity {
         bar.setDisplayHomeAsUpEnabled(true);
     }
 
-    //9-6.將 request 傳給 Fragment
-    //當使用 Navigation + Fragment 時需採用此方式
+    //將 request 傳給 Fragment
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

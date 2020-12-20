@@ -43,7 +43,6 @@ public class ShoppingCart extends Fragment {
         view = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
         context = requireActivity();
 
-        //開啟 ActionBar
         setHasOptionsMenu(true);
 
         //取得自定義 ViewModel
@@ -82,14 +81,10 @@ public class ShoppingCart extends Fragment {
         return view;
     }
 
-    //設定返回鍵功能
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        //取得被點擊的物件編號
         switch (item.getItemId()){
-            //若編號為返回鍵則做
             case android.R.id.home:
-                //結束購物車
                 requireActivity().finish();
                 break;
         }

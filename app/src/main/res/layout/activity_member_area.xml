@@ -4,72 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".MemberAreaActivity">
+    tools:context=".MainActivity_shopping_cart">
 
-    <ListView
-        android:id="@+id/lv_account_area"
+    <fragment
+        android:id="@+id/myNavHostFragment_member"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider5"
-        tools:layout_editor_absoluteY="188dp" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/img_user_photo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:cardCornerRadius="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/lv_account_area"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/account_photo_test" />
-
-    </androidx.cardview.widget.CardView>
-
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Mr. Hello World"
-        android:textColor="?android:attr/textColorPrimary"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintStart_toEndOf="@+id/img_user_photo"
-        app:layout_constraintTop_toTopOf="@+id/img_user_photo"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@MyAccount"
-        android:textColor="?android:attr/textColorSecondary"
-        app:layout_constraintBottom_toBottomOf="@+id/img_user_photo"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <View
-        android:id="@+id/divider5"
-        android:layout_width="409dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="150dp"
-        android:background="?android:attr/listDivider"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/navigation_member" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
