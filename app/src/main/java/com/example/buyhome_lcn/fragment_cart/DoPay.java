@@ -3,6 +3,7 @@ package com.example.buyhome_lcn.fragment_cart;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -209,7 +210,13 @@ public class DoPay extends Fragment {
                 new AlertDialog.Builder(context)
                         .setTitle("Warning")
                         .setMessage(getString(R.string.gateway_replace_name_example))
-                        .setPositiveButton("OK", null)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //TODO 回到首頁
+                                requireActivity().finish();
+                            }
+                        })
                         .create()
                         .show();
             }
