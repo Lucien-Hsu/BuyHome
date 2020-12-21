@@ -121,10 +121,13 @@ public class MemberAreaFragment extends Fragment {
                         Navigation.findNavController(view).navigate(R.id.action_memberAreaFragment_to_accountInfoFragment);
                         break;
                     case 1:
+                        Navigation.findNavController(view).navigate(R.id.action_memberAreaFragment_to_setAddressFragment);
                         break;
                     case 2:
+                        Navigation.findNavController(view).navigate(R.id.action_memberAreaFragment_to_setStoreFragment);
                         break;
                     case 3:
+                        Navigation.findNavController(view).navigate(R.id.action_memberAreaFragment_to_setPayMethodFragment);
                         break;
                     case 4:
                         break;
