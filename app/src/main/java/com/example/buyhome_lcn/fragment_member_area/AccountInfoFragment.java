@@ -20,9 +20,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.data.MemberAreaViewModel;
@@ -129,6 +131,27 @@ public class AccountInfoFragment extends Fragment {
                 new int[]{R.id.img_info, R.id.tv_info, R.id.tv_show_info, R.id.img_next_sign});
 
         lvAccountArea.setAdapter(adapter);
+
+        lvAccountArea.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Toast.makeText(context, position + "", Toast.LENGTH_SHORT).show();
+                switch(position){
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                }
+            }
+        });
 
         return view;
     }
