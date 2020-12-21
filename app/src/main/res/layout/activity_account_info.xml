@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/img_user_photo"
+            android:id="@+id/cv_user_photo"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/account_photo_test"

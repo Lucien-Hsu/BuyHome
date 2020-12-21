@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.data.MemberAreaViewModel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -78,6 +79,8 @@ public class AccountInfoFragment extends Fragment {
         //取得自定義 ViewModel
         viewModel = new ViewModelProvider(requireActivity()).get(MemberAreaViewModel.class);
 
+
+
         showInfoTextList = new String[]{
                 "", viewModel.getPassword(),
                 viewModel.getGender(),
@@ -86,6 +89,9 @@ public class AccountInfoFragment extends Fragment {
                 viewModel.getEmail()};
 
         imgUserPhoto = view.findViewById(R.id.img_user_photo);
+        if(viewModel.getHasPhoto()){
+            imgUserPhoto.setImageBitmap(viewModel.getUserPhotoBitmap());
+        }
 
         cvUserPhoto = view.findViewById(R.id.cv_user_photo);
         cvUserPhoto.setOnClickListener(new View.OnClickListener() {
@@ -178,16 +184,26 @@ public class AccountInfoFragment extends Fragment {
 
             //以 Uri 型態取得資料
             Uri imageUri = data.getData();
-            //將圖片設定到指定 view
-            imgUserPhoto.setImageURI(imageUri);
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(),imageUri);
+                //以 bitmap 型態變數儲存照片資料
+                imgUserPhoto.setImageBitmap(bitmap);
+                viewModel.setUserPhotoBitmap(bitmap);
+                viewModel.setHasPhoto(true);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         }else if(requestCode == CAMERA_REQUEST && resultCode == requireActivity().RESULT_OK){
             //2-3.若 requestCode 是 CAMERA_REQUEST & 正常讀取則做
 
             //以 bitmap 型態變數儲存照片資料
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-            imgUserPhoto.setImageBitmap(bitmap);
+            viewModel.setUserPhotoBitmap(bitmap);
+            viewModel.setHasPhoto(true);
 
+            imgUserPhoto.setImageBitmap(bitmap);
         }
     }
 
