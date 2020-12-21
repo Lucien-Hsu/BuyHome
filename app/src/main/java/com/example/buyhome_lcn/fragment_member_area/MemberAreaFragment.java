@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.data.MemberAreaViewModel;
-import com.example.buyhome_lcn.data.ShoppingCartViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -103,7 +102,7 @@ public class MemberAreaFragment extends Fragment {
         lvAccountArea = view.findViewById(R.id.lv_account_area);
         SimpleAdapter adapter = new SimpleAdapter(
                 context, itemList,
-                R.layout.item_accountarea,
+                R.layout.item_memberarea,
                 new String[]{"img", "info", "showInfo", "showNextSign"},
                 new int[]{R.id.img_info, R.id.tv_info, R.id.tv_show_info, R.id.img_next_sign});
 
