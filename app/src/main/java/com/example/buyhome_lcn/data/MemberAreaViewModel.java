@@ -45,7 +45,17 @@ public class MemberAreaViewModel extends ViewModel {
         birthday = "";
         phone = "";
 
+        initInfoWithHardcode();
+
         //TODO 假資料要換真資料
+        initInfo();
+    }
+
+    private void initInfo() {
+        
+    }
+
+    private void initInfoWithHardcode() {
         initMemberInfo(
                 "台北市信義區\n信義路五段7號89樓",
                 "全家 楊梅幼獅店",
@@ -66,7 +76,7 @@ public class MemberAreaViewModel extends ViewModel {
     /**
      * 初始化帳號資訊
      */
-    private void initMemberInfo(String address, String store, String payMethod ){
+    private void initMemberInfo(String address, String store, String payMethod) {
         this.address = address;
         this.store = store;
         this.payMethod = payMethod;
@@ -75,7 +85,7 @@ public class MemberAreaViewModel extends ViewModel {
     /**
      * 初始化頭像、暱稱、信箱
      */
-    private void initUserBasicInfo(Boolean hasPhoto, String nickname, String email){
+    private void initUserBasicInfo(Boolean hasPhoto, String nickname, String email) {
         this.hasPhoto = hasPhoto;
         this.nickname = nickname;
         this.email = email;
@@ -84,7 +94,7 @@ public class MemberAreaViewModel extends ViewModel {
     /**
      * 初始化基本資訊
      */
-    private void initUserInfo(String password, int gender, String birthday, String phone){
+    private void initUserInfo(String password, int gender, String birthday, String phone) {
         this.password = password;
         this.gender = gender;
         this.birthday = birthday;
@@ -146,7 +156,7 @@ public class MemberAreaViewModel extends ViewModel {
     public String getPasswordHided() {
         int length = password.length();
         StringBuilder hidedPWD = new StringBuilder();
-        for(int i = 0 ; i < length ; i++){
+        for (int i = 0; i < length; i++) {
             hidedPWD.append("*");
         }
         return hidedPWD.toString();
@@ -157,7 +167,7 @@ public class MemberAreaViewModel extends ViewModel {
     }
 
     public String getGender() {
-        switch (gender){
+        switch (gender) {
             case 0:
                 return "Unknown";
             case 1:

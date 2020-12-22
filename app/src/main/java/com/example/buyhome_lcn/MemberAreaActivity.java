@@ -3,10 +3,13 @@ package com.example.buyhome_lcn;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.example.buyhome_lcn.data.MemberAreaViewModel;
 
 public class MemberAreaActivity extends AppCompatActivity {
     Context context;
