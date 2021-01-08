@@ -13,14 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.data.MemberAreaViewModel;
+import com.example.buyhome_lcn.databinding.FragmentMemberAreaBinding;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,13 +27,10 @@ import java.util.Map;
 
 
 public class MemberAreaFragment extends Fragment {
-    View view;
+    //宣告 binding 物件
+    private FragmentMemberAreaBinding binding;
+
     Context context;
-    ListView lvAccountArea;
-
-    ImageView imgUserPhoto;
-
-    TextView tvNickname, tvAccount;
 
     //ViewModel
     private MemberAreaViewModel viewModel;
@@ -61,27 +56,28 @@ public class MemberAreaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_member_area, container, false);
+        //對此 Bindin 物件充氣
+        binding = FragmentMemberAreaBinding.inflate(inflater, container, false);;
+        //取得充氣後的 View 的根元件
+        View view = binding.getRoot();
+
+        //取得 Activity
         context = requireActivity();
-
+        //設定有 Menu
         setHasOptionsMenu(true);
-
         //取得自定義 ViewModel
         viewModel = new ViewModelProvider(requireActivity()).get(MemberAreaViewModel.class);
 
-        imgUserPhoto = view.findViewById(R.id.img_user_photo);
+        //若有照片則設定照片
         if(viewModel.getHasPhoto()){
-            imgUserPhoto.setImageBitmap(viewModel.getUserPhotoBitmap());
+            binding.imgUserPhoto.setImageBitmap(viewModel.getUserPhotoBitmap());
         }
 
-        tvNickname = view.findViewById(R.id.tv_nickname);
-        tvNickname.setText(viewModel.getNickname());
+        binding.tvNickname.setText(viewModel.getNickname());
+        binding.tvAccount.setText(viewModel.getEmail());
 
-        tvAccount = view.findViewById(R.id.tv_account);
-        tvAccount.setText(viewModel.getEmail());
-
+        //設定資料
         itemList = new ArrayList<Map<String, Object>>();
-
         showInfoTextList = new String[]{
                 "",
                 viewModel.getAddress(),
@@ -89,7 +85,6 @@ public class MemberAreaFragment extends Fragment {
                 viewModel.getPayMethod(),
                 "",
                 ""};
-
         for(int i = 0 ; i < infoImgList.length ; i++){
             Map<String, Object> item = new HashMap<String, Object>();
             item.put("img", infoImgList[i]);
@@ -99,16 +94,16 @@ public class MemberAreaFragment extends Fragment {
             itemList.add(item);
         }
 
-        lvAccountArea = view.findViewById(R.id.lv_account_area);
+        //設定適配器
         SimpleAdapter adapter = new SimpleAdapter(
                 context, itemList,
                 R.layout.item_memberarea,
                 new String[]{"img", "info", "showInfo", "showNextSign"},
                 new int[]{R.id.img_info, R.id.tv_info, R.id.tv_show_info, R.id.img_next_sign});
-
-        lvAccountArea.setAdapter(adapter);
-
-        lvAccountArea.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //listView連結適配器
+        binding.lvAccountArea.setAdapter(adapter);
+        //設定listView監聽器
+        binding.lvAccountArea.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Map<String, Object> item = (Map<String, Object>)adapterView.getItemAtPosition(position);
@@ -137,9 +132,11 @@ public class MemberAreaFragment extends Fragment {
             }
         });
 
+        //回傳 View
         return view;
     }
 
+    //設定返回鍵
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){

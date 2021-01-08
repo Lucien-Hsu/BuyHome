@@ -28,6 +28,8 @@ import android.widget.Toast;
 
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.data.MemberAreaViewModel;
+import com.example.buyhome_lcn.databinding.FragmentAccountInfoBinding;
+import com.example.buyhome_lcn.databinding.FragmentMemberAreaBinding;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,6 +39,9 @@ import java.util.Map;
 
 
 public class AccountInfoFragment extends Fragment {
+    //宣告 binding 物件
+    private FragmentAccountInfoBinding binding;
+
     View view;
 
     //ViewModel
@@ -46,9 +51,7 @@ public class AccountInfoFragment extends Fragment {
     private static final int CAMERA_REQUEST = 002;
 
     Context context;
-    CardView cvUserPhoto;
     ImageView imgUserPhoto;
-    ListView lvAccountArea;
 
     List<Map<String, Object>> itemList;
     int[] infoImgList = {
@@ -71,29 +74,25 @@ public class AccountInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_account_info, container, false);
+        //對此 Bindin 物件充氣
+        binding = FragmentAccountInfoBinding.inflate(inflater, container, false);;
+        //取得充氣後的 View 的根元件
+        view = binding.getRoot();
+
+        //取得 Activity
         context = requireActivity();
-
+        //設定有 Menu
         setHasOptionsMenu(true);
-
         //取得自定義 ViewModel
         viewModel = new ViewModelProvider(requireActivity()).get(MemberAreaViewModel.class);
 
-        showInfoTextList = new String[]{
-                viewModel.getNickname(),
-                viewModel.getPasswordHided(),
-                viewModel.getGender(),
-                String.valueOf(viewModel.getBirthday()),
-                viewModel.getPhone(),
-                viewModel.getEmail()};
-
-        imgUserPhoto = view.findViewById(R.id.img_user_photo);
+        //若有照片則設定照片
         if(viewModel.getHasPhoto()){
-            imgUserPhoto.setImageBitmap(viewModel.getUserPhotoBitmap());
+            binding.imgUserPhoto.setImageBitmap(viewModel.getUserPhotoBitmap());
         }
 
-        cvUserPhoto = view.findViewById(R.id.cv_user_photo);
-        cvUserPhoto.setOnClickListener(new View.OnClickListener() {
+        //[監聽器] 點選編輯照片
+        binding.cvUserPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String[] options = {"從相簿選取", "從相機拍攝"};
@@ -117,8 +116,15 @@ public class AccountInfoFragment extends Fragment {
             }
         });
 
+        //設定資料
         itemList = new ArrayList<Map<String, Object>>();
-
+        showInfoTextList = new String[]{
+                viewModel.getNickname(),
+                viewModel.getPasswordHided(),
+                viewModel.getGender(),
+                String.valueOf(viewModel.getBirthday()),
+                viewModel.getPhone(),
+                viewModel.getEmail()};
         for (int i = 0; i < infoImgList.length; i++) {
             Map<String, Object> item = new HashMap<String, Object>();
             item.put("img", infoImgList[i]);
@@ -128,16 +134,16 @@ public class AccountInfoFragment extends Fragment {
             itemList.add(item);
         }
 
-        lvAccountArea = view.findViewById(R.id.lv_account_area);
+        //設定適配器
         SimpleAdapter adapter = new SimpleAdapter(
                 context, itemList,
                 R.layout.item_accountinfo,
                 new String[]{"img", "info", "showInfo", "showNextSign"},
                 new int[]{R.id.img_info, R.id.tv_info, R.id.tv_show_info, R.id.img_next_sign});
-
-        lvAccountArea.setAdapter(adapter);
-
-        lvAccountArea.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //listView連結適配器
+        binding.lvAccountArea.setAdapter(adapter);
+        //設定listView監聽器
+        binding.lvAccountArea.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Toast.makeText(context, position + "", Toast.LENGTH_SHORT).show();
@@ -158,9 +164,13 @@ public class AccountInfoFragment extends Fragment {
             }
         });
 
+        //回傳 View
         return view;
     }
 
+    /**
+     * 從相簿取得照片
+     */
     private void getImageFromGallery() {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -168,25 +178,33 @@ public class AccountInfoFragment extends Fragment {
         startActivityForResult(intent, GALLERY_REQUEST);
     }
 
+    /**
+     * 從相機拍攝照片
+     */
     private void getImageFromTakePicture() {
         Intent cameraIntent = new Intent();
         cameraIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 
+    /**
+     * 接收回應處理收到的照片
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         //1-3.若 requestCode 是GALLERY_REQUEST & 正常讀取 & 有資料則做
         if(requestCode == GALLERY_REQUEST && resultCode == requireActivity().RESULT_OK && data != null){
-
             //以 Uri 型態取得資料
             Uri imageUri = data.getData();
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(),imageUri);
                 //以 bitmap 型態變數儲存照片資料
-                imgUserPhoto.setImageBitmap(bitmap);
+                binding.imgUserPhoto.setImageBitmap(bitmap);
                 viewModel.setUserPhotoBitmap(bitmap);
                 viewModel.setHasPhoto(true);
 
@@ -202,10 +220,11 @@ public class AccountInfoFragment extends Fragment {
             viewModel.setUserPhotoBitmap(bitmap);
             viewModel.setHasPhoto(true);
 
-            imgUserPhoto.setImageBitmap(bitmap);
+            binding.imgUserPhoto.setImageBitmap(bitmap);
         }
     }
 
+    //設定返回鍵
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){

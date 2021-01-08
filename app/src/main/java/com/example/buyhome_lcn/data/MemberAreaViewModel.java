@@ -52,7 +52,7 @@ public class MemberAreaViewModel extends ViewModel {
     }
 
     private void initInfo() {
-        
+
     }
 
     private void initInfoWithHardcode() {
