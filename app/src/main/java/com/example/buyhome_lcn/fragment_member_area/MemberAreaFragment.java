@@ -56,7 +56,7 @@ public class MemberAreaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //對此 Bindin 物件充氣
+        //對此 Binding 物件充氣
         binding = FragmentMemberAreaBinding.inflate(inflater, container, false);;
         //取得充氣後的 View 的根元件
         View view = binding.getRoot();

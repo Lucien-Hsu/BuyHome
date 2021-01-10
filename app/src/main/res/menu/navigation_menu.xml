@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
+        android:visible="true"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/specialOfferFragment"
+        android:icon="@drawable/ic_offer"
+        android:title="Offer"
+        android:visible="true"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/messageFragment"
+        android:icon="@drawable/ic_message_24px"
+        android:title="Message"
+        android:visible="true"
+        app:showAsAction="always" />
+</menu>

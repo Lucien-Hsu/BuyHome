@@ -43,6 +43,7 @@ public class ShoppingCart extends Fragment {
         view = inflater.inflate(R.layout.fragment_shopping_cart, container, false);
         context = requireActivity();
 
+        //設定有 Menu
         setHasOptionsMenu(true);
 
         //取得自定義 ViewModel
