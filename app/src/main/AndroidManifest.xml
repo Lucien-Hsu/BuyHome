@@ -19,7 +19,7 @@
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />
 
-        <activity android:name=".MainActivity_shopping_cart" />
+        <activity android:name=".ShoppingCartActivity" />
         <activity android:name=".EnterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

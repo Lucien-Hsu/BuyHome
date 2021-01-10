@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-public class MainActivity_shopping_cart extends AppCompatActivity {
+public class ShoppingCartActivity extends AppCompatActivity {
     Context context;
 
     @Override
