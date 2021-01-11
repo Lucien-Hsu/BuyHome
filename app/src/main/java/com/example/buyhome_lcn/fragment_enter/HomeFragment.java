@@ -4,21 +4,19 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-import com.example.buyhome_lcn.EnterActivity;
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.adapter.HomeGridViewAdapter;
+import com.example.buyhome_lcn.adapter.HomeViewPagerAdapter;
 import com.example.buyhome_lcn.data.EnterViewModel;
-import com.example.buyhome_lcn.data.MemberAreaViewModel;
 import com.example.buyhome_lcn.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
@@ -33,7 +31,10 @@ public class HomeFragment extends Fragment {
     //ViewModel
     private EnterViewModel viewModel;
 
-    List<Map<String, Object>> itemList;
+    private View vEvent01, vEvent02, vEvent03;
+    private ArrayList<View> pageview;
+
+    private List<Map<String, Object>> itemList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +46,18 @@ public class HomeFragment extends Fragment {
         context = requireActivity();
         //取得自定義 ViewModel
         viewModel = new ViewModelProvider(requireActivity()).get(EnterViewModel.class);
+
+        //ViewPager
+        //將 view 加進 pageview 中
+        vEvent01 = getLayoutInflater().inflate(R.layout.event_01,null);
+        vEvent02 = getLayoutInflater().inflate(R.layout.event_02,null);
+        vEvent03 = getLayoutInflater().inflate(R.layout.event_03,null);
+        pageview = new ArrayList<View>();
+        pageview.add(vEvent01);
+        pageview.add(vEvent02);
+        pageview.add(vEvent03);
+        //viewPager 連接適配器
+        binding.viewPager.setAdapter(new HomeViewPagerAdapter(pageview));
 
         //將所有資料以map型態存入陣列
         itemList = new ArrayList<Map<String, Object>>();

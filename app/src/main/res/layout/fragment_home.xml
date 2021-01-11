@@ -30,6 +30,28 @@
 
             </androidx.viewpager.widget.ViewPager>
 
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:rotation="-90"
+                android:src="@android:drawable/arrow_down_float"
+                app:layout_constraintBottom_toBottomOf="@+id/view_pager"
+                app:layout_constraintEnd_toEndOf="@+id/view_pager"
+                app:layout_constraintTop_toTopOf="@+id/view_pager" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:rotation="90"
+                android:src="@android:drawable/arrow_down_float"
+                app:layout_constraintBottom_toBottomOf="@+id/view_pager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/view_pager" />
+
             <TextView
                 android:id="@+id/tv_home_01"
                 android:layout_width="wrap_content"
@@ -49,7 +71,7 @@
             <GridView
                 android:id="@+id/gv_home"
                 android:layout_width="match_parent"
-                android:layout_height="660dp"
+                android:layout_height="668dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/frame_05"
                 android:padding="4dp"
                 android:text="NEW"
@@ -74,7 +96,7 @@
                 android:id="@+id/lv_home"
                 android:layout_width="match_parent"
                 android:layout_height="600dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
