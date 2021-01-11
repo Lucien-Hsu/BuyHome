@@ -10,7 +10,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -22,14 +21,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.data.MemberAreaViewModel;
 import com.example.buyhome_lcn.databinding.FragmentAccountInfoBinding;
-import com.example.buyhome_lcn.databinding.FragmentMemberAreaBinding;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -139,7 +136,7 @@ public class AccountInfoFragment extends Fragment {
                 context, itemList,
                 R.layout.item_accountinfo,
                 new String[]{"img", "info", "showInfo", "showNextSign"},
-                new int[]{R.id.img_info, R.id.tv_info, R.id.tv_show_info, R.id.img_next_sign});
+                new int[]{R.id.img_info, R.id.tv_name, R.id.tv_price, R.id.img_next_sign});
         //listView連結適配器
         binding.lvAccountArea.setAdapter(adapter);
         //設定listView監聽器

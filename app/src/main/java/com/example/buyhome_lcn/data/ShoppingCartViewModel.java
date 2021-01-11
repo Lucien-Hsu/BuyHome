@@ -27,7 +27,6 @@ public class ShoppingCartViewModel extends ViewModel {
     private final int DELIVERY_METHOD_TO_HOME = 1;
     private final int DELIVERY_METHOD_TO_STORE = 2;
     public int deliveryMethod = DELIVERY_METHOD_NULL;
-
     //收件相關
     public String defaultReceiver;
     public String defaultAddress;

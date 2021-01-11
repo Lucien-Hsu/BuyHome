@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/ic_home" />
 
     <TextView
-        android:id="@+id/tv_info"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -42,7 +42,7 @@
         app:srcCompat="@drawable/arrow_right" />
 
     <TextView
-        android:id="@+id/tv_show_info"
+        android:id="@+id/tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

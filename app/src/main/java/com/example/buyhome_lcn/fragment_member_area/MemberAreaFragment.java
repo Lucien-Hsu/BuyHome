@@ -99,7 +99,7 @@ public class MemberAreaFragment extends Fragment {
                 context, itemList,
                 R.layout.item_memberarea,
                 new String[]{"img", "info", "showInfo", "showNextSign"},
-                new int[]{R.id.img_info, R.id.tv_info, R.id.tv_show_info, R.id.img_next_sign});
+                new int[]{R.id.img_info, R.id.tv_name, R.id.tv_price, R.id.img_next_sign});
         //listView連結適配器
         binding.lvAccountArea.setAdapter(adapter);
         //設定listView監聽器
