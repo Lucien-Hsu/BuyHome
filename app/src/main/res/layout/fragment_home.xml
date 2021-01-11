@@ -35,25 +35,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/frame_05"
                 android:gravity="center"
                 android:padding="4dp"
-                android:text="熱門商品"
+                android:text="HOT!!!"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/view_pager" />
 
-            <ListView
-                android:id="@+id/lv_home_01"
+            <GridView
+                android:id="@+id/gv_home"
                 android:layout_width="match_parent"
-                android:layout_height="768dp"
+                android:layout_height="660dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_home_01"></ListView>
+                app:layout_constraintTop_toBottomOf="@+id/tv_home_01" />
 
             <TextView
                 android:id="@+id/tv_home_02"
@@ -63,21 +63,22 @@
                 android:layout_marginTop="8dp"
                 android:background="@drawable/frame_05"
                 android:padding="4dp"
-                android:text="新上架"
+                android:text="NEW"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lv_home_01" />
+                app:layout_constraintTop_toBottomOf="@+id/gv_home" />
 
             <ListView
-                android:id="@+id/lv_home_02"
+                android:id="@+id/lv_home"
                 android:layout_width="match_parent"
-                android:layout_height="768dp"
+                android:layout_height="600dp"
                 android:layout_marginTop="8dp"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_home_02"></ListView>
+                app:layout_constraintTop_toBottomOf="@+id/tv_home_02" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

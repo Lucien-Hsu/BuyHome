@@ -33,7 +33,7 @@ public class EnterViewModel extends ViewModel {
 
     private void initInfoWithHardcode() {
         //設定假資料
-        for(int i = 0 ; i < 8 ; i++){
+        for(int i = 0 ; i < 6 ; i++){
             nameList.add("商品" + (i + 1));
             priceList.add((i + 1) * 100);
             pictureList.add(R.drawable.test_item);

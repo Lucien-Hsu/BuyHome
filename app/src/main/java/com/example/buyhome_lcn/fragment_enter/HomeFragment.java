@@ -16,10 +16,10 @@ import android.widget.SimpleAdapter;
 
 import com.example.buyhome_lcn.EnterActivity;
 import com.example.buyhome_lcn.R;
+import com.example.buyhome_lcn.adapter.HomeGridViewAdapter;
 import com.example.buyhome_lcn.data.EnterViewModel;
 import com.example.buyhome_lcn.data.MemberAreaViewModel;
 import com.example.buyhome_lcn.databinding.FragmentHomeBinding;
-import com.example.buyhome_lcn.databinding.FragmentMemberAreaBinding;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,20 +63,31 @@ public class HomeFragment extends Fragment {
             itemList.add(data);
         }
 
+        //處理 GridView
+
+        //使用自定義的Adapter，此Adapter繼承BaseAdapter
+        HomeGridViewAdapter gvAdapter = new HomeGridViewAdapter(context, itemList);
+        //連結適配器
+        binding.gvHome.setAdapter(gvAdapter);
+        //設定顯示的直欄數
+        binding.gvHome.setNumColumns(2);
+
+
+
         //SimpleAdapter
         //引數一：context
         //引數二：[資料]List<Map<String, Object>>，包含變數名稱與資料，可讓變數對應到資料
         //引數三：[view]清單項目的 layout
         //引數四：[變數]變數名稱陣列，資料與 view ID 都要對應到這邊的變數
         //引數五：[view ID]可讓變數對應到 view ID
-        final SimpleAdapter adapter = new SimpleAdapter(
+        final SimpleAdapter lvAdapter = new SimpleAdapter(
                 context,
                 itemList,
                 R.layout.item_home_01,
                 new String[]{"name", "price", "picture"},
                 new int[]{R.id.tv_name, R.id.tv_price, R.id.img_info});
         //連結adapter
-        binding.lvHome01.setAdapter(adapter);
+        binding.lvHome.setAdapter(lvAdapter);
 
         //設定 scrollview 從頭開始顯示
         binding.scrollview.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {

@@ -8,7 +8,7 @@
     <size>24</size>
 
     <!--    指定填充色，只有 android:color 一個屬性。-->
-    <solid android:color="#004E8C" />
+    <solid android:color="#FF5722" />
 
     <!--    指定圓角，只適用於 rectangle。-->
     <corners android:radius="6dp" />
