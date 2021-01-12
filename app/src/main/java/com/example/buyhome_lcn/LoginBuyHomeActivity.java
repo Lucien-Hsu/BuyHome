@@ -171,14 +171,12 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
                             switch (UserData.getNextActivity()) {
                                 case UserData.SHOPPING_CART_ACTIVITY:
                                     intent = new Intent(context, ShoppingCartActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
                                     UserData.setNextActivity(UserData.NO_ACTIVITY);
                                     finish();
                                     break;
                                 case UserData.MEMBER_AREA_ACTIVITY:
                                     intent = new Intent(context, MemberAreaActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                     startActivity(intent);
                                     UserData.setNextActivity(UserData.NO_ACTIVITY);
                                     finish();
