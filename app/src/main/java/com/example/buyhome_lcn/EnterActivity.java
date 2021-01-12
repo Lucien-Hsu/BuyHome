@@ -14,6 +14,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.example.buyhome_lcn.data.UserData;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class EnterActivity extends AppCompatActivity {
@@ -75,18 +78,43 @@ public class EnterActivity extends AppCompatActivity {
     //當點擊選項時會呼叫此方法，並傳入被選中的 Menuitem
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //根據選項 id 做處理
-        switch (item.getItemId()) {
-            case R.id.menu_item_cart:
-                Intent intent1 = new Intent(context, ShoppingCartActivity.class);
-                startActivity(intent1);
-                return true;
-            case R.id.menu_item_account:
-                Intent intent2 = new Intent(context, MemberAreaActivity.class);
-                startActivity(intent2);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        // 取得現存的 Google 帳號，若從未登入則為 null
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+
+        // 依據 account 結果做相應處理
+        Intent intent;
+        //若已登入
+        if(account != null){
+            //根據選項 id 做處理
+            switch (item.getItemId()) {
+                case R.id.menu_item_cart:
+                    intent = new Intent(context, ShoppingCartActivity.class);
+                    startActivity(intent);
+                    return true;
+                case R.id.menu_item_account:
+                    intent = new Intent(context, MemberAreaActivity.class);
+                    startActivity(intent);
+                    return true;
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+        }else{
+            //若未登入
+            //根據選項 id 做處理
+            switch (item.getItemId()) {
+                case R.id.menu_item_cart:
+                    UserData.setNextActivity(UserData.SHOPPING_CART_ACTIVITY);
+                    intent = new Intent(context, LoginBuyHomeActivity.class);
+                    startActivity(intent);
+                    return true;
+                case R.id.menu_item_account:
+                    UserData.setNextActivity(UserData.MEMBER_AREA_ACTIVITY);
+                    intent = new Intent(context, LoginBuyHomeActivity.class);
+                    startActivity(intent);
+                    return true;
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
         }
     }
 

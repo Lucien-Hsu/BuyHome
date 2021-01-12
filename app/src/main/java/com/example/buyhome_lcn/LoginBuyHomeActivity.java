@@ -2,6 +2,7 @@ package com.example.buyhome_lcn;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -10,12 +11,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.buyhome_lcn.data.UserData;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -50,8 +53,13 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login_buy_home);
         context = this;
+
+        //創建ActionBar物件
+        ActionBar bar = getSupportActionBar();
+        //設定ActionBar顯示返回鍵
+        bar.setDisplayHomeAsUpEnabled(true);
 
         btnLogin = findViewById(R.id.sign_in_button);
 
@@ -80,7 +88,7 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Press Login Button", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Press Login Button", Toast.LENGTH_SHORT).show();
                 switch (view.getId()) {
                     case R.id.sign_in_button:
                         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -110,7 +118,7 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
             GoogleSignInAccount account = null;
             try {
                 account = task.getResult(ApiException.class);
-//                firebaseAuthWithGoogle(account.getIdToken());
+                firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
                 e.printStackTrace();
             }
@@ -123,44 +131,69 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             // 若登入成功，顯示登入成功
-            Toast.makeText(context, "[Login]", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "[Login]", Toast.LENGTH_SHORT).show();
 
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
-            Log.w("myTest", "account：" + account);
+//            Log.w("myTest", "account：" + account);
 
         } catch (ApiException e) {
             // 若登入失敗，顯示登入失敗
-            Toast.makeText(context, "[Fail]", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "[Fail]", Toast.LENGTH_SHORT).show();
 
             // 印出錯誤碼
-            Log.w("myTest", "signInResult:failed code=" + e.getStatusCode());
+//            Log.w("myTest", "signInResult:failed code=" + e.getStatusCode());
         }
     }
 
-//    // B2-2.連接 FirebaseAuth 與 GoogleSignIn 的帳戶資訊
-//    private void firebaseAuthWithGoogle(String idToken) {
-//        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-//        mAuth.signInWithCredential(credential)
-//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
+    // B2-2.連接 FirebaseAuth 與 GoogleSignIn 的帳戶資訊
+    private void firebaseAuthWithGoogle(String idToken) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
 //                            Toast.makeText(MainActivity.this, "[signInWithCredential:success]", Toast.LENGTH_SHORT).show();
-//
-//                            //B3-1.取得當前帳戶
-//                            FirebaseUser user = mAuth.getCurrentUser();
-//                            //B3-2.印出帳戶資訊
-//                            tvState.setText("Email:" + user.getEmail() + "\nName:" + user.getDisplayName());
-//                            //B3-3.顯示帳戶圖片
-//                            setWebImage(user.getPhotoUrl().toString());
-//
-//                        } else {
-//                            Toast.makeText(MainActivity.this, "[signInWithCredential:failure]", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
-//    }
+
+                            //取得當前帳戶
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            // 儲存帳戶資訊
+                            UserData.setUserName(user.getDisplayName());
+                            UserData.setUserEmail(user.getEmail());
+                            // 儲存帳戶圖片
+                            UserData.setUserImgURL(user.getPhotoUrl().toString());
+
+                            Toast.makeText(context, "登入成功", Toast.LENGTH_SHORT).show();
+
+                            // 跳至下個 Activity
+                            Intent intent;
+                            switch (UserData.getNextActivity()) {
+                                case UserData.SHOPPING_CART_ACTIVITY:
+                                    intent = new Intent(context, ShoppingCartActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                    UserData.setNextActivity(UserData.NO_ACTIVITY);
+                                    finish();
+                                    break;
+                                case UserData.MEMBER_AREA_ACTIVITY:
+                                    intent = new Intent(context, MemberAreaActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                    UserData.setNextActivity(UserData.NO_ACTIVITY);
+                                    finish();
+                                    break;
+                                case UserData.NO_ACTIVITY:
+                                    finish();
+                                    break;
+                            }
+
+                        } else {
+                            Toast.makeText(context, "登入失敗", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
 
 //    private void setWebImage(String imgUrlString) {
 //        //設定帳戶圖片
@@ -193,5 +226,16 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
 //            //啟動執行緒
 //        }.start();
 //    }
+
+    //設定返回鍵
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }
