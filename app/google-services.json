@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "124889818558",
+    "project_id": "buyhome-440a3",
+    "storage_bucket": "buyhome-440a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124889818558:android:bab27a630114b53ea605ef",
+        "android_client_info": {
+          "package_name": "com.example.buyhome_lcn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124889818558-ihmbenv0d3jfifsai0gf5o23ifje5rbd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.buyhome_lcn",
+            "certificate_hash": "2ca54df3c4365b28953b9e72b42bfb7a57c6b6d1"
+          }
+        },
+        {
+          "client_id": "124889818558-0dbooekmfffp5o53odahk1vp3cvvgant.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv0HehirhKGvn7O2PVKDt5xt_I9gjAeYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124889818558-0dbooekmfffp5o53odahk1vp3cvvgant.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

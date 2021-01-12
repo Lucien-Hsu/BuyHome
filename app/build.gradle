@@ -1,4 +1,7 @@
+
+//firebase
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
@@ -6,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.buyhome_lcn"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -50,4 +53,15 @@ dependencies {
     // Google Pay
     implementation 'com.google.android.gms:play-services-wallet:18.1.1'
 //    implementation "com.google.android.gms:play-services-wallet:16.0.1"
+
+    //firebase
+    implementation platform('com.google.firebase:firebase-bom:26.2.0')
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // Login
+    // Declare the dependency for the Firebase Authentication library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-auth'
+    // Also declare the dependency for the Google Play services library and specify its version
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
 }
