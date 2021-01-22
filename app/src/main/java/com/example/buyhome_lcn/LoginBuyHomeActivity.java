@@ -131,7 +131,7 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             // 若登入成功，顯示登入成功
-//            Toast.makeText(context, "[Login]", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "[Login]", Toast.LENGTH_SHORT).show();
 
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
@@ -139,10 +139,10 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
 
         } catch (ApiException e) {
             // 若登入失敗，顯示登入失敗
-//            Toast.makeText(context, "[Fail]", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "[Fail]", Toast.LENGTH_SHORT).show();
 
             // 印出錯誤碼
-//            Log.w("myTest", "signInResult:failed code=" + e.getStatusCode());
+            Log.w("myTest", "signInResult:failed code=" + e.getStatusCode());
         }
     }
 

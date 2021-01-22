@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.buyhome_lcn.data.UserData;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -85,6 +86,7 @@ public class EnterActivity extends AppCompatActivity {
         Intent intent;
         //若已登入
         if(account != null){
+            Toast.makeText(context, "已登入", Toast.LENGTH_SHORT).show();
             //根據選項 id 做處理
             switch (item.getItemId()) {
                 case R.id.menu_item_cart:
@@ -99,6 +101,7 @@ public class EnterActivity extends AppCompatActivity {
                     return super.onOptionsItemSelected(item);
             }
         }else{
+            Toast.makeText(context, "未登入", Toast.LENGTH_SHORT).show();
             //若未登入
             //根據選項 id 做處理
             switch (item.getItemId()) {

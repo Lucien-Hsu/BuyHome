@@ -21,14 +21,17 @@ public class EnterViewModel extends ViewModel {
         priceList = new ArrayList<>();
         pictureList = new ArrayList<>();
 
-        initInfoWithHardcode();
+        //設定假資料
+//        initInfoWithHardcode();
 
-        //TODO 假資料要換真資料
+        //設定真資料
         initInfo();
     }
 
     private void initInfo() {
-
+        nameList = ProductData.getNameList();
+        priceList = ProductData.getPriceList();
+        pictureList = ProductData.getPictureList();
     }
 
     private void initInfoWithHardcode() {

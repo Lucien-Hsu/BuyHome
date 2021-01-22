@@ -22,6 +22,7 @@
             android:id="@+id/img_info"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:padding="8dp"
             app:srcCompat="@drawable/test_item" />
     </androidx.cardview.widget.CardView>
 
@@ -54,7 +55,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:background="@drawable/button_01"
-        android:text="商品詳情"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="ADD TO  CART"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"

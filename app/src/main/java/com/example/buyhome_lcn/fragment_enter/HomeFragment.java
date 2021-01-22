@@ -40,7 +40,7 @@ public class HomeFragment extends Fragment {
     private View vEvent01, vEvent02, vEvent03;
     private ArrayList<View> pageview;
 
-    private List<Map<String, Object>> itemList;
+    private List<Map<String, Object>> itemListGV, itemListLV;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,8 +65,9 @@ public class HomeFragment extends Fragment {
         //viewPager 連接適配器
         binding.viewPager.setAdapter(new HomeViewPagerAdapter(pageview));
 
+        //GridView
         //將所有資料以map型態存入陣列
-        itemList = new ArrayList<Map<String, Object>>();
+        itemListGV = new ArrayList<Map<String, Object>>();
         for(int i = 0 ; i < viewModel.getNameList().size() ; i++){
             //將所需的三筆資料存入Map
             //創建Map
@@ -79,12 +80,10 @@ public class HomeFragment extends Fragment {
             data.put("picture", viewModel.getPictureList().get(i));
 
             //將每一個Map物件存入List中
-            itemList.add(data);
+            itemListGV.add(data);
         }
-
-        //GridView
         //使用自定義的Adapter，此Adapter繼承BaseAdapter
-        HomeGridViewAdapter gvAdapter = new HomeGridViewAdapter(context, itemList);
+        HomeGridViewAdapter gvAdapter = new HomeGridViewAdapter(context, itemListGV);
         //連結適配器
         binding.gvHome.setAdapter(gvAdapter);
         //設定顯示的直欄數
@@ -104,6 +103,22 @@ public class HomeFragment extends Fragment {
         });
 
         //ListView
+        //將所有資料以map型態存入陣列
+        itemListLV = new ArrayList<Map<String, Object>>();
+        for(int i = 6 ; i < viewModel.getNameList().size() ; i++){
+            //將所需的三筆資料存入Map
+            //創建Map
+            Map<String, Object> data = new HashMap<>();
+            //名稱字串
+            data.put("name", viewModel.getNameList().get(i));
+            //價格數字
+            data.put("price",viewModel.getPriceList().get(i));
+            //圖片數字編號
+            data.put("picture", viewModel.getPictureList().get(i));
+
+            //將每一個Map物件存入List中
+            itemListLV.add(data);
+        }
         //SimpleAdapter
         //引數一：context
         //引數二：[資料]List<Map<String, Object>>，包含變數名稱與資料，可讓變數對應到資料
@@ -112,7 +127,7 @@ public class HomeFragment extends Fragment {
         //引數五：[view ID]可讓變數對應到 view ID
         final SimpleAdapter lvAdapter = new SimpleAdapter(
                 context,
-                itemList,
+                itemListLV,
                 R.layout.item_home_01,
                 new String[]{"name", "price", "picture"},
                 new int[]{R.id.tv_name, R.id.tv_price, R.id.img_info});
