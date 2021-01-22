@@ -74,7 +74,7 @@ public class HomeGridViewAdapter extends BaseAdapter {
         Integer price = (Integer) item.get("price");
         holder.imgID.setImageResource(number);
         holder.nameID.setText(name);
-        holder.priceID.setText(price + "");
+        holder.priceID.setText("$" + price);
 
         return convertView;
     }

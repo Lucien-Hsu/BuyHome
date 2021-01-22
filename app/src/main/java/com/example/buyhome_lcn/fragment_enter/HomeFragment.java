@@ -112,7 +112,7 @@ public class HomeFragment extends Fragment {
             //名稱字串
             data.put("name", viewModel.getNameList().get(i));
             //價格數字
-            data.put("price",viewModel.getPriceList().get(i));
+            data.put("price","$" + viewModel.getPriceList().get(i));
             //圖片數字編號
             data.put("picture", viewModel.getPictureList().get(i));
 

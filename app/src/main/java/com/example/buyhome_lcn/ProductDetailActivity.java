@@ -25,7 +25,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         //顯示相關資訊
         binding.imgProductPhoto.setImageResource(ProductData.getPictureList().get(ProductData.getCheckedProductID()));
         binding.tvProductName.setText(ProductData.getNameList().get(ProductData.getCheckedProductID()));
-        binding.tvProducePrice.setText(ProductData.getPriceList().get(ProductData.getCheckedProductID()).toString());
+        binding.tvProducePrice.setText("$" + ProductData.getPriceList().get(ProductData.getCheckedProductID()).toString());
         binding.tvProduceDetail.setText(ProductData.getDetailList().get(ProductData.getCheckedProductID()));
 
 
