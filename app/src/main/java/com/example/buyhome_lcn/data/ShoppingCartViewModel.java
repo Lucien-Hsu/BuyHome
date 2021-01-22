@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.buyhome_lcn.R;
+import com.example.buyhome_lcn.fragment_cart.ShoppingCart;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,19 +62,9 @@ public class ShoppingCartViewModel extends ViewModel {
         addressList = new ArrayList<String>();
         storeList = new ArrayList<String>();
 
-        //[賦值]
+        //設定資料
         //TODO 串真資料
-        //目前用假資料
-        for(int i = 0 ; i < 10; i++){
-            String name = new String("ASUS X509MA-0291GN4020 星空灰 15.6吋窄邊筆電:" + (i + 1));
-            nameList.add(name);
-            Integer price = new Integer(1 + i);
-            priceList.add(price);
-            pictureList.add(R.drawable.test_item);
-            amountList.add(0);
-            _amountList.setValue(amountList);
-            checkedProduct.add(false);
-        }
+        initInfo();
 
         //計算價格相關
         _pureTotalPrice.setValue(0);
@@ -91,6 +82,26 @@ public class ShoppingCartViewModel extends ViewModel {
         defaultReceiver = receiverList.get(0);
         defaultAddress = addressList.get(0);
         defaultStore = storeList.get(0);
+    }
+
+    /**
+     * 設定資料
+     */
+    private void initInfo() {
+        nameList = ShoppingCartData.getNameList();
+        priceList = ShoppingCartData.getPriceList();
+        pictureList = ShoppingCartData.getPictureList();
+
+        for(int i = 0 ; i < 10; i++){
+//            String name = new String("ASUS X509MA-0291GN4020 星空灰 15.6吋窄邊筆電:" + (i + 1));
+//            nameList.add(name);
+//            Integer price = new Integer(1 + i);
+//            priceList.add(price);
+//            pictureList.add(R.drawable.test_item);
+            amountList.add(0);
+            _amountList.setValue(amountList);
+            checkedProduct.add(false);
+        }
     }
 
     /**
