@@ -1,6 +1,8 @@
 package com.example.buyhome_lcn.fragment_enter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,12 +13,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.AdapterView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
+import com.example.buyhome_lcn.ProductDetailActivity;
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.adapter.HomeGridViewAdapter;
 import com.example.buyhome_lcn.adapter.HomeViewPagerAdapter;
 import com.example.buyhome_lcn.data.EnterViewModel;
+import com.example.buyhome_lcn.data.ProductData;
 import com.example.buyhome_lcn.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
@@ -76,17 +82,28 @@ public class HomeFragment extends Fragment {
             itemList.add(data);
         }
 
-        //處理 GridView
-
+        //GridView
         //使用自定義的Adapter，此Adapter繼承BaseAdapter
         HomeGridViewAdapter gvAdapter = new HomeGridViewAdapter(context, itemList);
         //連結適配器
         binding.gvHome.setAdapter(gvAdapter);
         //設定顯示的直欄數
         binding.gvHome.setNumColumns(2);
+        //監聽
+        binding.gvHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Toast.makeText(context, "點擊:" + position, Toast.LENGTH_SHORT).show();
 
+                //設定點選的商品編號
+                ProductData.setCheckedProductID(position);
+                //跳到商品頁
+                Intent intent = new Intent(context, ProductDetailActivity.class);
+                context.startActivity(intent);
+            }
+        });
 
-
+        //ListView
         //SimpleAdapter
         //引數一：context
         //引數二：[資料]List<Map<String, Object>>，包含變數名稱與資料，可讓變數對應到資料
@@ -111,9 +128,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
         return view;
     }
-
-
 }
