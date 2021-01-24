@@ -119,9 +119,14 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
             try {
                 account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account.getIdToken());
+
+//                Toast.makeText(context, "取得 GoogleSignInAccount 的 Token", Toast.LENGTH_SHORT).show();
+
             } catch (ApiException e) {
                 e.printStackTrace();
             }
+
+
         }
     }
 
@@ -154,7 +159,7 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-//                            Toast.makeText(MainActivity.this, "[signInWithCredential:success]", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "[signInWithCredential:success]", Toast.LENGTH_SHORT).show();
 
                             //取得當前帳戶
                             FirebaseUser user = mAuth.getCurrentUser();
@@ -164,7 +169,7 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
                             // 儲存帳戶圖片
                             UserData.setUserImgURL(user.getPhotoUrl().toString());
 
-                            Toast.makeText(context, "登入成功", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "取得" + user.getDisplayName() + "資料", Toast.LENGTH_SHORT).show();
 
                             // 跳至下個 Activity
                             Intent intent;
@@ -192,38 +197,6 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
                     }
                 });
     }
-
-//    private void setWebImage(String imgUrlString) {
-//        //設定帳戶圖片
-//        //創建執行緒
-//        new Thread(){
-//            Bitmap bmp;
-//            public void run(){
-//
-//                URL url = null;
-//                try {
-//                    url = new URL(imgUrlString);
-//                } catch (MalformedURLException e) {
-//                    e.printStackTrace();
-//                }
-//                bmp = null;
-//                try {
-//                    bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                //在主執行緒上執行
-//                runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        img.setImageBitmap(bmp);
-//                    }
-//                });
-//            }
-//            //啟動執行緒
-//        }.start();
-//    }
 
     //設定返回鍵
     @Override

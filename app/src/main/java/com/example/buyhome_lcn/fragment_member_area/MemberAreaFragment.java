@@ -1,6 +1,8 @@
 package com.example.buyhome_lcn.fragment_member_area;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,8 +21,12 @@ import android.widget.Toast;
 
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.data.MemberAreaViewModel;
+import com.example.buyhome_lcn.data.UserData;
 import com.example.buyhome_lcn.databinding.FragmentMemberAreaBinding;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -71,10 +78,21 @@ public class MemberAreaFragment extends Fragment {
         //若有照片則設定照片
         if(viewModel.getHasPhoto()){
             binding.imgUserPhoto.setImageBitmap(viewModel.getUserPhotoBitmap());
+            Toast.makeText(context, "設定照片", Toast.LENGTH_SHORT).show();
         }
-
         binding.tvNickname.setText(viewModel.getNickname());
         binding.tvAccount.setText(viewModel.getEmail());
+//        Toast.makeText(context, "設定資料", Toast.LENGTH_SHORT).show();
+        Log.d("myTest", "viewModel.getUserPhotoBitmap(): " + viewModel.getUserPhotoBitmap());
+        Log.d("myTest", "viewModel.getEmail(): " + viewModel.getNickname());
+        Log.d("myTest", "viewModel.getNickname(): " + viewModel.getEmail());
+
+//        //若有照片則設定照片
+//        if(viewModel.getHasPhoto()){
+//            binding.imgUserPhoto.setImageBitmap(viewModel.getUserPhotoBitmap());
+//        }
+//        binding.tvNickname.setText(viewModel.getNickname());
+//        binding.tvAccount.setText(viewModel.getEmail());
 
         //設定資料
         itemList = new ArrayList<Map<String, Object>>();
@@ -132,6 +150,8 @@ public class MemberAreaFragment extends Fragment {
             }
         });
 
+
+
         //回傳 View
         return view;
     }
@@ -146,4 +166,5 @@ public class MemberAreaFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

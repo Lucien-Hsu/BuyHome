@@ -203,7 +203,7 @@ public class AccountInfoFragment extends Fragment {
                 //以 bitmap 型態變數儲存照片資料
                 binding.imgUserPhoto.setImageBitmap(bitmap);
                 viewModel.setUserPhotoBitmap(bitmap);
-                viewModel.setHasPhoto(true);
+//                viewModel.setHasPhoto(true);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -215,7 +215,7 @@ public class AccountInfoFragment extends Fragment {
             //以 bitmap 型態變數儲存照片資料
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             viewModel.setUserPhotoBitmap(bitmap);
-            viewModel.setHasPhoto(true);
+//            viewModel.setHasPhoto(true);
 
             binding.imgUserPhoto.setImageBitmap(bitmap);
         }

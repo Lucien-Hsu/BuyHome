@@ -12,7 +12,7 @@ public class MemberAreaViewModel extends ViewModel {
 
     //使用者基本資訊
     public Boolean hasPhoto;
-    public Bitmap userPhotoBitmap;
+//    public Bitmap userPhotoBitmap;
     public String nickname;
     public String email;
 
@@ -102,20 +102,21 @@ public class MemberAreaViewModel extends ViewModel {
     }
 
     public Bitmap getUserPhotoBitmap() {
-        return userPhotoBitmap;
+        return UserData.getUserImgBitmap();
     }
 
     public void setUserPhotoBitmap(Bitmap userPhotoBitmap) {
-        this.userPhotoBitmap = userPhotoBitmap;
+//        this.userPhotoBitmap = userPhotoBitmap;
+        UserData.setUserImgBitmap(userPhotoBitmap);
     }
 
     public Boolean getHasPhoto() {
-        return hasPhoto;
+        return (UserData.getUserImgBitmap() != null);
     }
 
-    public void setHasPhoto(Boolean hasPhoto) {
-        this.hasPhoto = hasPhoto;
-    }
+//    public void setHasPhoto(Boolean hasPhoto) {
+//        this.hasPhoto = hasPhoto;
+//    }
 
     public String getAddress() {
         return address;
@@ -142,7 +143,7 @@ public class MemberAreaViewModel extends ViewModel {
     }
 
     public String getNickname() {
-        return nickname;
+        return UserData.getUserName();
     }
 
     public void setNickname(String nickname) {
@@ -200,7 +201,7 @@ public class MemberAreaViewModel extends ViewModel {
     }
 
     public String getEmail() {
-        return email;
+        return UserData.getUserEmail();
     }
 
     public void setEmail(String email) {
