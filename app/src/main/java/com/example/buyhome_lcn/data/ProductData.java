@@ -68,7 +68,7 @@ public class ProductData {
         priceList.add(13000);
 
         //商品描述
-        for(int i = 0 ; i < 6 ; i++){
+        for(int i = 0 ; i < 8 ; i++){
             detailList.add(
                     "這是說明。這是說明。這是說明。這是說明。這是說明。這是說明。這是說明。這是說明。" +
                             "這是說明。這是說明。這是說明。這是說明。這是說明。這是說明。這是說明。這是說明。");

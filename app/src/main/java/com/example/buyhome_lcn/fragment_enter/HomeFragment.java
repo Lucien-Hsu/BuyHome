@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.example.buyhome_lcn.adapter.HomeGridViewAdapter;
 import com.example.buyhome_lcn.adapter.HomeViewPagerAdapter;
 import com.example.buyhome_lcn.data.EnterViewModel;
 import com.example.buyhome_lcn.data.ProductData;
+import com.example.buyhome_lcn.data.ShoppingCartData;
 import com.example.buyhome_lcn.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
@@ -133,6 +135,32 @@ public class HomeFragment extends Fragment {
                 new int[]{R.id.tv_name, R.id.tv_price, R.id.img_info});
         //連結adapter
         binding.lvHome.setAdapter(lvAdapter);
+
+//        //設定監聽器
+//        binding.lvHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//                Toast.makeText(context, "點擊:" + position, Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
+
+        binding.lvHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Toast.makeText(context, "點選" + position, Toast.LENGTH_SHORT).show();
+
+                //設定當前商品編號
+                int productID = (position + 6);
+                Toast.makeText(context, "點擊:" + position, Toast.LENGTH_SHORT).show();
+
+                //設定點選的商品編號
+                ProductData.setCheckedProductID(productID);
+                //跳到商品頁
+                Intent intent = new Intent(context, ProductDetailActivity.class);
+                context.startActivity(intent);
+            }
+        });
 
         //設定 scrollview 從頭開始顯示
         binding.scrollview.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {

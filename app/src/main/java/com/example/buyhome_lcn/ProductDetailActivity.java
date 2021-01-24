@@ -32,6 +32,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         binding.btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //加入商品至購物車
                 ShoppingCartData.addProduct(
                         ProductData.getCheckedProductID(),
                         ProductData.getPictureList().get(ProductData.getCheckedProductID()),
@@ -41,5 +42,11 @@ public class ProductDetailActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        ProductData.setCheckedProductID(ProductData.NO_PRODUCT_CHECKED);
+        super.onDestroy();
     }
 }
