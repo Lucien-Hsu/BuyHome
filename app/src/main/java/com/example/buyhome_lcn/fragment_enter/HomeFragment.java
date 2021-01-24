@@ -136,15 +136,6 @@ public class HomeFragment extends Fragment {
         //連結adapter
         binding.lvHome.setAdapter(lvAdapter);
 
-//        //設定監聽器
-//        binding.lvHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                Toast.makeText(context, "點擊:" + position, Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-
         binding.lvHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {

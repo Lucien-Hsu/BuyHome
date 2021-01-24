@@ -31,7 +31,7 @@ public class ShoppingCartData {
         return pictureList;
     }
 
-    public static void addProduct(Integer productID, Integer picture, String name, Integer price) {
+    public static Boolean addProduct(Integer productID, Integer picture, String name, Integer price) {
         if (!productIDList.contains(productID)) {
 
             //若欲加入購物車的商品未在購物車中加入此商品
@@ -41,6 +41,10 @@ public class ShoppingCartData {
 
             //儲存商品編號
             productIDList.add(productID);
+
+            return true;
+        }else{
+            return false;
         }
     }
 

@@ -2,8 +2,10 @@ package com.example.buyhome_lcn;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.buyhome_lcn.data.ProductData;
 import com.example.buyhome_lcn.data.ShoppingCartData;
@@ -11,6 +13,7 @@ import com.example.buyhome_lcn.databinding.ActivityProductDetailBinding;
 import com.example.buyhome_lcn.databinding.FragmentHomeBinding;
 
 public class ProductDetailActivity extends AppCompatActivity {
+    private Context context;
 
     private ActivityProductDetailBinding binding;
 
@@ -23,6 +26,8 @@ public class ProductDetailActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        context = this;
+
         //顯示相關資訊
         binding.imgProductPhoto.setImageResource(ProductData.getPictureList().get(ProductData.getCheckedProductID()));
         binding.tvProductName.setText(ProductData.getNameList().get(ProductData.getCheckedProductID()));
@@ -33,12 +38,18 @@ public class ProductDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //加入商品至購物車
-                ShoppingCartData.addProduct(
+                Boolean canAddProduct = ShoppingCartData.addProduct(
                         ProductData.getCheckedProductID(),
                         ProductData.getPictureList().get(ProductData.getCheckedProductID()),
                         ProductData.getNameList().get(ProductData.getCheckedProductID()),
                         ProductData.getPriceList().get(ProductData.getCheckedProductID())
                 );
+
+                if(canAddProduct){
+                    Toast.makeText(context, "成功加入購物車！", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(context, "此商品已在購物車！", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
