@@ -48,4 +48,19 @@ public class ShoppingCartData {
         }
     }
 
+    public static Boolean removeProduct(int index){
+
+        if(index >= 0){
+            pictureList.remove(index);
+            nameList.remove(index);
+            priceList.remove(index);
+            productIDList.remove(index);
+
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
 }

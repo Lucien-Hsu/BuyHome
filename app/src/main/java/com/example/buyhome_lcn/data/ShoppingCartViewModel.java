@@ -108,12 +108,16 @@ public class ShoppingCartViewModel extends ViewModel {
      * 刪除指定商品
      */
     public void deleteProduct(int index){
-        nameList.remove(index);
-        priceList.remove(index);
-        pictureList.remove(index);
-        amountList.remove(index);
-        _amountList.setValue(amountList);
-        checkedProduct.remove(index);
+//        nameList.remove(index);
+//        priceList.remove(index);
+//        pictureList.remove(index);
+//        amountList.remove(index);
+//        _amountList.setValue(amountList);
+//        checkedProduct.remove(index);
+
+        //刪除資料源的商品資料
+        ShoppingCartData.removeProduct(index);
+
     }
 
     /**
@@ -150,7 +154,9 @@ public class ShoppingCartViewModel extends ViewModel {
     public void setPureTotalPrice(){
         int total = 0;
         for(int i = 0 ; i < priceList.size() ; i++){
-            total += priceList.get(i) * amountList.get(i);
+            if(priceList.get(i) != 0 && amountList.get(i) != 0){
+                total += priceList.get(i) * amountList.get(i);
+            }
         }
         _pureTotalPrice.setValue(total);
         setTotalPrice();

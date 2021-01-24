@@ -21,7 +21,9 @@ import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.buyhome_lcn.R;
+import com.example.buyhome_lcn.data.ShoppingCartData;
 import com.example.buyhome_lcn.data.ShoppingCartViewModel;
+import com.example.buyhome_lcn.fragment_cart.ShoppingCart;
 
 import java.util.List;
 
@@ -90,6 +92,8 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
                         viewModel.deleteProduct(pos);
                         notifyItemRemoved(pos);
                         notifyItemRangeChanged(pos,viewModel.nameList.size());
+                        //計算總價
+                        viewModel.setPureTotalPrice();
                     }
                 }
             });
