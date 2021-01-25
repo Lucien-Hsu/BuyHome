@@ -1,9 +1,12 @@
 package com.example.buyhome_lcn;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,6 +30,11 @@ public class ProductDetailActivity extends AppCompatActivity {
         setContentView(view);
 
         context = this;
+
+        //創建ActionBar物件
+        ActionBar bar = getSupportActionBar();
+        //設定ActionBar顯示返回鍵
+        bar.setDisplayHomeAsUpEnabled(true);
 
         //顯示相關資訊
         binding.imgProductPhoto.setImageResource(ProductData.getPictureList().get(ProductData.getCheckedProductID()));
@@ -59,5 +67,16 @@ public class ProductDetailActivity extends AppCompatActivity {
     protected void onDestroy() {
         ProductData.setCheckedProductID(ProductData.NO_PRODUCT_CHECKED);
         super.onDestroy();
+    }
+
+    //設定返回鍵
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
