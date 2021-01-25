@@ -78,7 +78,7 @@ public class MemberAreaFragment extends Fragment {
         //若有照片則設定照片
         if(viewModel.getHasPhoto()){
             binding.imgUserPhoto.setImageBitmap(viewModel.getUserPhotoBitmap());
-            Toast.makeText(context, "設定照片", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "設定照片", Toast.LENGTH_SHORT).show();
         }
         binding.tvNickname.setText(viewModel.getNickname());
         binding.tvAccount.setText(viewModel.getEmail());

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -33,9 +34,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 
 public class LoginBuyHomeActivity extends AppCompatActivity {
     Context context;
@@ -125,8 +130,6 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
             } catch (ApiException e) {
                 e.printStackTrace();
             }
-
-
         }
     }
 
@@ -134,33 +137,34 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
      * A6-2.對帳戶資訊物件做處理
      */
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        Log.d("myTest", "call handleSignInResult");
+
         try {
             // 若登入成功，顯示登入成功
-            Toast.makeText(context, "[Login]", Toast.LENGTH_SHORT).show();
-
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
-//            Log.w("myTest", "account：" + account);
+            Log.d("myTest", "handleSignInResult:登入成功。 帳號:" + account);
+            Toast.makeText(context, "[Login]", Toast.LENGTH_SHORT).show();
 
         } catch (ApiException e) {
             // 若登入失敗，顯示登入失敗
+            Log.d("myTest", "handleSignInResult:登入失敗。 錯誤碼:" +  e.getStatusCode());
             Toast.makeText(context, "[Fail]", Toast.LENGTH_SHORT).show();
-
-            // 印出錯誤碼
-            Log.w("myTest", "signInResult:failed code=" + e.getStatusCode());
         }
     }
 
     // B2-2.連接 FirebaseAuth 與 GoogleSignIn 的帳戶資訊
     private void firebaseAuthWithGoogle(String idToken) {
+
+        Log.d("myTest", "call firebaseAuthWithGoogle");
+
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(context, "[signInWithCredential:success]", Toast.LENGTH_SHORT).show();
-
+                            Log.d("myTest", "firebaseAuthWithGoogle:success");
                             //取得當前帳戶
                             FirebaseUser user = mAuth.getCurrentUser();
                             // 儲存帳戶資訊
@@ -168,8 +172,11 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
                             UserData.setUserEmail(user.getEmail());
                             // 儲存帳戶圖片
                             UserData.setUserImgURL(user.getPhotoUrl().toString());
-
-                            Toast.makeText(context, "取得" + user.getDisplayName() + "資料", Toast.LENGTH_SHORT).show();
+                            new MyPhotoAsyncTask().execute(user.getPhotoUrl().toString());
+                            //印出取得的資料
+                            Toast.makeText(context, "[已取得資料]\n暱稱:" + user.getDisplayName()
+                                    + "\n信箱:" + user.getEmail()
+                                    + "\n圖片網址:" + user.getPhotoUrl().toString(), Toast.LENGTH_SHORT).show();
 
                             // 跳至下個 Activity
                             Intent intent;
@@ -192,10 +199,79 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
                             }
 
                         } else {
-                            Toast.makeText(context, "登入失敗", Toast.LENGTH_SHORT).show();
+                            Log.d("myTest", "firebaseAuthWithGoogle:fail");
                         }
                     }
                 });
+    }
+
+    /**
+     * 以 URL 取得 Bitmap 圖片
+     */
+    class MyPhotoAsyncTask extends AsyncTask<String, Integer, byte[]> {
+        @Override
+        protected byte[] doInBackground(String... strings) {
+            return getPhotoData(strings[0]);
+        }
+
+        @Override
+        protected void onPostExecute(byte[] data) {
+            //取得點陣圖
+            UserData.setUserImgBitmap(BitmapFactory.decodeByteArray(data, 0, data.length));
+        }
+    }
+
+    //取得網路圖片
+    private byte[] getPhotoData(String urlStr) {
+        InputStream is = null;
+        ByteArrayOutputStream baos = null;
+
+        try{
+            //取得url
+            URL url = new URL(urlStr);
+            //取得網路連接
+            URLConnection conn = url.openConnection();
+            //設定輸入串流來自網路連接
+            is = conn.getInputStream();
+
+            byte[] buffer = new byte[1024];
+            baos = new ByteArrayOutputStream();
+
+            //若讀取串流有內容則做
+            int len = 0;
+            //讀取網路串流
+            while((len = is.read(buffer)) > 0){
+                //把buffer內容寫入ByteArrayOutputStream
+                baos.write(buffer, 0, len);
+            }
+            //把全部資料存起來
+            byte[] data = baos.toByteArray();
+
+            //關閉串流
+            is.close();
+            baos.close();
+
+            //回傳資料
+            return data;
+        }catch (IOException e){
+            if(is != null){
+                try{
+                    is.close();
+                }catch (IOException ex){
+                    ex.printStackTrace();
+                }
+            }
+
+            if(baos != null){
+                try{
+                    baos.close();
+                }catch (IOException ex){
+                    ex.printStackTrace();
+                }
+            }
+            e.printStackTrace();
+            return null;
+        }
     }
 
     //設定返回鍵

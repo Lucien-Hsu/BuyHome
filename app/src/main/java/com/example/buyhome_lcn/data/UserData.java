@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -43,28 +45,6 @@ public class UserData {
      */
     public static void setUserImgURL(String userImgURL) {
         UserData.userImgURL = userImgURL;
-        setUserImgBitmap(userImgURL);
-    }
-
-    /**
-     * 以 URL 儲存 Bitmap 使用者頭像
-     */
-    public static void setUserImgBitmap(String userImgURL) {
-        URL url = null;
-
-        try {
-            url = new URL(userImgURL);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        try {
-//            UserImgBitmap = null;
-            UserImgBitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     /**
