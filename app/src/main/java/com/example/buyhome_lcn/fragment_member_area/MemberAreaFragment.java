@@ -3,6 +3,7 @@ package com.example.buyhome_lcn.fragment_member_area;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -74,11 +75,14 @@ public class MemberAreaFragment extends Fragment {
         //取得自定義 ViewModel
         viewModel = new ViewModelProvider(requireActivity()).get(MemberAreaViewModel.class);
 
-        //若有照片則設定照片
-        if(viewModel.getHasPhoto()){
-            binding.imgUserPhoto.setImageBitmap(viewModel.getUserPhotoBitmap());
-            Toast.makeText(context, "設定照片", Toast.LENGTH_SHORT).show();
-        }
+//        //若有照片則設定照片
+//        if(viewModel.getHasPhoto()){
+//            binding.imgUserPhoto.setImageBitmap(viewModel.getUserPhotoBitmap());
+//            Toast.makeText(context, "設定照片", Toast.LENGTH_SHORT).show();
+//        }
+        //執行執行緒取得頭像
+        new MyPhotoAsyncTask().execute("");
+
         binding.tvNickname.setText(viewModel.getNickname());
         binding.tvAccount.setText(viewModel.getEmail());
 //        Toast.makeText(context, "設定資料", Toast.LENGTH_SHORT).show();
@@ -157,4 +161,40 @@ public class MemberAreaFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    //執行緒
+    class MyPhotoAsyncTask extends AsyncTask<String, Integer, String> {
+
+        //要背景執行的任務
+        @Override
+        protected String doInBackground(String... strings) {
+            int sec = 0;
+            //每0.05秒檢查一次是否有圖片，等到5秒為止
+            while (!viewModel.getHasPhoto()){
+                sec += 1;
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                //若等了10a秒都沒回應則跳出
+                if(sec > 100){
+                    break;
+                }
+            }
+
+            return "";
+        }
+
+        //運行在主執行緒，背景執行後的處理
+        //doInBackground的回傳值會傳到這邊處理
+        @Override
+        protected void onPostExecute(String result) {
+            //若有照片則設定照片
+            if(viewModel.getHasPhoto()){
+                binding.imgUserPhoto.setImageBitmap(viewModel.getUserPhotoBitmap());
+                Toast.makeText(context, "設定照片", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 }
