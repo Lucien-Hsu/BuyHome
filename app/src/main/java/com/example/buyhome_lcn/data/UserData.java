@@ -72,5 +72,4 @@ public class UserData {
         UserData.nextActivity = nextActivity;
     }
 
-
 }

@@ -6,11 +6,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,8 +38,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -44,6 +51,10 @@ import java.net.URLConnection;
 
 public class LoginBuyHomeActivity extends AppCompatActivity {
     Context context;
+
+    private static final String PREF = "PREF";
+    private static final String PREF_USER_NAME = "PREF_USER_NAME";
+    private static final String PREF_USER_EMAIL = "PREF_USER_EMAIL";
 
     //此為登入按鈕
     SignInButton btnLogin;
@@ -178,6 +189,14 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
                                     + "\n信箱:" + user.getEmail()
                                     + "\n圖片網址:" + user.getPhotoUrl().toString(), Toast.LENGTH_SHORT).show();
 
+                            //儲存資料至設備
+                            SharedPreferences sp = getSharedPreferences(PREF, 0);
+                            //設定為編輯模式，並放入資料鍵值，最後commit()才會寫入
+                            sp.edit()
+                                    .putString(PREF_USER_NAME, user.getDisplayName())
+                                    .putString(PREF_USER_EMAIL, user.getEmail())
+                                    .apply();
+
                             // 跳至下個 Activity
                             Intent intent;
                             switch (UserData.getNextActivity()) {
@@ -217,11 +236,17 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(byte[] data) {
             //取得點陣圖
-            UserData.setUserImgBitmap(BitmapFactory.decodeByteArray(data, 0, data.length));
+            Bitmap b = BitmapFactory.decodeByteArray(data, 0, data.length);
+            UserData.setUserImgBitmap(b);
+
+            //儲存圖片至內部記憶體
+            saveToInternalStorage(b);
         }
     }
 
-    //取得網路圖片
+    /**
+     * 取得網路圖片
+     */
     private byte[] getPhotoData(String urlStr) {
         InputStream is = null;
         ByteArrayOutputStream baos = null;
@@ -274,6 +299,36 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 儲存圖片到內部記憶體
+     */
+    private String saveToInternalStorage(Bitmap bitmapImage){
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+        // path to /data/data/com.example.buyhome_lcn/app_data/imageDir
+        File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+        // Create imageDir
+        File mypath=new File(directory,"profile.jpg");
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Log.d("myTest", "儲存圖片成功，路徑:" + directory.getAbsolutePath());
+
+        return directory.getAbsolutePath();
+    }
+
     //設定返回鍵
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -284,5 +339,4 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

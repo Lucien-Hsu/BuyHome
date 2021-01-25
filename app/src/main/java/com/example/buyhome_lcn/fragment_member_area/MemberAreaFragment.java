@@ -32,7 +32,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public class MemberAreaFragment extends Fragment {
     //宣告 binding 物件
     private FragmentMemberAreaBinding binding;
@@ -78,7 +77,7 @@ public class MemberAreaFragment extends Fragment {
         //若有照片則設定照片
         if(viewModel.getHasPhoto()){
             binding.imgUserPhoto.setImageBitmap(viewModel.getUserPhotoBitmap());
-//            Toast.makeText(context, "設定照片", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "設定照片", Toast.LENGTH_SHORT).show();
         }
         binding.tvNickname.setText(viewModel.getNickname());
         binding.tvAccount.setText(viewModel.getEmail());
@@ -86,13 +85,6 @@ public class MemberAreaFragment extends Fragment {
         Log.d("myTest", "viewModel.getUserPhotoBitmap(): " + viewModel.getUserPhotoBitmap());
         Log.d("myTest", "viewModel.getEmail(): " + viewModel.getNickname());
         Log.d("myTest", "viewModel.getNickname(): " + viewModel.getEmail());
-
-//        //若有照片則設定照片
-//        if(viewModel.getHasPhoto()){
-//            binding.imgUserPhoto.setImageBitmap(viewModel.getUserPhotoBitmap());
-//        }
-//        binding.tvNickname.setText(viewModel.getNickname());
-//        binding.tvAccount.setText(viewModel.getEmail());
 
         //設定資料
         itemList = new ArrayList<Map<String, Object>>();
@@ -149,8 +141,6 @@ public class MemberAreaFragment extends Fragment {
                 }
             }
         });
-
-
 
         //回傳 View
         return view;

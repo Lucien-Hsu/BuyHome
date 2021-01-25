@@ -3,6 +3,7 @@ package com.example.buyhome_lcn.fragment_member_area;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -186,9 +187,6 @@ public class AccountInfoFragment extends Fragment {
 
     /**
      * 接收回應處理收到的照片
-     * @param requestCode
-     * @param resultCode
-     * @param data
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

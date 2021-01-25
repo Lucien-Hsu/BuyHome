@@ -8,11 +8,17 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.buyhome_lcn.data.UserData;
@@ -20,9 +26,55 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 public class EnterActivity extends AppCompatActivity {
     Context context;
-    Button btnToShoppingCart, btnToAccountInfo;
+
+    //資料儲存用
+    private static final String PREF = "PREF";
+    private static final String PREF_USER_NAME = "PREF_USER_NAME";
+    private static final String PREF_USER_EMAIL = "PREF_USER_EMAIL";
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //創建一個SharedPreferences
+        //引數一為要使用的xml檔名
+        //引數二為權限，通常為0，表示只允許本APP執行
+        SharedPreferences sp = getSharedPreferences(PREF, 0);
+        //取出資料值
+        //引數一為標籤
+        //引數二為預設值
+        UserData.setUserName(sp.getString(PREF_USER_NAME, ""));
+        UserData.setUserEmail(sp.getString(PREF_USER_EMAIL, ""));
+
+        //讀取內部記憶體之使用者頭像
+        Bitmap userImg = loadImageFromStorage("/data/user/0/com.example.buyhome_lcn/app_imageDir");
+        UserData.setUserImgBitmap(userImg);
+    }
+
+    /**
+     *取得內部記憶體之圖片
+     */
+    private Bitmap loadImageFromStorage(String path) {
+        Bitmap b = null;
+        try {
+            File f=new File(path, "profile.jpg");
+            b = BitmapFactory.decodeStream(new FileInputStream(f));
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        Log.d("myTest", "取得內部記憶體之圖片:" + b);
+
+        return b;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,27 +95,7 @@ public class EnterActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         //連接導航 View 元件和導航控制器
         NavigationUI.setupWithNavController(navigation, navController);
-
-//        btnToShoppingCart = findViewById(R.id.btn_to_shoppingcart);
-//        btnToShoppingCart.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(context, MainActivity_shopping_cart.class);
-//                startActivity(intent);
-//            }
-//        });
-
-//        btnToAccountInfo = findViewById(R.id.btn_to_memberarea);
-//        btnToAccountInfo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(context, MemberAreaActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
     }
-
 
     //此方法會在創造 menu 時 inflate
     @Override
