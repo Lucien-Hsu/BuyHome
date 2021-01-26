@@ -39,6 +39,12 @@ public class EnterActivity extends AppCompatActivity {
     private static final String PREF = "PREF";
     private static final String PREF_USER_NAME = "PREF_USER_NAME";
     private static final String PREF_USER_EMAIL = "PREF_USER_EMAIL";
+    private static final String PREF_USER_ADDRESS = "PREF_USER_ADDRESS";
+    private static final String PREF_USER_STORE = "PREF_USER_STORE";
+    private static final String PREF_USER_PAYMETHOD = "PREF_USER_PAYMETHOD";
+    private static final String PREF_USER_GENDER = "PREF_USER_GENDER";
+    private static final String PREF_USER_BIRTHDAY = "PREF_USER_BIRTHDAY";
+    private static final String PREF_USER_PHONE = "PREF_USER_PHONE";
 
     @Override
     protected void onResume() {
@@ -53,6 +59,14 @@ public class EnterActivity extends AppCompatActivity {
         //引數二為預設值
         UserData.setUserName(sp.getString(PREF_USER_NAME, ""));
         UserData.setUserEmail(sp.getString(PREF_USER_EMAIL, ""));
+        UserData.setAddress(sp.getString(PREF_USER_ADDRESS, ""));
+        UserData.setStore(sp.getString(PREF_USER_STORE, ""));
+        UserData.setPayMethod(sp.getString(PREF_USER_PAYMETHOD, ""));
+        UserData.setGender(sp.getInt(PREF_USER_GENDER, 0));
+        UserData.setBirthday(sp.getString(PREF_USER_BIRTHDAY, ""));
+        UserData.setPhone(sp.getString(PREF_USER_PHONE, ""));
+
+        Log.d("myTest", "PREF_USER_PAYMETHOD: " + sp.getString(PREF_USER_PAYMETHOD, ""));
 
         //讀取內部記憶體之使用者頭像
         Bitmap userImg = loadImageFromStorage("/data/user/0/com.example.buyhome_lcn/app_imageDir");
