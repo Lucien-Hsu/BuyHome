@@ -13,7 +13,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.buyhome_lcn.data.MemberAreaViewModel;
+import com.example.buyhome_lcn.data.ShoppingCartData;
 import com.example.buyhome_lcn.data.UserData;
+import com.example.buyhome_lcn.fragment_cart.ShoppingCart;
 
 public class MemberAreaActivity extends AppCompatActivity {
 

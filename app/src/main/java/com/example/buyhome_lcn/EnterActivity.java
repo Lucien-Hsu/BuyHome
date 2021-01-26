@@ -21,7 +21,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.buyhome_lcn.data.ProductData;
+import com.example.buyhome_lcn.data.ShoppingCartData;
 import com.example.buyhome_lcn.data.UserData;
+import com.example.buyhome_lcn.fragment_cart.ShoppingCart;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -46,6 +49,11 @@ public class EnterActivity extends AppCompatActivity {
     private static final String PREF_USER_BIRTHDAY = "PREF_USER_BIRTHDAY";
     private static final String PREF_USER_PHONE = "PREF_USER_PHONE";
 
+    private static final String PREF_CART_NAME_LIST = "PREF_CART_NAME_LIST";
+    private static final String PREF_CART_PRICE_LIST = "PREF_CART_PRICE_LIST";
+    private static final String PREF_CART_PICTURE_LIST = "PREF_CART_PICTURE_LIST";
+    private static final String PREF_CART_PRODUCTID_LIST = "PREF_CART_PRODUCTID_LIST";
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -65,8 +73,23 @@ public class EnterActivity extends AppCompatActivity {
         UserData.setGender(sp.getInt(PREF_USER_GENDER, 0));
         UserData.setBirthday(sp.getString(PREF_USER_BIRTHDAY, ""));
         UserData.setPhone(sp.getString(PREF_USER_PHONE, ""));
+        //取出購物車商品編號清單並設定
+        String productListString = sp.getString(PREF_CART_PRODUCTID_LIST, "");
+//        Log.d("myTest", "取出的商品編號: " + productListString);
+        ShoppingCartData.setProductIDList(productListString);
 
-        Log.d("myTest", "PREF_USER_PAYMETHOD: " + sp.getString(PREF_USER_PAYMETHOD, ""));
+        //加入商品至購物車
+        if(!ShoppingCartData.hasInitProduct){
+            for(int i = 0; i < ShoppingCartData.getProductIDList().size(); i++){
+                ShoppingCartData.initProduct(
+                        ShoppingCartData.getProductIDList().get(i),
+                        ProductData.getPictureList().get(ShoppingCartData.getProductIDList().get(i)),
+                        ProductData.getNameList().get(ShoppingCartData.getProductIDList().get(i)),
+                        ProductData.getPriceList().get(ShoppingCartData.getProductIDList().get(i))
+                );
+            }
+            ShoppingCartData.setHasInitProduct(true);
+        }
 
         //讀取內部記憶體之使用者頭像
         Bitmap userImg = loadImageFromStorage("/data/user/0/com.example.buyhome_lcn/app_imageDir");
@@ -85,7 +108,7 @@ public class EnterActivity extends AppCompatActivity {
         {
             e.printStackTrace();
         }
-        Log.d("myTest", "取得內部記憶體之圖片:" + b);
+//        Log.d("myTest", "取得內部記憶體之圖片:" + b);
 
         return b;
     }

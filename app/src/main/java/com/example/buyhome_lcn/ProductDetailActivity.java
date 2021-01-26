@@ -5,7 +5,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -17,6 +19,12 @@ import com.example.buyhome_lcn.databinding.FragmentHomeBinding;
 
 public class ProductDetailActivity extends AppCompatActivity {
     private Context context;
+
+    private static final String PREF = "PREF";
+    private static final String PREF_CART_NAME_LIST = "PREF_CART_NAME_LIST";
+    private static final String PREF_CART_PRICE_LIST = "PREF_CART_PRICE_LIST";
+    private static final String PREF_CART_PICTURE_LIST = "PREF_CART_PICTURE_LIST";
+    private static final String PREF_CART_PRODUCTID_LIST = "PREF_CART_PRODUCTID_LIST";
 
     private ActivityProductDetailBinding binding;
 
@@ -54,13 +62,30 @@ public class ProductDetailActivity extends AppCompatActivity {
                 );
 
                 if(canAddProduct){
-                    Toast.makeText(context, "成功加入購物車！", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "成功加入購物車！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, ProductData.getCheckedProductID() + "成功加入購物車！", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, "加入購物車的商品" + ShoppingCartData.getProductIDList(), Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(context, "此商品已在購物車！", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        //儲存資料至設備
+        SharedPreferences sp = getSharedPreferences(PREF, 0);
+        //設定為編輯模式，並放入資料鍵值，最後commit()才會寫入
+        //儲存購物車商品編號清單
+        sp.edit()
+                .putString(PREF_CART_PRODUCTID_LIST, ShoppingCartData.getProductIDListString())
+                .apply();
+
+        Log.d("myTest", "儲存的商品編號: " + ShoppingCartData.getProductIDListString());
     }
 
     @Override

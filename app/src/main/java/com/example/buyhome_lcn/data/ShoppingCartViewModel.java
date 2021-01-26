@@ -93,11 +93,6 @@ public class ShoppingCartViewModel extends ViewModel {
         pictureList = ShoppingCartData.getPictureList();
 
         for(int i = 0 ; i < 10; i++){
-//            String name = new String("ASUS X509MA-0291GN4020 星空灰 15.6吋窄邊筆電:" + (i + 1));
-//            nameList.add(name);
-//            Integer price = new Integer(1 + i);
-//            priceList.add(price);
-//            pictureList.add(R.drawable.test_item);
             amountList.add(0);
             _amountList.setValue(amountList);
             checkedProduct.add(false);
