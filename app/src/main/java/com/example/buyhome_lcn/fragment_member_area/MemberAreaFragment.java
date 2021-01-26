@@ -75,11 +75,6 @@ public class MemberAreaFragment extends Fragment {
         //取得自定義 ViewModel
         viewModel = new ViewModelProvider(requireActivity()).get(MemberAreaViewModel.class);
 
-//        //若有照片則設定照片
-//        if(viewModel.getHasPhoto()){
-//            binding.imgUserPhoto.setImageBitmap(viewModel.getUserPhotoBitmap());
-//            Toast.makeText(context, "設定照片", Toast.LENGTH_SHORT).show();
-//        }
         //執行執行緒取得頭像
         new MyPhotoAsyncTask().execute("");
 
@@ -193,7 +188,7 @@ public class MemberAreaFragment extends Fragment {
             //若有照片則設定照片
             if(viewModel.getHasPhoto()){
                 binding.imgUserPhoto.setImageBitmap(viewModel.getUserPhotoBitmap());
-                Toast.makeText(context, "設定照片", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "設定照片", Toast.LENGTH_SHORT).show();
             }
         }
     }

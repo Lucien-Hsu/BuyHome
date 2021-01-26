@@ -134,7 +134,7 @@ public class AccountInfoFragment extends Fragment {
                 viewModel.getNickname(),
                 viewModel.getEmail(),
                 viewModel.getGender(),
-                String.valueOf(viewModel.getBirthday()),
+                viewModel.getBirthday(),
                 viewModel.getPhone()
                 };
         //設定 ListView 要用的資料

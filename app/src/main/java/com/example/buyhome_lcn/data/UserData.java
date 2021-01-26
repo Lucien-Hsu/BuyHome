@@ -14,11 +14,23 @@ public class UserData {
     public final static int NO_ACTIVITY = 0;
     public final static int MEMBER_AREA_ACTIVITY = 101;
 
-    static int nextActivity;
-    static String userName;
-    static String userEmail;
-    static String userImgURL;
-    static Bitmap UserImgBitmap;
+    //要前往的頁面
+    private static int nextActivity;
+
+    //google 帳戶資訊
+    private static String userName;
+    private static String userEmail;
+    private static String userImgURL;
+    private static Bitmap UserImgBitmap;
+
+    //帳戶資訊
+    private static String address;
+    private static String store;
+    private static String payMethod;
+    //使用者資訊
+    private static int gender;
+    private static String birthday;
+    private static String phone;
 
     public static String getUserName() {
         return userName;
@@ -70,6 +82,55 @@ public class UserData {
 
     public static void setNextActivity(int nextActivity) {
         UserData.nextActivity = nextActivity;
+    }
+
+
+    public static String getAddress() {
+        return address;
+    }
+
+    public static void setAddress(String address) {
+        UserData.address = address;
+    }
+
+    public static String getStore() {
+        return store;
+    }
+
+    public static void setStore(String store) {
+        UserData.store = store;
+    }
+
+    public static String getPayMethod() {
+        return payMethod;
+    }
+
+    public static void setPayMethod(String payMethod) {
+        UserData.payMethod = payMethod;
+    }
+
+    public static int getGender() {
+        return gender;
+    }
+
+    public static void setGender(int gender) {
+        UserData.gender = gender;
+    }
+
+    public static String getBirthday() {
+        return birthday;
+    }
+
+    public static void setBirthday(String birthday) {
+        UserData.birthday = birthday;
+    }
+
+    public static String getPhone() {
+        return phone;
+    }
+
+    public static void setPhone(String phone) {
+        UserData.phone = phone;
     }
 
 }
