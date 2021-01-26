@@ -19,9 +19,9 @@ public class MemberAreaViewModel extends ViewModel {
     //使用者資訊
     public String password;
     public int gender;
-    private final int GENDER_UNKNOWN = 0;
-    private final int GENDER_FEMALE = 1;
-    private final int GENDER_MALE = 2;
+    public final int GENDER_UNKNOWN = 0;
+    public final int GENDER_FEMALE = 1;
+    public final int GENDER_MALE = 2;
     public String birthday;
     public String phone;
 
@@ -55,22 +55,23 @@ public class MemberAreaViewModel extends ViewModel {
 
     }
 
+    //設定假資料
     private void initInfoWithHardcode() {
         initMemberInfo(
-                "台北市信義區\n信義路五段7號89樓",
-                "全家 楊梅幼獅店",
-                "宅配");
+                "",
+                "",
+                "");
 
         initUserBasicInfo(
                 false,
-                "Mr. Hello World",
-                "myaccount@gmail.com");
+                "無暱稱",
+                "無信箱");
 
         initUserInfo(
                 "123123",
-                GENDER_FEMALE,
-                "20201212",
-                "0911222333");
+                GENDER_UNKNOWN,
+                "",
+                "");
     }
 
     /**
@@ -170,11 +171,11 @@ public class MemberAreaViewModel extends ViewModel {
     public String getGender() {
         switch (gender) {
             case 0:
-                return "Unknown";
+                return "";
             case 1:
-                return "Female";
+                return "女性";
             case 2:
-                return "Male";
+                return "男性";
             default:
                 return "Unknown";
         }

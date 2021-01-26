@@ -55,28 +55,38 @@ public class AccountInfoFragment extends Fragment {
     Context context;
     ImageView imgUserPhoto;
 
+    //ListView 要用的資料
     List<Map<String, Object>> itemList;
     int[] infoImgList = {
-            R.drawable.ic_user_info, R.drawable.ic_password,
-            R.drawable.ic_gender, R.drawable.ic_birthday,
-            R.drawable.ic_phone, R.drawable.ic_email};
+            R.drawable.ic_user_info,
+            R.drawable.ic_email,
+            R.drawable.ic_gender,
+            R.drawable.ic_birthday,
+            R.drawable.ic_phone
+    };
 
     String[] infoTextList = {
-            "暱稱", "密碼",
-            "性別", "生日",
-            "手機", "信箱"};
+            "暱稱",
+            "信箱",
+            "性別",
+            "生日",
+            "手機",
+    };
 
     String[] showInfoTextList;
 
     Integer[] showNextSign = {
-            R.drawable.arrow_right, R.drawable.arrow_right,
-            R.drawable.arrow_right, R.drawable.arrow_right,
-            R.drawable.arrow_right, R.drawable.arrow_right};
+            null,
+            null,
+            R.drawable.arrow_right,
+            R.drawable.arrow_right,
+            R.drawable.arrow_right,
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //對此 Bindin 物件充氣
+        //對此 Binding 物件充氣
         binding = FragmentAccountInfoBinding.inflate(inflater, container, false);;
         //取得充氣後的 View 的根元件
         view = binding.getRoot();
@@ -118,15 +128,16 @@ public class AccountInfoFragment extends Fragment {
             }
         });
 
-        //設定資料
+        //設定 ListView 欄位顯示的資料
         itemList = new ArrayList<Map<String, Object>>();
         showInfoTextList = new String[]{
                 viewModel.getNickname(),
-                viewModel.getPasswordHided(),
+                viewModel.getEmail(),
                 viewModel.getGender(),
                 String.valueOf(viewModel.getBirthday()),
-                viewModel.getPhone(),
-                viewModel.getEmail()};
+                viewModel.getPhone()
+                };
+        //設定 ListView 要用的資料
         for (int i = 0; i < infoImgList.length; i++) {
             Map<String, Object> item = new HashMap<String, Object>();
             item.put("img", infoImgList[i]);
@@ -159,6 +170,35 @@ public class AccountInfoFragment extends Fragment {
                     case 3:
                         break;
                     case 4:
+                        break;
+                    case 5:
+                        break;
+                }
+            }
+        });
+
+        //設定listView監聽器
+        binding.lvAccountArea.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Map<String, Object> item = (Map<String, Object>)adapterView.getItemAtPosition(position);
+                Integer img = (Integer) item.get("img");
+                String info = (String) item.get("info");
+                Toast.makeText(context, "You selected : " + img + " info = " + info, Toast.LENGTH_SHORT).show();
+
+                switch(position){
+                    case 0:
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        Navigation.findNavController(view).navigate(R.id.action_accountInfoFragment_to_setGenderFragment);
+                        break;
+                    case 3:
+                        Navigation.findNavController(view).navigate(R.id.action_accountInfoFragment_to_setBirthdayFragment);
+                        break;
+                    case 4:
+                        Navigation.findNavController(view).navigate(R.id.action_accountInfoFragment_to_setPhoneFragment);
                         break;
                     case 5:
                         break;

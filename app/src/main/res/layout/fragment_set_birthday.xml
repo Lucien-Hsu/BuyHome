@@ -28,7 +28,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:hint="請輸入  宅配地址(範例：台北市信義路8號6樓)"
+        android:hint="請輸入  生日(範例：20210101)"
+        android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_old_value" />

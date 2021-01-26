@@ -28,7 +28,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:hint="請輸入  取貨門市"
+        android:hint="請輸入  取貨門市(範例：全家 楊梅幼獅店)"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_old_value" />
