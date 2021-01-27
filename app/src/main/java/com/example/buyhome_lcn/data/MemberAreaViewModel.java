@@ -4,11 +4,22 @@ import android.graphics.Bitmap;
 
 import androidx.lifecycle.ViewModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MemberAreaViewModel extends ViewModel {
     //性別常數
     public final int GENDER_UNKNOWN = 0;
     public final int GENDER_FEMALE = 1;
     public final int GENDER_MALE = 2;
+
+    //收件相關
+    public String defaultReceiver;
+    public String defaultAddress;
+    public String defaultStore;
+    public List<String> receiverList;
+    public List<String> addressList;
+    public List<String> storeList;
 
     public Bitmap getUserPhotoBitmap() {
         return UserData.getUserImgBitmap();
@@ -86,6 +97,99 @@ public class MemberAreaViewModel extends ViewModel {
 
     public String getEmail() {
         return UserData.getUserEmail();
+    }
+
+    /**
+     * 取得所有收件人
+     */
+    public ArrayList<String> getReceiverList(){
+//        ArrayList<String> resultList = new ArrayList<>();
+//        String[] tempStr;
+//
+//        for(int i = 0 ; i < receiverList.size() ; i++){
+//            tempStr = receiverList.get(i).split("#");
+//            resultList.add(tempStr[1] + "  " + tempStr[2]);
+//        }
+//        return resultList;
+        return UserData.getReceiverList();
+    }
+
+    /**
+     * 取得所有地址
+     */
+    public ArrayList<String> getAddressList(){
+//        ArrayList<String> resultList = new ArrayList<>();
+//        String[] tempStr;
+//
+//        for(int i = 0 ; i < addressList.size() ; i++){
+//            tempStr = addressList.get(i).split("#");
+//            resultList.add(tempStr[1] + tempStr[2] + tempStr[3]);
+//        }
+//        return resultList;
+        return UserData.getAddressList();
+    }
+
+    /**
+     * 取得所有門市
+     */
+    public ArrayList<String> getStoreList(){
+//        ArrayList<String> resultList = new ArrayList<>();
+//        String[] tempStr;
+//
+//        for(int i = 0 ; i < storeList.size() ; i++){
+//            tempStr = storeList.get(i).split("#");
+//            resultList.add(tempStr[1] + "  " + tempStr[2]);
+//        }
+//        return resultList;
+        return UserData.getStoreList();
+    }
+
+    /**
+     * 新增收件者
+     */
+    public void addReceiver(String newReceiver){
+//        receiverList.add(newReceiver);
+        UserData.addReceiver(newReceiver);
+    }
+
+    /**
+     * 刪除指定收件者
+     */
+    public void deleteReceiver(int index){
+//        receiverList.remove(index);
+        UserData.deleteReceiver(index);
+    }
+
+    /**
+     * 新增宅配地址
+     */
+    public void addAddress(String newAddress){
+//        addressList.add(newAddress);
+        UserData.addAddress(newAddress);
+    }
+
+    /**
+     * 刪除指定宅配地址
+     */
+    public void deleteAddress(int index){
+//        addressList.remove(index);
+        UserData.deleteAddress(index);
+    }
+
+    /**
+     * 新增門市
+     */
+    public void addStore(String newStore){
+//        storeList.add(newStore);
+        UserData.addStore(newStore);
+    }
+
+    /**
+     * 刪除指定門市
+     */
+    public void deleteStore(int index){
+//        storeList.remove(index);
+        UserData.deleteStore(index);
     }
 
 }

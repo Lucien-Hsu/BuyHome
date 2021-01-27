@@ -4,11 +4,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import androidx.lifecycle.MutableLiveData;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserData {
     public final static int SHOPPING_CART_ACTIVITY = 100;
@@ -32,6 +36,53 @@ public class UserData {
     private static int gender;
     private static String birthday;
     private static String phone;
+
+    //收件相關
+    private static String defaultReceiver;
+    private static String defaultAddress;
+    private static String defaultStore;
+    private static List<String> receiverList;
+    private static List<String> addressList;
+    private static List<String> storeList;
+
+    /**
+     * 初始化
+     */
+    static  {
+        //[配置記憶體]
+        defaultReceiver = "";
+        defaultAddress = "";
+        defaultStore = "";
+
+        //收件相關
+        receiverList = new ArrayList<String>();
+        addressList = new ArrayList<String>();
+        storeList = new ArrayList<String>();
+
+        //收件相關
+        addReceiver("#名字#電話");
+        addStore("#全家#楊梅店");
+        addAddress("#台北市#信義區#永吉路225巷");
+
+        //印出:[名字  電話]
+        Log.d("myTest", "static initializer: " + getReceiverList());
+        Log.d("myTest", "static initializer: " + getAddressList());
+        Log.d("myTest", "static initializer: " + getStoreList());
+        //印出:名字  電話
+        Log.d("myTest", "static initializer: " + getReceiverList().get(0));
+        Log.d("myTest", "static initializer: " + getAddressList().get(0));
+        Log.d("myTest", "static initializer: " + getStoreList().get(0));
+//        Log.d("myTest", "static initializer: " + getD);
+//        Log.d("myTest", "static initializer: " + getAddressList().get(0));
+//        Log.d("myTest", "static initializer: " + getStoreList().get(0));
+
+        setDefaultReceiver(getRawReceiverList().get(0));
+        setDefaultAddress(getRawAddressList().get(0));
+        setDefaultStore(getRawStoreList().get(0));
+//        defaultReceiver = getReceiverList().get(0);
+//        defaultAddress = getAddressList().get(0);
+//        defaultStore = getStoreList().get(0);
+    }
 
     public static String getUserName() {
         return userName;
@@ -135,4 +186,173 @@ public class UserData {
         UserData.phone = phone;
     }
 
+    /**
+     * 取得所有收件人
+     */
+    public static ArrayList<String> getReceiverList(){
+        ArrayList<String> resultList = new ArrayList<>();
+        String[] tempStr;
+
+        for(int i = 0 ; i < receiverList.size() ; i++){
+            tempStr = receiverList.get(i).split("#");
+            resultList.add(tempStr[1] + "  " + tempStr[2]);
+        }
+        return resultList;
+    }
+
+    /**
+     * 取得所有收件人的未解析格式
+     */
+    public static ArrayList<String> getRawReceiverList(){
+        return (ArrayList<String>) receiverList;
+    }
+
+    /**
+     * 取得所有地址
+     */
+    public static ArrayList<String> getAddressList(){
+        ArrayList<String> resultList = new ArrayList<>();
+        String[] tempStr;
+
+        for(int i = 0 ; i < addressList.size() ; i++){
+            tempStr = addressList.get(i).split("#");
+            resultList.add(tempStr[1] + tempStr[2] + tempStr[3]);
+        }
+        return resultList;
+    }
+
+    /**
+     * 取得所有地址的未解析格式
+     */
+    public static ArrayList<String> getRawAddressList(){
+        return (ArrayList<String>) addressList;
+    }
+
+    /**
+     * 取得所有門市
+     */
+    public static ArrayList<String> getStoreList(){
+        ArrayList<String> resultList = new ArrayList<>();
+        String[] tempStr;
+
+        for(int i = 0 ; i < storeList.size() ; i++){
+            tempStr = storeList.get(i).split("#");
+            resultList.add(tempStr[1] + "  " + tempStr[2]);
+        }
+        return resultList;
+    }
+
+    /**
+     * 取得所有門市的未解析格式
+     */
+    public static ArrayList<String> getRawStoreList(){
+        return (ArrayList<String>) storeList;
+    }
+
+    /**
+     * 新增收件者
+     */
+    public static void addReceiver(String newReceiver){
+        receiverList.add(newReceiver);
+    }
+
+    /**
+     * 刪除指定收件者
+     */
+    public static void deleteReceiver(int index){
+        receiverList.remove(index);
+    }
+
+    /**
+     * 新增宅配地址
+     */
+    public static void addAddress(String newAddress){
+        addressList.add(newAddress);
+    }
+
+    /**
+     * 刪除指定宅配地址
+     */
+    public static void deleteAddress(int index){
+        addressList.remove(index);
+    }
+
+    /**
+     * 新增門市
+     */
+    public static void addStore(String newStore){
+        storeList.add(newStore);
+    }
+
+    /**
+     * 刪除指定門市
+     */
+    public static void deleteStore(int index){
+        storeList.remove(index);
+    }
+
+    /**
+     * 取得預設收件者
+     * @return
+     */
+    public static String getDefaultName(){
+        String result;
+        String[] tempStr;
+        tempStr = defaultReceiver.split("#");
+        result = tempStr[1];
+
+        return result;
+//        return defaultReceiver;
+    }
+
+    /**
+     * 取得預設電話
+     * @return
+     */
+    public static String getDefaultPhone(){
+        String result;
+        String[] tempStr;
+        tempStr = defaultReceiver.split("#");
+        result = tempStr[2];
+
+        return result;
+    }
+
+    /**
+     * 取得預設宅配地址
+     * @return
+     */
+    public static String getDefaultAddress(){
+        String result;
+        String[] tempStr;
+        tempStr = defaultAddress.split("#");
+        result = tempStr[1] + tempStr[2] + tempStr[3];
+
+        return result;
+    }
+
+    /**
+     * 取得預設超商
+     * @return
+     */
+    public static String getDefaultStore(){
+        String result;
+        String[] tempStr;
+        tempStr = defaultStore.split("#");
+        result = tempStr[1] +"  " + tempStr[2];
+
+        return result;
+    }
+
+    public static void setDefaultReceiver(String defaultReceiver) {
+        UserData.defaultReceiver = defaultReceiver;
+    }
+
+    public static void setDefaultAddress(String defaultAddress) {
+        UserData.defaultAddress = defaultAddress;
+    }
+
+    public static void setDefaultStore(String defaultStore) {
+        UserData.defaultStore = defaultStore;
+    }
 }

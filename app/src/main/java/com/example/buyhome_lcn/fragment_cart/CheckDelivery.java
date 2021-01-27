@@ -42,29 +42,31 @@ public class CheckDelivery extends Fragment {
 
         chooseDeliveryWay(view);
 
+//        Log.d("myTest", "viewModel.getDefaultName(): " + viewModel.getDefaultName());
         tvReceiver = view.findViewById(R.id.tv_recipient_name_display);
-        if(viewModel.defaultReceiver.length() != 0){
+        if(viewModel.getDefaultName().length() != 0){
+            Log.d("myTest", "viewModel.getDefaultName(): " + viewModel.getDefaultName());
             tvReceiver.setText(viewModel.getDefaultName());
         }else{
             tvReceiver.setText("");
         }
 
         tvPhone = view.findViewById(R.id.tv_recipient_phone_display);
-        if(viewModel.defaultReceiver.length() != 0){
+        if(viewModel.getDefaultName().length() != 0){
             tvPhone.setText(viewModel.getDefaultPhone());
         }else{
             tvPhone.setText("");
         }
 
         tvAddress = view.findViewById(R.id.tv_home_delivery_adress);
-        if(viewModel.defaultReceiver.length() != 0){
+        if(viewModel.getDefaultName().length() != 0){
             tvAddress.setText(viewModel.getDefaultAddress());
         }else{
             tvAddress.setText("");
         }
 
         tvStorePickup = view.findViewById(R.id.tv_store_pickup);
-        if(viewModel.defaultReceiver.length() != 0){
+        if(viewModel.getDefaultName().length() != 0){
             tvStorePickup.setText(viewModel.getDefaultStore());
         }else{
             tvStorePickup.setText("");

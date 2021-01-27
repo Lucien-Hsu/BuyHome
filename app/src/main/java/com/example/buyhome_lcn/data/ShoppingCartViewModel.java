@@ -1,5 +1,7 @@
 package com.example.buyhome_lcn.data;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -30,12 +32,12 @@ public class ShoppingCartViewModel extends ViewModel {
 
     public String deliveryMethod = DELIVERY_METHOD_NULL;
     //收件相關
-    public String defaultReceiver;
-    public String defaultAddress;
-    public String defaultStore;
-    public List<String> receiverList;
-    public List<String> addressList;
-    public List<String> storeList;
+//    public String defaultReceiver;
+//    public String defaultAddress;
+//    public String defaultStore;
+//    public List<String> receiverList;
+//    public List<String> addressList;
+//    public List<String> storeList;
 
     /**
      * 初始化
@@ -50,18 +52,18 @@ public class ShoppingCartViewModel extends ViewModel {
         amountList = new ArrayList<Integer>();
         _amountList = new MutableLiveData<List<Integer>>();
         checkedProduct = new ArrayList<Boolean>();
-        defaultReceiver = "";
-        defaultAddress = "";
-        defaultStore = "";
+//        defaultReceiver = "";
+//        defaultAddress = "";
+//        defaultStore = "";
         //計算價格相關
         _pureTotalPrice = new MutableLiveData<Integer>();
         _discount = new MutableLiveData<Integer>();
         _deliveryFee = new MutableLiveData<Integer>();
         _totalPrice = new MutableLiveData<Integer>();
         //收件相關
-        receiverList = new ArrayList<String>();
-        addressList = new ArrayList<String>();
-        storeList = new ArrayList<String>();
+//        receiverList = new ArrayList<String>();
+//        addressList = new ArrayList<String>();
+//        storeList = new ArrayList<String>();
 
         //設定資料
         //TODO 串真資料
@@ -74,15 +76,19 @@ public class ShoppingCartViewModel extends ViewModel {
         _totalPrice.setValue(_pureTotalPrice.getValue() - _discount.getValue() - _deliveryFee.getValue());
 
         //收件相關
-        receiverList.add("#李先生#0912345678");
-        receiverList.add("#王小姐#0911000111");
-        storeList.add("#全家#楊梅幼獅店");
-        storeList.add("#萊爾富#平鎮復梅店");
-        addressList.add("#台北市#信義區#信義路五段7號89樓");
-        addressList.add("#桃園市#楊梅區#幼獅路二段3號");
-        defaultReceiver = receiverList.get(0);
-        defaultAddress = addressList.get(0);
-        defaultStore = storeList.get(0);
+//        receiverList.add("# # ");
+//        storeList.add("# # ");
+//        addressList.add("# # # ");
+//        defaultReceiver = receiverList.get(0);
+//        defaultAddress = addressList.get(0);
+//        defaultStore = storeList.get(0);
+
+//        addReceiver("# # ");
+//        addStore("# # ");
+//        addAddress("# # # ");
+//        defaultReceiver = getReceiverList().get(0);
+//        defaultAddress = getAddressList().get(0);
+//        defaultStore = getStoreList().get(0);
     }
 
     /**
@@ -254,84 +260,114 @@ public class ShoppingCartViewModel extends ViewModel {
      * 取得所有收件人
      */
     public ArrayList<String> getReceiverList(){
-        ArrayList<String> resultList = new ArrayList<>();
-        String[] tempStr;
+//        ArrayList<String> resultList = new ArrayList<>();
+//        String[] tempStr;
+//
+//        for(int i = 0 ; i < receiverList.size() ; i++){
+//            tempStr = receiverList.get(i).split("#");
+//            resultList.add(tempStr[1] + "  " + tempStr[2]);
+//        }
+//        return resultList;
+        return UserData.getReceiverList();
+    }
 
-        for(int i = 0 ; i < receiverList.size() ; i++){
-            tempStr = receiverList.get(i).split("#");
-            resultList.add(tempStr[1] + "  " + tempStr[2]);
-        }
-        return resultList;
+    /**
+     * 取得所有收件人的未解析格式
+     */
+    public static ArrayList<String> getRawReceiverList(){
+        return UserData.getRawReceiverList();
     }
 
     /**
      * 取得所有地址
      */
     public ArrayList<String> getAddressList(){
-        ArrayList<String> resultList = new ArrayList<>();
-        String[] tempStr;
+//        ArrayList<String> resultList = new ArrayList<>();
+//        String[] tempStr;
+//
+//        for(int i = 0 ; i < addressList.size() ; i++){
+//            tempStr = addressList.get(i).split("#");
+//            resultList.add(tempStr[1] + tempStr[2] + tempStr[3]);
+//        }
+//        return resultList;
+        return UserData.getAddressList();
+    }
 
-        for(int i = 0 ; i < addressList.size() ; i++){
-            tempStr = addressList.get(i).split("#");
-            resultList.add(tempStr[1] + tempStr[2] + tempStr[3]);
-        }
-        return resultList;
+    /**
+     * 取得所有地址的未解析格式
+     */
+    public static ArrayList<String> getRawAddressList(){
+        return UserData.getRawAddressList();
     }
 
     /**
      * 取得所有門市
      */
     public ArrayList<String> getStoreList(){
-        ArrayList<String> resultList = new ArrayList<>();
-        String[] tempStr;
+//        ArrayList<String> resultList = new ArrayList<>();
+//        String[] tempStr;
+//
+//        for(int i = 0 ; i < storeList.size() ; i++){
+//            tempStr = storeList.get(i).split("#");
+//            resultList.add(tempStr[1] + "  " + tempStr[2]);
+//        }
+//        return resultList;
+        return UserData.getStoreList();
+    }
 
-        for(int i = 0 ; i < storeList.size() ; i++){
-            tempStr = storeList.get(i).split("#");
-            resultList.add(tempStr[1] + "  " + tempStr[2]);
-        }
-        return resultList;
+    /**
+     * 取得所有門市的未解析格式
+     */
+    public static ArrayList<String> getRawStoreList(){
+        return UserData.getRawStoreList();
     }
 
     /**
      * 新增收件者
      */
     public void addReceiver(String newReceiver){
-        receiverList.add(newReceiver);
+//        receiverList.add(newReceiver);
+        UserData.addReceiver(newReceiver);
     }
 
     /**
      * 刪除指定收件者
      */
     public void deleteReceiver(int index){
-        receiverList.remove(index);
+//        receiverList.remove(index);
+        UserData.deleteReceiver(index);
     }
 
     /**
      * 新增宅配地址
      */
     public void addAddress(String newAddress){
-        addressList.add(newAddress);
+//        addressList.add(newAddress);
+        UserData.addAddress(newAddress);
     }
 
     /**
      * 刪除指定宅配地址
      */
     public void deleteAddress(int index){
-        addressList.remove(index);
+//        addressList.remove(index);
+        UserData.deleteAddress(index);
     }
 
     /**
      * 新增門市
      */
     public void addStore(String newStore){
-        storeList.add(newStore);
+//        storeList.add(newStore);
+        UserData.addStore(newStore);
     }
 
     /**
      * 刪除指定門市
      */
     public void deleteStore(int index){
-        storeList.remove(index);
+//        storeList.remove(index);
+        UserData.deleteStore(index);
     }
 
     public String getDeliveryMethod() {
@@ -347,12 +383,13 @@ public class ShoppingCartViewModel extends ViewModel {
      * @return
      */
     public String getDefaultName(){
-        String result;
-        String[] tempStr;
-        tempStr = defaultReceiver.split("#");
-        result = tempStr[1];
-
-        return result;
+//        String result;
+//        String[] tempStr;
+//        tempStr = defaultReceiver.split("#");
+//        result = tempStr[1];
+//
+//        return result;
+        return UserData.getDefaultName();
     }
 
     /**
@@ -360,12 +397,13 @@ public class ShoppingCartViewModel extends ViewModel {
      * @return
      */
     public String getDefaultPhone(){
-        String result;
-        String[] tempStr;
-        tempStr = defaultReceiver.split("#");
-        result = tempStr[2];
-
-        return result;
+//        String result;
+//        String[] tempStr;
+//        tempStr = defaultReceiver.split("#");
+//        result = tempStr[2];
+//
+//        return result;
+        return UserData.getDefaultPhone();
     }
 
     /**
@@ -373,12 +411,13 @@ public class ShoppingCartViewModel extends ViewModel {
      * @return
      */
     public String getDefaultAddress(){
-        String result;
-        String[] tempStr;
-        tempStr = defaultAddress.split("#");
-        result = tempStr[1] + tempStr[2] + tempStr[3];
-
-        return result;
+//        String result;
+//        String[] tempStr;
+//        tempStr = defaultAddress.split("#");
+//        result = tempStr[1] + tempStr[2] + tempStr[3];
+//
+//        return result;
+        return UserData.getDefaultAddress();
     }
 
     /**
@@ -386,12 +425,25 @@ public class ShoppingCartViewModel extends ViewModel {
      * @return
      */
     public String getDefaultStore(){
-        String result;
-        String[] tempStr;
-        tempStr = defaultStore.split("#");
-        result = tempStr[1] +"  " + tempStr[2];
+//        String result;
+//        String[] tempStr;
+//        tempStr = defaultStore.split("#");
+//        result = tempStr[1] +"  " + tempStr[2];
+//
+//        return result;
+        return UserData.getDefaultStore();
+    }
 
-        return result;
+    public void setDefaultReceiver(String defaultReceiver) {
+        UserData.setDefaultReceiver(defaultReceiver);
+    }
+
+    public void setDefaultAddress(String defaultAddress) {
+        UserData.setDefaultAddress(defaultAddress);
+    }
+
+    public void setDefaultStore(String defaultStore) {
+        UserData.setDefaultStore(defaultStore);
     }
 
     @Override

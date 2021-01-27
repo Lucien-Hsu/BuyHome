@@ -70,7 +70,7 @@ public class ChooseStore extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View v, int i, long l) {
                 Toast.makeText(context, ((TextView)v).getText(), Toast.LENGTH_SHORT).show();
                 //TODO 依照參數三決定相應的處理
-                viewModel.defaultStore = viewModel.storeList.get(i);
+                viewModel.setDefaultStore(viewModel.getRawStoreList().get(i));
 
                 //退出BackStack，此處便不會記錄到堆疊中。否則之後按返回建會回到這頁。
                 Navigation.findNavController(view).popBackStack();
