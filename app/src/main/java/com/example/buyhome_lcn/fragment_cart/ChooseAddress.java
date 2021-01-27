@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.data.ShoppingCartViewModel;
+import com.example.buyhome_lcn.data.UserData;
 
 import java.util.ArrayList;
 
@@ -57,6 +58,13 @@ public class ChooseAddress extends Fragment {
 
         //TODO [清單] ListView
         llAddress = view.findViewById(R.id.ll_address);
+
+        //清除用來初始化的清單項目
+        Log.d("myTest", "getAddressList(): " + viewModel.getAddressList());
+        if(!UserData.hasInitAddress){
+            viewModel.deleteAddress(0);
+            UserData.hasInitAddress = true;
+        }
 
         //設定Adapter
         //引數一：context

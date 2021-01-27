@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.data.MemberAreaViewModel;
+import com.example.buyhome_lcn.data.UserData;
 
 
 public class SetStoreFragment extends Fragment {
@@ -75,6 +77,13 @@ public class SetStoreFragment extends Fragment {
 
         //TODO [清單] ListView
         llStore = view.findViewById(R.id.ll_store);
+
+        //清除用來初始化的清單項目
+        Log.d("myTest", "getStoreList(): " + viewModel.getStoreList());
+        if(!UserData.hasInitStore){
+            viewModel.deleteStore(0);
+            UserData.hasInitStore = true;
+        }
 
         //設定Adapter
         //引數一：context

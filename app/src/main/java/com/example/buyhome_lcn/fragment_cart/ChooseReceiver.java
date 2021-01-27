@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.data.ShoppingCartViewModel;
+import com.example.buyhome_lcn.data.UserData;
 
 public class ChooseReceiver extends Fragment {
     Context context;
@@ -52,6 +54,13 @@ public class ChooseReceiver extends Fragment {
 
         //TODO [清單] ListView
         llReceiver = view.findViewById(R.id.ll_receiver);
+
+        //清除用來初始化的清單項目
+        Log.d("myTest", "getReceiverList(): " + viewModel.getReceiverList());
+        if(!UserData.hasInitReceiver){
+            viewModel.deleteReceiver(0);
+            UserData.hasInitReceiver = true;
+        }
 
         //設定Adapter
         //引數一：context

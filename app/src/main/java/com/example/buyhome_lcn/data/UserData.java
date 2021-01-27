@@ -45,6 +45,10 @@ public class UserData {
     private static List<String> addressList;
     private static List<String> storeList;
 
+    public static Boolean hasInitReceiver = false;
+    public static Boolean hasInitAddress = false;
+    public static Boolean hasInitStore = false;
+
     /**
      * 初始化
      */
@@ -60,9 +64,9 @@ public class UserData {
         storeList = new ArrayList<String>();
 
         //收件相關
-        addReceiver("#小明#0912333444");
-        addStore("#全家#楊梅店");
-        addAddress("#台北市#中正區#重慶南路一段122號");
+        addReceiver("# # ");
+        addStore("# # ");
+        addAddress("# # # ");
 
         //印出:[名字  電話]
         Log.d("myTest", "static initializer: " + getReceiverList());
@@ -79,9 +83,7 @@ public class UserData {
         setDefaultReceiver(getRawReceiverList().get(0));
         setDefaultAddress(getRawAddressList().get(0));
         setDefaultStore(getRawStoreList().get(0));
-//        defaultReceiver = getReceiverList().get(0);
-//        defaultAddress = getAddressList().get(0);
-//        defaultStore = getStoreList().get(0);
+
     }
 
     public static String getUserName() {

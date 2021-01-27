@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.buyhome_lcn.R;
 import com.example.buyhome_lcn.data.MemberAreaViewModel;
+import com.example.buyhome_lcn.data.UserData;
 
 
 public class SetAddressFragment extends Fragment {
@@ -76,6 +77,13 @@ public class SetAddressFragment extends Fragment {
 
         //TODO [清單] ListView
         llAddress = view.findViewById(R.id.ll_address);
+
+        //清除用來初始化的清單項目
+        Log.d("myTest", "getAddressList(): " + viewModel.getAddressList());
+        if(!UserData.hasInitAddress){
+            viewModel.deleteAddress(0);
+            UserData.hasInitAddress = true;
+        }
 
         //設定Adapter
         //引數一：context
