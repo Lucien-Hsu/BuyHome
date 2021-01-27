@@ -185,7 +185,7 @@ public class CheckDeal extends Fragment {
             tvDiscountCodeTip.setVisibility(View.VISIBLE);
 
             //依折扣碼對錯選擇相應圖示
-            if(editable.toString().equals("1234")){
+            if(editable.toString().equals("XMAS")){
                 tvDiscountCodeTip.setText("OK");
                 tvDiscountCodeTip.setBackgroundResource(R.drawable.frame_03);
                 etDiscountCode.setBackground(getResources().getDrawable(R.drawable.frame_greenline));
