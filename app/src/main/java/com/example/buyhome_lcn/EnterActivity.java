@@ -54,6 +54,9 @@ public class EnterActivity extends AppCompatActivity {
     private static final String PREF_CART_PICTURE_LIST = "PREF_CART_PICTURE_LIST";
     private static final String PREF_CART_PRODUCTID_LIST = "PREF_CART_PRODUCTID_LIST";
 
+    /**
+     * 將儲於內部記憶體的資料讀進來
+     */
     @Override
     protected void onResume() {
         super.onResume();
