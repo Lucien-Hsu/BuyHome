@@ -24,10 +24,11 @@ public class ShoppingCartViewModel extends ViewModel {
     public MutableLiveData<Integer> _deliveryFee;
     public MutableLiveData<Integer> _totalPrice;
     //畫面相關
-    private final int DELIVERY_METHOD_NULL = 0;
-    private final int DELIVERY_METHOD_TO_HOME = 1;
-    private final int DELIVERY_METHOD_TO_STORE = 2;
-    public int deliveryMethod = DELIVERY_METHOD_NULL;
+    public final String DELIVERY_METHOD_NULL = "";
+    public final String DELIVERY_METHOD_TO_HOME = "宅配";
+    public final String DELIVERY_METHOD_TO_STORE = "超商取貨";
+
+    public String deliveryMethod = DELIVERY_METHOD_NULL;
     //收件相關
     public String defaultReceiver;
     public String defaultAddress;
@@ -331,6 +332,14 @@ public class ShoppingCartViewModel extends ViewModel {
      */
     public void deleteStore(int index){
         storeList.remove(index);
+    }
+
+    public String getDeliveryMethod() {
+        return UserData.getPayMethod();
+    }
+
+    public void setDeliveryMethod(String deliveryMethod) {
+        UserData.setPayMethod(deliveryMethod);
     }
 
     /**

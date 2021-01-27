@@ -136,20 +136,31 @@ public class CheckDelivery extends Fragment {
         cbHome = view.findViewById(R.id.cb_home_delivery);
 
         //設定初始勾選狀態
-        switch (viewModel.deliveryMethod){
-            case 0:
-                cbHome.setChecked(false);
-                cbStore.setChecked(false);
-                break;
-            case 1:
-                cbHome.setChecked(true);
-                cbStore.setChecked(false);
-                break;
-            case 2:
-                cbHome.setChecked(false);
-                cbStore.setChecked(true);
-                break;
+        if(viewModel.getDeliveryMethod() == viewModel.DELIVERY_METHOD_NULL){
+            cbHome.setChecked(false);
+            cbStore.setChecked(false);
+        }else if(viewModel.getDeliveryMethod() == viewModel.DELIVERY_METHOD_TO_HOME){
+            cbHome.setChecked(true);
+            cbStore.setChecked(false);
+        }else if(viewModel.getDeliveryMethod() == viewModel.DELIVERY_METHOD_TO_STORE){
+            cbHome.setChecked(false);
+            cbStore.setChecked(true);
         }
+
+//        switch (viewModel.deliveryMethod){
+//            case viewModel.DELIVERY_METHOD_NULL:
+//                cbHome.setChecked(false);
+//                cbStore.setChecked(false);
+//                break;
+//            case viewModel.DELIVERY_METHOD_TO_HOME:
+//                cbHome.setChecked(true);
+//                cbStore.setChecked(false);
+//                break;
+//            case viewModel.DELIVERY_METHOD_TO_STORE:
+//                cbHome.setChecked(false);
+//                cbStore.setChecked(true);
+//                break;
+//        }
 
         cbHome.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -158,9 +169,11 @@ public class CheckDelivery extends Fragment {
                 cbStore.setChecked(!b);
 
                 if(cbHome.isChecked() && !cbStore.isChecked()){
-                    viewModel.deliveryMethod = 1;
+//                    viewModel.deliveryMethod = 1;
+                    viewModel.setDeliveryMethod(viewModel.DELIVERY_METHOD_TO_HOME);
                 }else if(!cbHome.isChecked() && cbStore.isChecked()){
-                    viewModel.deliveryMethod = 2;
+//                    viewModel.deliveryMethod = 2;
+                    viewModel.setDeliveryMethod(viewModel.DELIVERY_METHOD_TO_STORE);
                 }
                 Log.d("myTest", "deliveryMethod: " + viewModel.deliveryMethod);
             }
@@ -173,9 +186,11 @@ public class CheckDelivery extends Fragment {
                 cbHome.setChecked(!b);
 
                 if(cbHome.isChecked() && !cbStore.isChecked()){
-                    viewModel.deliveryMethod = 1;
+//                    viewModel.deliveryMethod = 1;
+                    viewModel.setDeliveryMethod(viewModel.DELIVERY_METHOD_TO_HOME);
                 }else if(!cbHome.isChecked() && cbStore.isChecked()){
-                    viewModel.deliveryMethod = 2;
+//                    viewModel.deliveryMethod = 2;
+                    viewModel.setDeliveryMethod(viewModel.DELIVERY_METHOD_TO_STORE);
                 }
                 Log.d("myTest", "deliveryMethod: " + viewModel.deliveryMethod);
             }

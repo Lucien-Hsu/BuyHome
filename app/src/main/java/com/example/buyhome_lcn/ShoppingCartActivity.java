@@ -25,6 +25,13 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private static final String PREF_CART_PICTURE_LIST = "PREF_CART_PICTURE_LIST";
     private static final String PREF_CART_PRODUCTID_LIST = "PREF_CART_PRODUCTID_LIST";
 
+    private static final String PREF_USER_ADDRESS = "PREF_USER_ADDRESS";
+    private static final String PREF_USER_STORE = "PREF_USER_STORE";
+    private static final String PREF_USER_PAYMETHOD = "PREF_USER_PAYMETHOD";
+    private static final String PREF_USER_GENDER = "PREF_USER_GENDER";
+    private static final String PREF_USER_BIRTHDAY = "PREF_USER_BIRTHDAY";
+    private static final String PREF_USER_PHONE = "PREF_USER_PHONE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +54,10 @@ public class ShoppingCartActivity extends AppCompatActivity {
         //儲存購物車商品編號清單
         sp.edit()
                 .putString(PREF_CART_PRODUCTID_LIST, ShoppingCartData.getProductIDListString())
+                .putString(PREF_USER_ADDRESS, UserData.getAddress())
+                .putString(PREF_USER_STORE, UserData.getStore())
+                .putString(PREF_USER_PHONE, UserData.getPhone())
+                .putString(PREF_USER_PAYMETHOD, UserData.getPayMethod())
                 .apply();
 
 //        Log.d("myTest", "儲存的商品編號: " + ShoppingCartData.getProductIDListString());

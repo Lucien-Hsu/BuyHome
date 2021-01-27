@@ -71,17 +71,18 @@ public class CheckDeal extends Fragment {
 
         //顯示寄送方式
         tvDeliveryDisplay = view.findViewById(R.id.tv_delivery_display);
-        switch (viewModel.deliveryMethod){
-            case 0:
-                tvDeliveryDisplay.setText("");
-                break;
-            case 1:
-                tvDeliveryDisplay.setText("宅配");
-                break;
-            case 2:
-                tvDeliveryDisplay.setText("超商取貨");
-                break;
-        }
+        tvDeliveryDisplay.setText(viewModel.getDeliveryMethod());
+//        switch (viewModel.deliveryMethod){
+//            case 0:
+//                tvDeliveryDisplay.setText("");
+//                break;
+//            case 1:
+//                tvDeliveryDisplay.setText("宅配");
+//                break;
+//            case 2:
+//                tvDeliveryDisplay.setText("超商取貨");
+//                break;
+//        }
 
         //[按鈕]  前往"設定寄送方式"
         imgBtnDelivery = view.findViewById(R.id.imgbtn_delivery);
