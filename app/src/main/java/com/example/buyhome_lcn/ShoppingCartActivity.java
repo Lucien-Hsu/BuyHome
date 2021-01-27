@@ -13,6 +13,7 @@ import android.util.Log;
 import com.example.buyhome_lcn.data.ShoppingCartData;
 import com.example.buyhome_lcn.data.UserData;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -32,6 +33,13 @@ public class ShoppingCartActivity extends AppCompatActivity {
     private static final String PREF_USER_BIRTHDAY = "PREF_USER_BIRTHDAY";
     private static final String PREF_USER_PHONE = "PREF_USER_PHONE";
 
+    private static final String PREF_USER_DEFAULT_RECEIVER = "PREF_USER_DEFAULT_RECEIVER";
+    private static final String PREF_USER_DEFAULT_ADDRESS = "PREF_USER_DEFAULT_ADDRESS";
+    private static final String PREF_USER_DEFAULT_STORE = "PREF_USER_DEFAULT_STORE";
+    private static final String PREF_USER_RECEIVER_LIST = "PREF_USER_RECEIVER_LIST";
+    private static final String PREF_USER_ADDRESS_LIST = "PREF_USER_ADDRESS_LIST";
+    private static final String PREF_USER_STORE_LIST = "PREF_USER_STORE_LIST";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +56,17 @@ public class ShoppingCartActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
+//        //準備要存入的資料
+//        //Set the values
+//        Set<String> rawReceiverListSet = new HashSet<String>();
+//        rawReceiverListSet.addAll(UserData.getRawReceiverList());
+//
+//        Set<String> rawAddressListSet = new HashSet<String>();
+//        rawAddressListSet.addAll(UserData.getRawReceiverList());
+//
+//        Set<String> rawStoreListSet = new HashSet<String>();
+//        rawStoreListSet.addAll(UserData.getRawReceiverList());
+
         //儲存資料至設備
         SharedPreferences sp = getSharedPreferences(PREF, 0);
         //設定為編輯模式，並放入資料鍵值，最後commit()才會寫入
@@ -58,6 +77,12 @@ public class ShoppingCartActivity extends AppCompatActivity {
                 .putString(PREF_USER_STORE, UserData.getStore())
                 .putString(PREF_USER_PHONE, UserData.getPhone())
                 .putString(PREF_USER_PAYMETHOD, UserData.getPayMethod())
+//                .putString(PREF_USER_DEFAULT_RECEIVER, UserData.getDefaultName())
+//                .putString(PREF_USER_DEFAULT_ADDRESS, UserData.getDefaultAddress())
+//                .putString(PREF_USER_DEFAULT_STORE, UserData.getDefaultStore())
+//                .putStringSet(PREF_USER_RECEIVER_LIST, rawReceiverListSet)
+//                .putStringSet(PREF_USER_ADDRESS_LIST, rawAddressListSet)
+//                .putStringSet(PREF_USER_STORE_LIST, rawStoreListSet)
                 .apply();
 
 //        Log.d("myTest", "儲存的商品編號: " + ShoppingCartData.getProductIDListString());

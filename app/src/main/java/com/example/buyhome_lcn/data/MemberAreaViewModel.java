@@ -115,6 +115,13 @@ public class MemberAreaViewModel extends ViewModel {
     }
 
     /**
+     * 取得所有收件人的未解析格式
+     */
+    public static ArrayList<String> getRawReceiverList(){
+        return UserData.getRawReceiverList();
+    }
+
+    /**
      * 取得所有地址
      */
     public ArrayList<String> getAddressList(){
@@ -127,6 +134,13 @@ public class MemberAreaViewModel extends ViewModel {
 //        }
 //        return resultList;
         return UserData.getAddressList();
+    }
+
+    /**
+     * 取得所有地址的未解析格式
+     */
+    public static ArrayList<String> getRawAddressList(){
+        return UserData.getRawAddressList();
     }
 
     /**
@@ -143,6 +157,14 @@ public class MemberAreaViewModel extends ViewModel {
 //        return resultList;
         return UserData.getStoreList();
     }
+
+    /**
+     * 取得所有門市的未解析格式
+     */
+    public static ArrayList<String> getRawStoreList(){
+        return UserData.getRawStoreList();
+    }
+
 
     /**
      * 新增收件者
@@ -190,6 +212,34 @@ public class MemberAreaViewModel extends ViewModel {
     public void deleteStore(int index){
 //        storeList.remove(index);
         UserData.deleteStore(index);
+    }
+
+    public void setDefaultReceiver(String defaultReceiver) {
+        UserData.setDefaultReceiver(defaultReceiver);
+    }
+
+    public void setDefaultAddress(String defaultAddress) {
+        UserData.setDefaultAddress(defaultAddress);
+    }
+
+    public void setDefaultStore(String defaultStore) {
+        UserData.setDefaultStore(defaultStore);
+    }
+
+    /**
+     * 取得預設宅配地址
+     * @return
+     */
+    public String getDefaultAddress(){
+        return UserData.getDefaultAddress();
+    }
+
+    /**
+     * 取得預設超商
+     * @return
+     */
+    public String getDefaultStore(){
+        return UserData.getDefaultStore();
     }
 
 }

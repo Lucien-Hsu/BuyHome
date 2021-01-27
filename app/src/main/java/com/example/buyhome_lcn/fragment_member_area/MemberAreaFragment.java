@@ -89,8 +89,8 @@ public class MemberAreaFragment extends Fragment {
         itemList = new ArrayList<Map<String, Object>>();
         showInfoTextList = new String[]{
                 "",
-                viewModel.getAddress(),
-                viewModel.getStore(),
+                viewModel.getDefaultAddress(),
+                viewModel.getDefaultStore(),
                 viewModel.getPayMethod(),
                 "",
                 ""};

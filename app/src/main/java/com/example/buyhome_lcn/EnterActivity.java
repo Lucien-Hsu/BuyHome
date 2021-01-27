@@ -34,6 +34,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Set;
 
 public class EnterActivity extends AppCompatActivity {
     Context context;
@@ -53,6 +55,13 @@ public class EnterActivity extends AppCompatActivity {
     private static final String PREF_CART_PRICE_LIST = "PREF_CART_PRICE_LIST";
     private static final String PREF_CART_PICTURE_LIST = "PREF_CART_PICTURE_LIST";
     private static final String PREF_CART_PRODUCTID_LIST = "PREF_CART_PRODUCTID_LIST";
+
+    private static final String PREF_USER_DEFAULT_RECEIVER = "PREF_USER_DEFAULT_RECEIVER";
+    private static final String PREF_USER_DEFAULT_ADDRESS = "PREF_USER_DEFAULT_ADDRESS";
+    private static final String PREF_USER_DEFAULT_STORE = "PREF_USER_DEFAULT_STORE";
+    private static final String PREF_USER_RECEIVER_LIST = "PREF_USER_RECEIVER_LIST";
+    private static final String PREF_USER_ADDRESS_LIST = "PREF_USER_ADDRESS_LIST";
+    private static final String PREF_USER_STORE_LIST = "PREF_USER_STORE_LIST";
 
     /**
      * 將儲於內部記憶體的資料讀進來
@@ -76,6 +85,30 @@ public class EnterActivity extends AppCompatActivity {
         UserData.setGender(sp.getInt(PREF_USER_GENDER, 0));
         UserData.setBirthday(sp.getString(PREF_USER_BIRTHDAY, ""));
         UserData.setPhone(sp.getString(PREF_USER_PHONE, ""));
+//        UserData.setDefaultReceiver(sp.getString(PREF_USER_DEFAULT_RECEIVER, ""));
+//        UserData.setDefaultAddress(sp.getString(PREF_USER_DEFAULT_ADDRESS, ""));
+//        UserData.setDefaultStore(sp.getString(PREF_USER_DEFAULT_STORE, ""));
+
+        //取出結帳資訊
+//        UserData.setDefaultStore(sp.getString(PREF_USER_DEFAULT_STORE, ""));
+//        UserData.setDefaultStore(sp.getString(PREF_USER_DEFAULT_STORE, ""));
+//        UserData.setDefaultStore(sp.getString(PREF_USER_DEFAULT_STORE, ""));
+//        Set<String> rawReceiverListSet = sp.getStringSet(PREF_USER_RECEIVER_LIST, null);
+//        Set<String> rawAddressListSet = sp.getStringSet(PREF_USER_ADDRESS_LIST, null);
+//        Set<String> rawStoreListSet = sp.getStringSet(PREF_USER_STORE_LIST, null);
+//        ArrayList<String> rawReceiverList = (ArrayList<String>) rawReceiverListSet;
+//        ArrayList<String> rawAddressList = (ArrayList<String>) rawAddressListSet;
+//        ArrayList<String> rawStoreList = (ArrayList<String>) rawStoreListSet;
+//        for(int i = 0 ; i < rawReceiverList.size(); i++){
+//            UserData.addReceiver(rawReceiverList.get(i));
+//        }
+//        for(int i = 0 ; i < rawAddressList.size(); i++){
+//            UserData.addAddress(rawAddressList.get(i));
+//        }
+//        for(int i = 0 ; i < rawStoreList.size(); i++){
+//            UserData.addStore(rawStoreList.get(i));
+//        }
+
         //取出購物車商品編號清單並設定
         String productListString = sp.getString(PREF_CART_PRODUCTID_LIST, "");
 //        Log.d("myTest", "取出的商品編號: " + productListString);
@@ -135,6 +168,10 @@ public class EnterActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         //連接導航 View 元件和導航控制器
         NavigationUI.setupWithNavController(navigation, navController);
+
+        //加入使用者資料到結帳資料中
+        SharedPreferences sp = getSharedPreferences(PREF, 0);
+        UserData.addReceiver("#" + sp.getString(PREF_USER_NAME, "") + "#" + sp.getString(PREF_USER_PHONE, ""));
     }
 
     //此方法會在創造 menu 時 inflate

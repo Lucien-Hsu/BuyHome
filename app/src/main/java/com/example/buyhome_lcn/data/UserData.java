@@ -60,9 +60,9 @@ public class UserData {
         storeList = new ArrayList<String>();
 
         //收件相關
-        addReceiver("#名字#電話");
+        addReceiver("#小明#0912333444");
         addStore("#全家#楊梅店");
-        addAddress("#台北市#信義區#永吉路225巷");
+        addAddress("#台北市#中正區#重慶南路一段122號");
 
         //印出:[名字  電話]
         Log.d("myTest", "static initializer: " + getReceiverList());
