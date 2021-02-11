@@ -45,6 +45,8 @@ public class UserData {
     private static List<String> addressList;
     private static List<String> storeList;
 
+    public static Boolean hasAddInitReceiver = false;
+
     public static Boolean hasInitReceiver = false;
     public static Boolean hasInitAddress = false;
     public static Boolean hasInitStore = false;
@@ -255,7 +257,7 @@ public class UserData {
      * 新增收件者
      */
     public static void addReceiver(String newReceiver){
-        receiverList.add(newReceiver);
+            receiverList.add(newReceiver);
     }
 
     /**
@@ -356,5 +358,14 @@ public class UserData {
 
     public static void setDefaultStore(String defaultStore) {
         UserData.defaultStore = defaultStore;
+    }
+
+
+    public static Boolean getHasAddInitReceiver() {
+        return hasAddInitReceiver;
+    }
+
+    public static void setHasAddInitReceiver(Boolean hasAddInitReceiver) {
+        UserData.hasAddInitReceiver = hasAddInitReceiver;
     }
 }

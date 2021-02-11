@@ -63,6 +63,8 @@ public class EnterActivity extends AppCompatActivity {
     private static final String PREF_USER_ADDRESS_LIST = "PREF_USER_ADDRESS_LIST";
     private static final String PREF_USER_STORE_LIST = "PREF_USER_STORE_LIST";
 
+    private static final String PREF_USER_HASADDINITRECEIVER = "PREF_USER_HASADDINITRECEIVER";
+
     /**
      * 將儲於內部記憶體的資料讀進來
      */
@@ -85,6 +87,8 @@ public class EnterActivity extends AppCompatActivity {
         UserData.setGender(sp.getInt(PREF_USER_GENDER, 0));
         UserData.setBirthday(sp.getString(PREF_USER_BIRTHDAY, ""));
         UserData.setPhone(sp.getString(PREF_USER_PHONE, ""));
+        //取得"初始收件者是否被加入之狀態"
+        UserData.setHasAddInitReceiver(sp.getBoolean(PREF_USER_HASADDINITRECEIVER,false));
 //        UserData.setDefaultReceiver(sp.getString(PREF_USER_DEFAULT_RECEIVER, ""));
 //        UserData.setDefaultAddress(sp.getString(PREF_USER_DEFAULT_ADDRESS, ""));
 //        UserData.setDefaultStore(sp.getString(PREF_USER_DEFAULT_STORE, ""));
@@ -171,7 +175,14 @@ public class EnterActivity extends AppCompatActivity {
 
         //加入使用者資料到結帳資料中
         SharedPreferences sp = getSharedPreferences(PREF, 0);
-        UserData.addReceiver("#" + sp.getString(PREF_USER_NAME, "") + "#" + sp.getString(PREF_USER_PHONE, ""));
+        if(!UserData.hasAddInitReceiver) {
+            UserData.addReceiver("#" + sp.getString(PREF_USER_NAME, "") + "#" + sp.getString(PREF_USER_PHONE, ""));
+            UserData.setHasAddInitReceiver(true);
+            //儲存"初始收件者是否被加入之狀態"
+            sp.edit()
+                    .putBoolean(PREF_USER_HASADDINITRECEIVER, UserData.getHasAddInitReceiver())
+                    .apply();
+        }
     }
 
     //此方法會在創造 menu 時 inflate
