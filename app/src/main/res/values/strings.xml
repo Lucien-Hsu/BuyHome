@@ -14,6 +14,7 @@
     <!-- Checkout -->
     <string name="googlepay_status_unavailable">Unfortunately, Google Pay is not available on this device.</string>
     <string name="payments_show_name">Successfully received payment data for %s!</string>
-    <string name="gateway_replace_name_example">"Gateway name set to \"example\" - please modify Constants.java and replace it with your own gateway."</string>
+<!--    <string name="gateway_replace_name_example">"Gateway name set to \"example\" - please modify Constants.java and replace it with your own gateway."</string>-->
+    <string name="gateway_replace_name_example">"於測試環境下付款成功，不會真正扣款，敬請放心。"</string>
     <string name="checkout_item_description">Description</string>
 </resources>
