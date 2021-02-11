@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.buyhome_lcn">
+    package="com.lcnhsu.buyhome_lcn">
     <!-- 設定網路權限 -->
     <uses-permission android:name="android.permission.INTERNET"
         android:usesCleartextTraffic="true"/>
@@ -16,15 +16,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProductDetailActivity"></activity>
-        <activity android:name=".LoginBuyHomeActivity" />
-        <activity android:name=".MemberAreaActivity" /> <!-- Google Pay -->
+        <activity android:name="com.lcnhsu.buyhome_lcn.ProductDetailActivity"></activity>
+        <activity android:name="com.lcnhsu.buyhome_lcn.LoginBuyHomeActivity" />
+        <activity android:name="com.lcnhsu.buyhome_lcn.MemberAreaActivity" /> <!-- Google Pay -->
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />
 
-        <activity android:name=".ShoppingCartActivity" />
-        <activity android:name=".EnterActivity">
+        <activity android:name="com.lcnhsu.buyhome_lcn.ShoppingCartActivity" />
+        <activity android:name="com.lcnhsu.buyhome_lcn.EnterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

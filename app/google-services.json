@@ -22,6 +22,51 @@
           }
         },
         {
+          "client_id": "124889818558-koqshmkrepsshlkjv172eunjmnd7duv6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.buyhome_lcn",
+            "certificate_hash": "81ed715b9dfd8478a2314cb58c8a7e9b0949efb3"
+          }
+        },
+        {
+          "client_id": "124889818558-0dbooekmfffp5o53odahk1vp3cvvgant.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv0HehirhKGvn7O2PVKDt5xt_I9gjAeYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124889818558-0dbooekmfffp5o53odahk1vp3cvvgant.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124889818558:android:1aca979890d589d4a605ef",
+        "android_client_info": {
+          "package_name": "com.lcnhsu.buyhome_lcn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124889818558-f54lfihn2p7fv6jen2csklevk36mitd8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lcnhsu.buyhome_lcn",
+            "certificate_hash": "2ca54df3c4365b28953b9e72b42bfb7a57c6b6d1"
+          }
+        },
+        {
           "client_id": "124889818558-0dbooekmfffp5o53odahk1vp3cvvgant.apps.googleusercontent.com",
           "client_type": 3
         }

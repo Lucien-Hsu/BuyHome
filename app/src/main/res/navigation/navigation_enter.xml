@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.buyhome_lcn.fragment_enter.HomeFragment"
+        android:name="com.lcnhsu.buyhome_lcn.fragment_enter.HomeFragment"
         android:label="BuyHome[首頁]"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/specialOfferFragment"
-        android:name="com.example.buyhome_lcn.fragment_enter.SpecialOfferFragment"
+        android:name="com.lcnhsu.buyhome_lcn.fragment_enter.SpecialOfferFragment"
         android:label="BuyHome[折扣]"
         tools:layout="@layout/fragment_special_offer" />
     <fragment
         android:id="@+id/messageFragment"
-        android:name="com.example.buyhome_lcn.fragment_enter.MessageFragment"
+        android:name="com.lcnhsu.buyhome_lcn.fragment_enter.MessageFragment"
         android:label="BuyHome[資訊]"
         tools:layout="@layout/fragment_message" />
 </navigation>
