@@ -51,6 +51,17 @@ public class MessageFragment extends Fragment {
             }
         });
 
+        //監聽 APP 說明是否被點擊
+        binding.tvAppDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //連到網站
+                Uri uriUrl = Uri.parse("https://www.notion.so/lucienhsu/Demo-APP-42c9ef1f69ef4246a8ff4c665b41ebc7");
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+                startActivity(launchBrowser);
+            }
+        });
+
         return view;
     }
 }
