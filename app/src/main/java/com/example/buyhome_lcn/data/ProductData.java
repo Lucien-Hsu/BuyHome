@@ -52,7 +52,7 @@ public class ProductData {
         nameList.add("天竺鼠車車");
         nameList.add("踢不爛靴子");
         nameList.add("美麗衣服");
-        nameList.add("工程師帽子");
+        nameList.add("溫暖帽子");
         nameList.add("水果手機4代");
         nameList.add("無藍光檯燈");
         nameList.add("歐爸風衣");

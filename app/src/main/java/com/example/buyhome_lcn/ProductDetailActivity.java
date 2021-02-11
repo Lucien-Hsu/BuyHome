@@ -63,7 +63,8 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                 if(canAddProduct){
 //                    Toast.makeText(context, "成功加入購物車！", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(context, ProductData.getCheckedProductID() + "成功加入購物車！", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(context, ProductData.getCheckedProductID() + "成功加入購物車！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "成功加入購物車！", Toast.LENGTH_SHORT).show();
 //                    Toast.makeText(context, "加入購物車的商品" + ShoppingCartData.getProductIDList(), Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(context, "此商品已在購物車！", Toast.LENGTH_SHORT).show();

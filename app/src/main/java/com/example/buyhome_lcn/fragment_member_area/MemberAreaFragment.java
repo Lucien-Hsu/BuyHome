@@ -118,7 +118,7 @@ public class MemberAreaFragment extends Fragment {
                 Map<String, Object> item = (Map<String, Object>)adapterView.getItemAtPosition(position);
                 Integer img = (Integer) item.get("img");
                 String info = (String) item.get("info");
-                Toast.makeText(context, "You selected : " + img + " info = " + info, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "You selected : " + img + " info = " + info, Toast.LENGTH_SHORT).show();
 
                 switch(position){
                     case 0:
@@ -172,7 +172,7 @@ public class MemberAreaFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                //若等了10a秒都沒回應則跳出
+                //若等了5秒都沒回應則跳出
                 if(sec > 100){
                     break;
                 }

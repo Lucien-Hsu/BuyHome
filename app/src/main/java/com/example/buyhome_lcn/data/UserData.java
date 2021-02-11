@@ -183,7 +183,11 @@ public class UserData {
     }
 
     public static String getPhone() {
-        return phone;
+        if(phone == ""){
+            return " ";
+        }else{
+            return phone;
+        }
     }
 
     public static void setPhone(String phone) {
@@ -199,7 +203,11 @@ public class UserData {
 
         for(int i = 0 ; i < receiverList.size() ; i++){
             tempStr = receiverList.get(i).split("#");
-            resultList.add(tempStr[1] + "  " + tempStr[2]);
+            if(tempStr[2] == null){
+                resultList.add(tempStr[1] + "  " + "預設電話");
+            }else{
+                resultList.add(tempStr[1] + "  " + tempStr[2]);
+            }
         }
         return resultList;
     }

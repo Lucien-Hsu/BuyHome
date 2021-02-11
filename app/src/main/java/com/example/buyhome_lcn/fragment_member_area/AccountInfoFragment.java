@@ -159,7 +159,7 @@ public class AccountInfoFragment extends Fragment {
         binding.lvAccountArea.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Toast.makeText(context, position + "", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, position + "", Toast.LENGTH_SHORT).show();
                 switch(position){
                     case 0:
                         break;
@@ -184,7 +184,7 @@ public class AccountInfoFragment extends Fragment {
                 Map<String, Object> item = (Map<String, Object>)adapterView.getItemAtPosition(position);
                 Integer img = (Integer) item.get("img");
                 String info = (String) item.get("info");
-                Toast.makeText(context, "You selected : " + img + " info = " + info, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "You selected : " + img + " info = " + info, Toast.LENGTH_SHORT).show();
 
                 switch(position){
                     case 0:

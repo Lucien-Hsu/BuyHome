@@ -94,7 +94,7 @@ public class HomeFragment extends Fragment {
         binding.gvHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Toast.makeText(context, "點擊:" + position, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "點擊:" + position, Toast.LENGTH_SHORT).show();
 
                 //設定點選的商品編號
                 ProductData.setCheckedProductID(position);
@@ -139,11 +139,11 @@ public class HomeFragment extends Fragment {
         binding.lvHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Toast.makeText(context, "點選" + position, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "點選" + position, Toast.LENGTH_SHORT).show();
 
                 //設定當前商品編號
                 int productID = (position + 6);
-                Toast.makeText(context, "點擊:" + position, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "點擊:" + position, Toast.LENGTH_SHORT).show();
 
                 //設定點選的商品編號
                 ProductData.setCheckedProductID(productID);

@@ -55,6 +55,7 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
     private static final String PREF = "PREF";
     private static final String PREF_USER_NAME = "PREF_USER_NAME";
     private static final String PREF_USER_EMAIL = "PREF_USER_EMAIL";
+    private static final String PREF_USER_PHONE = "PREF_USER_PHONE";
 
     //此為登入按鈕
     SignInButton btnLogin;
@@ -155,12 +156,12 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             Log.d("myTest", "handleSignInResult:登入成功。 帳號:" + account);
-            Toast.makeText(context, "[Login]", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "Login", Toast.LENGTH_SHORT).show();
 
         } catch (ApiException e) {
             // 若登入失敗，顯示登入失敗
             Log.d("myTest", "handleSignInResult:登入失敗。 錯誤碼:" +  e.getStatusCode());
-            Toast.makeText(context, "[Fail]", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -185,9 +186,9 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
                             UserData.setUserImgURL(user.getPhotoUrl().toString());
                             new MyPhotoAsyncTask().execute(user.getPhotoUrl().toString());
                             //印出取得的資料
-                            Toast.makeText(context, "[已取得資料]\n暱稱:" + user.getDisplayName()
-                                    + "\n信箱:" + user.getEmail()
-                                    + "\n圖片網址:" + user.getPhotoUrl().toString(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(context, "[已取得資料]\n暱稱:" + user.getDisplayName()
+//                                    + "\n信箱:" + user.getEmail()
+//                                    + "\n圖片網址:" + user.getPhotoUrl().toString(), Toast.LENGTH_SHORT).show();
 
                             //儲存資料至設備
                             SharedPreferences sp = getSharedPreferences(PREF, 0);
@@ -196,6 +197,9 @@ public class LoginBuyHomeActivity extends AppCompatActivity {
                                     .putString(PREF_USER_NAME, user.getDisplayName())
                                     .putString(PREF_USER_EMAIL, user.getEmail())
                                     .apply();
+                            UserData.deleteReceiver(0);
+                            UserData.addReceiver("#" + sp.getString(PREF_USER_NAME, "預設收件人") + "#" + sp.getString(PREF_USER_PHONE, "預設電話"));
+
 
                             // 跳至下個 Activity
                             Intent intent;

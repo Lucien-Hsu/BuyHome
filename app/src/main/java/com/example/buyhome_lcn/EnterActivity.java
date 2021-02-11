@@ -175,8 +175,13 @@ public class EnterActivity extends AppCompatActivity {
 
         //加入使用者資料到結帳資料中
         SharedPreferences sp = getSharedPreferences(PREF, 0);
+
+        //若使用者
         if(!UserData.hasAddInitReceiver) {
-            UserData.addReceiver("#" + sp.getString(PREF_USER_NAME, "") + "#" + sp.getString(PREF_USER_PHONE, ""));
+//            UserData.addReceiver("#" + sp.getString(PREF_USER_NAME, "") + "#" + sp.getString(PREF_USER_PHONE, ""));
+//            UserData.addReceiver("#" + sp.getString(PREF_USER_NAME, "") + "#" + "預設電話");
+            UserData.addReceiver("#" + sp.getString(PREF_USER_NAME, "預設收件人") + "#" + sp.getString(PREF_USER_PHONE, "預設電話"));
+            Log.d("myTest", "收件人:" + sp.getString(PREF_USER_NAME, "預設收件人") + " 電話:" + sp.getString(PREF_USER_PHONE, "預設電話"));
             UserData.setHasAddInitReceiver(true);
             //儲存"初始收件者是否被加入之狀態"
             sp.edit()
