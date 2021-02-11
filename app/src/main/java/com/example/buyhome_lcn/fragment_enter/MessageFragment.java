@@ -56,7 +56,8 @@ public class MessageFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 //連到網站
-                Uri uriUrl = Uri.parse("https://www.notion.so/lucienhsu/Demo-APP-42c9ef1f69ef4246a8ff4c665b41ebc7");
+//                Uri uriUrl = Uri.parse("https://www.notion.so/lucienhsu/Demo-APP-42c9ef1f69ef4246a8ff4c665b41ebc7");
+                Uri uriUrl = Uri.parse("https://www.notion.so/lucienhsu/Demo-APP-97f8e62a6ad5449882aecbd0ff4bf00b");
                 Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
                 startActivity(launchBrowser);
             }
