@@ -2,7 +2,7 @@
 本專案實作一個購物車 APP。
 本 APP 於測試環境下進行 google pay 付款，故不會真正扣款，敬請放心。
 
-(請注意，本專案因使用 Firebase 之 SHA 權限，故無法於您的設備上運作。)
+(請注意，本專案因使用 Firebase 之 SHA-1 憑證，故無法於無憑證之電腦上使用登入功能。)
 
 # Demo 影片
 [![Watch the video](https://img.youtube.com/vi/q9nhjUszLP4/mq2.jpg)](https://youtu.be/q9nhjUszLP4)
