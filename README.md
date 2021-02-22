@@ -27,7 +27,7 @@ https://drive.google.com/file/d/1Zwagh6wkngjrX78LidiK7FE3wnKIEjUo/view
 https://www.figma.com/file/5ssuhubHwbXXJydusxcE5z/%E8%B3%BC%E7%89%A9%E8%BB%8A
 
 # 專案協作版本
-本專案初始版本是由我與另兩位夥伴一起協作完成，而後自己完全獨立製作了現在的版本，因此當前版本皆為我獨立製作。
+本專案初始版本是由我與另兩位夥伴一起採 GitHub flow 協作完成，而後自己完全獨立製作了現在的版本，因此當前版本皆為我獨立製作。
 
 對協作版本與協作過程有興趣者可參考以下連結。
 
