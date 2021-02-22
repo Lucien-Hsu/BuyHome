@@ -22,6 +22,6 @@
 https://drive.google.com/file/d/1Zwagh6wkngjrX78LidiK7FE3wnKIEjUo/view
 
 # 前期 UI/UX 設計
-本專案從 wireframe 到 mockup 最後產出 prototype，在每個階段盡可能釐清介面使用上的非功能性需求。
+本專案從 wireframe 到 mockup 最後產出 prototype，在每個階段盡可能釐清介面使用上的各種需求。
 
 https://www.figma.com/file/5ssuhubHwbXXJydusxcE5z/%E8%B3%BC%E7%89%A9%E8%BB%8A
